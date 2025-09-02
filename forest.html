@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENRO Sablayan - Forest Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'menro-red': '#dc2626',
+                        'menro-dark': '#991b1b',
+                        'forest-green': '#059669',
+                        'forest-dark': '#047857',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-hover {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Static Prototype Webpage -->
+    <!-- Header -->
+    <header class="bg-forest-green text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                        <img src="https://cdn-ilebokm.nitrocdn.com/LDIERXKvnOnyQiQIfOmrlCQetXbgMMSd/assets/images/optimized/rev-c086d95/occidentalmindoro.gov.ph/wp-content/uploads/2022/07/Ph_seal_occidental_mindoro_sablayan-1-300x300.png" alt="logo">
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">MENRO SABLAYAN - FOREST SECTION</h1>
+                        <p class="text-green-200 text-sm">Strategy Reach to Reef - Forest Management System</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-green-200">Officer: Juan Dela Cruz</span>
+                    <button onclick="logout()" class="bg-forest-dark hover:bg-green-800 px-4 py-2 rounded-lg transition-colors">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <nav class="w-64 bg-white shadow-lg min-h-screen">
+            <div class="p-4">
+                <div class="space-y-2">
+                    <button onclick="showSection('dashboard')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3 bg-forest-green text-white">
+                        <span>📊</span>
+                        <span>Dashboard</span>
+                    </button>
+                    <button onclick="showSection('watershed')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3">
+                        <span>💧</span>
+                        <span>Community Watershed</span>
+                    </button>
+                    <button onclick="showSection('nursery')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3">
+                        <span>🌱</span>
+                        <span>Nursery Management</span>
+                    </button>
+                    <button onclick="showSection('requests')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3">
+                        <span>📝</span>
+                        <span>Tree Planting Requests</span>
+                    </button>
+                    <button onclick="showSection('restoration')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3">
+                        <span>🌳</span>
+                        <span>Forest Restoration</span>
+                    </button>
+                    <button onclick="showSection('reports')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3">
+                        <span>📋</span>
+                        <span>Monthly Reports</span>
+                    </button>
+                    <button onclick="showSection('logbook')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3">
+                        <span>📖</span>
+                        <span>Logbook Entries</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section fade-in">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Forest Section Dashboard</h2>
+                
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500 card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Native Seedlings</p>
+                                <p class="text-2xl font-bold text-green-600">2,450</p>
+                                <p class="text-xs text-green-500">Available in nursery</p>
+                            </div>
+                            <span class="text-3xl">🌱</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500 card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Trees Planted</p>
+                                <p class="text-2xl font-bold text-blue-600">1,850</p>
+                                <p class="text-xs text-blue-500">This year (2024)</p>
+                            </div>
+                            <span class="text-3xl">🌳</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500 card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Survival Rate</p>
+                                <p class="text-2xl font-bold text-yellow-600">78%</p>
+                                <p class="text-xs text-yellow-500">Reforestation areas</p>
+                            </div>
+                            <span class="text-3xl">📈</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500 card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Monthly Reports</p>
+                                <p class="text-2xl font-bold text-purple-600">6/6</p>
+                                <p class="text-xs text-purple-500">December 2024</p>
+                            </div>
+                            <span class="text-3xl">📊</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activities -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Recent Activities</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+                                <span class="text-green-600">🚶‍♂️</span>
+                                <div>
+                                    <p class="font-medium">Malatongtong Falls Patrol</p>
+                                    <p class="text-sm text-gray-600">Completed - Dec 15, 2024</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                                <span class="text-blue-600">🌱</span>
+                                <div>
+                                    <p class="font-medium">Seedling Distribution</p>
+                                    <p class="text-sm text-gray-600">100 seedlings to Army - Dec 14, 2024</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg">
+                                <span class="text-yellow-600">📝</span>
+                                <div>
+                                    <p class="font-medium">Weekly Logbook Update</p>
+                                    <p class="text-sm text-gray-600">Nursery mortality: 8% - Dec 13, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Monthly Report Status (6 Reports)</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Community Watershed Patrol</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Nursery Establishment</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Reforestation Activity</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Patrol Deck Report</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Mindoro Pines Monitoring</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Critical Habitat Patrol</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <button onclick="addPatrolReport()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
+                            <span>🚶‍♂️</span>
+                            <span>Add Patrol Report</span>
+                        </button>
+                        <button onclick="updateNursery()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
+                            <span>🌱</span>
+                            <span>Update Nursery</span>
+                        </button>
+                        <button onclick="processRequest()" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
+                            <span>📝</span>
+                            <span>Process Request</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Watershed Section -->
+            <div id="watershed" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Community Watershed - Malatongtong Falls</h2>
+                    <button onclick="addPatrolReport()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
+                        Add Patrol Report
+                    </button>
+                </div>
+
+                <!-- Patrol Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="font-semibold text-green-800 mb-2">This Month</h3>
+                        <p class="text-2xl font-bold text-green-600">4</p>
+                        <p class="text-sm text-green-600">Patrol visits completed</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
+                        <h3 class="font-semibold text-yellow-800 mb-2">Violations Found</h3>
+                        <p class="text-2xl font-bold text-yellow-600">1</p>
+                        <p class="text-sm text-yellow-600">Reported to DENR</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2">Environment Status</h3>
+                        <p class="text-2xl font-bold text-blue-600">Good</p>
+                        <p class="text-sm text-blue-600">Overall condition</p>
+                    </div>
+                </div>
+
+                <!-- Recent Patrol Reports -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Recent Patrol Reports</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-green-800">December 15, 2024 - Malatongtong Falls Area</h4>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Clear</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p class="text-gray-700"><strong>Environment Status:</strong> Excellent</p>
+                                    <p class="text-gray-700"><strong>Water Quality:</strong> Clear and clean</p>
+                                    <p class="text-gray-700"><strong>Vegetation:</strong> Healthy growth</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-700"><strong>Violations:</strong> None detected</p>
+                                    <p class="text-gray-700"><strong>Garbage:</strong> Minimal tourist waste collected</p>
+                                    <p class="text-gray-700"><strong>Wildlife:</strong> Normal activity observed</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">Officer: Juan Dela Cruz | Duration: 3 hours | Weather: Sunny</p>
+                        </div>
+
+                        <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-yellow-800">December 8, 2024 - Watershed Perimeter</h4>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Minor Issues</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p class="text-gray-700"><strong>Environment Status:</strong> Good</p>
+                                    <p class="text-gray-700"><strong>Water Quality:</strong> Slightly turbid (recent rain)</p>
+                                    <p class="text-gray-700"><strong>Vegetation:</strong> Some damaged saplings</p>
+                                </div>
+                                <div>
+                                    <p class="text-red-600"><strong>Violations:</strong> Illegal logging attempt detected</p>
+                                    <p class="text-gray-700"><strong>Garbage:</strong> Plastic bottles near trail</p>
+                                    <p class="text-gray-700"><strong>Action Taken:</strong> Reported to DENR & Barangay</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">Officer: Juan Dela Cruz | Duration: 4 hours | Weather: Overcast</p>
+                        </div>
+
+                        <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-green-800">December 1, 2024 - Falls Basin Area</h4>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Clear</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p class="text-gray-700"><strong>Environment Status:</strong> Excellent</p>
+                                    <p class="text-gray-700"><strong>Water Quality:</strong> Crystal clear</p>
+                                    <p class="text-gray-700"><strong>Vegetation:</strong> Dense canopy coverage</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-700"><strong>Violations:</strong> None detected</p>
+                                    <p class="text-gray-700"><strong>Garbage:</strong> Area clean</p>
+                                    <p class="text-gray-700"><strong>Wildlife:</strong> Bird species diversity high</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">Officer: Juan Dela Cruz | Duration: 2.5 hours | Weather: Sunny</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation Tracking -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Violation Tracking & Enforcement</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left">Date</th>
+                                    <th class="px-4 py-2 text-left">Violation Type</th>
+                                    <th class="px-4 py-2 text-left">Location</th>
+                                    <th class="px-4 py-2 text-left">Reported To</th>
+                                    <th class="px-4 py-2 text-left">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-2">Dec 8, 2024</td>
+                                    <td class="px-4 py-2">Illegal Logging Attempt</td>
+                                    <td class="px-4 py-2">Watershed Perimeter</td>
+                                    <td class="px-4 py-2">DENR & Barangay</td>
+                                    <td class="px-4 py-2"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Under Investigation</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Nov 22, 2024</td>
+                                    <td class="px-4 py-2">Garbage Dumping</td>
+                                    <td class="px-4 py-2">Access Trail</td>
+                                    <td class="px-4 py-2">Barangay</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Resolved</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Nov 15, 2024</td>
+                                    <td class="px-4 py-2">Unauthorized Camping</td>
+                                    <td class="px-4 py-2">Falls Basin</td>
+                                    <td class="px-4 py-2">Barangay</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Resolved</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nursery Management Section -->
+            <div id="nursery" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Nursery Establishment - Native Trees</h2>
+                    <button onclick="updateNursery()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
+                        Update Inventory
+                    </button>
+                </div>
+
+                <!-- Nursery Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="font-semibold text-green-800 mb-2">Total Seedlings</h3>
+                        <p class="text-3xl font-bold text-green-600">2,450</p>
+                        <p class="text-sm text-green-600">Available for distribution</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2">Distributed This Month</h3>
+                        <p class="text-3xl font-bold text-blue-600">320</p>
+                        <p class="text-sm text-blue-600">December 2024</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500">
+                        <h3 class="font-semibold text-red-800 mb-2">Mortality Rate</h3>
+                        <p class="text-3xl font-bold text-red-600">8%</p>
+                        <p class="text-sm text-red-600">Within acceptable range</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
+                        <h3 class="font-semibold text-purple-800 mb-2">New Seedlings</h3>
+                        <p class="text-3xl font-bold text-purple-600">180</p>
+                        <p class="text-sm text-purple-600">Ready this week</p>
+                    </div>
+                </div>
+
+                <!-- Species Inventory -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Native Species Inventory</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <h4 class="font-semibold text-green-800">Narra (Pterocarpus indicus)</h4>
+                            <p class="text-2xl font-bold text-green-600">450</p>
+                            <p class="text-sm text-gray-600">Height: 15-25cm | Age: 6 months</p>
+                            <p class="text-xs text-green-600">High demand species</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <h4 class="font-semibold text-blue-800">Mahogany (Swietenia macrophylla)</h4>
+                            <p class="text-2xl font-bold text-blue-600">380</p>
+                            <p class="text-sm text-gray-600">Height: 20-30cm | Age: 8 months</p>
+                            <p class="text-xs text-blue-600">Fast growing</p>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                            <h4 class="font-semibold text-yellow-800">Molave (Vitex parviflora)</h4>
+                            <p class="text-2xl font-bold text-yellow-600">320</p>
+                            <p class="text-sm text-gray-600">Height: 12-20cm | Age: 5 months</p>
+                            <p class="text-xs text-yellow-600">Hardwood species</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                            <h4 class="font-semibold text-purple-800">Kamagong (Diospyros blancoi)</h4>
+                            <p class="text-2xl font-bold text-purple-600">280</p>
+                            <p class="text-sm text-gray-600">Height: 10-18cm | Age: 4 months</p>
+                            <p class="text-xs text-purple-600">Slow growing, valuable</p>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                            <h4 class="font-semibold text-red-800">Talisay (Terminalia catappa)</h4>
+                            <p class="text-2xl font-bold text-red-600">520</p>
+                            <p class="text-sm text-gray-600">Height: 25-35cm | Age: 7 months</p>
+                            <p class="text-xs text-red-600">Coastal adaptation</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
+                            <h4 class="font-semibold text-indigo-800">Banaba (Lagerstroemia speciosa)</h4>
+                            <p class="text-2xl font-bold text-indigo-600">500</p>
+                            <p class="text-sm text-gray-600">Height: 18-28cm | Age: 6 months</p>
+                            <p class="text-xs text-indigo-600">Medicinal properties</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monthly Distribution Log -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">December 2024 Distribution Log</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left">Date</th>
+                                    <th class="px-4 py-2 text-left">Recipient</th>
+                                    <th class="px-4 py-2 text-left">Species</th>
+                                    <th class="px-4 py-2 text-left">Quantity</th>
+                                    <th class="px-4 py-2 text-left">Purpose</th>
+                                    <th class="px-4 py-2 text-left">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-2">Dec 14, 2024</td>
+                                    <td class="px-4 py-2">Philippine Army - 203rd Brigade</td>
+                                    <td class="px-4 py-2">Mixed Native</td>
+                                    <td class="px-4 py-2">100</td>
+                                    <td class="px-4 py-2">Camp Reforestation</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Distributed</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 10, 2024</td>
+                                    <td class="px-4 py-2">Sablayan Elementary School</td>
+                                    <td class="px-4 py-2">Narra, Mahogany</td>
+                                    <td class="px-4 py-2">75</td>
+                                    <td class="px-4 py-2">School Beautification</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Distributed</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 5, 2024</td>
+                                    <td class="px-4 py-2">Barangay Poblacion</td>
+                                    <td class="px-4 py-2">Talisay, Banaba</td>
+                                    <td class="px-4 py-2">50</td>
+                                    <td class="px-4 py-2">Street Tree Planting</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Distributed</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 2, 2024</td>
+                                    <td class="px-4 py-2">Sablayan National High School</td>
+                                    <td class="px-4 py-2">Mixed Native</td>
+                                    <td class="px-4 py-2">95</td>
+                                    <td class="px-4 py-2">Environmental Program</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Distributed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Mortality Tracking -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Mortality Tracking & Care Notes</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3">Weekly Mortality Report</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center p-2 bg-red-50 rounded">
+                                    <span class="text-sm">Week of Dec 9-15</span>
+                                    <span class="text-sm font-bold text-red-600">22 seedlings (0.9%)</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2 bg-yellow-50 rounded">
+                                    <span class="text-sm">Week of Dec 2-8</span>
+                                    <span class="text-sm font-bold text-yellow-600">18 seedlings (0.7%)</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                    <span class="text-sm">Week of Nov 25-Dec 1</span>
+                                    <span class="text-sm font-bold text-green-600">15 seedlings (0.6%)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3">Care & Maintenance Notes</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="p-2 bg-blue-50 rounded">
+                                    <p class="font-medium">Watering Schedule: Twice daily (6AM, 4PM)</p>
+                                    <p class="text-gray-600">Adjusted for dry season</p>
+                                </div>
+                                <div class="p-2 bg-green-50 rounded">
+                                    <p class="font-medium">Fertilizer Application: Weekly organic compost</p>
+                                    <p class="text-gray-600">Last applied: Dec 13, 2024</p>
+                                </div>
+                                <div class="p-2 bg-yellow-50 rounded">
+                                    <p class="font-medium">Pest Control: Neem oil spray bi-weekly</p>
+                                    <p class="text-gray-600">Next application: Dec 20, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tree Planting Requests Section -->
+            <div id="requests" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Tree Planting Requests Management</h2>
+                    <button onclick="processRequest()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
+                        Process New Request
+                    </button>
+                </div>
+
+                <!-- Request Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
+                        <h3 class="font-semibold text-yellow-800 mb-2">Pending Requests</h3>
+                        <p class="text-3xl font-bold text-yellow-600">3</p>
+                        <p class="text-sm text-yellow-600">Awaiting processing</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2">Approved This Month</h3>
+                        <p class="text-3xl font-bold text-blue-600">8</p>
+                        <p class="text-sm text-blue-600">December 2024</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="font-semibold text-green-800 mb-2">Seedlings Requested</h3>
+                        <p class="text-3xl font-bold text-green-600">650</p>
+                        <p class="text-sm text-green-600">Total this month</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
+                        <h3 class="font-semibold text-purple-800 mb-2">Organizations Served</h3>
+                        <p class="text-3xl font-bold text-purple-600">12</p>
+                        <p class="text-sm text-purple-600">This year</p>
+                    </div>
+                </div>
+
+                <!-- Pending Requests -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Pending Requests</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-yellow-800">Philippine Army - 203rd Infantry Brigade</h4>
+                                    <p class="text-sm text-gray-600">Contact: Major Santos | Phone: 0917-123-4567</p>
+                                </div>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Pending Review</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p><strong>Requested Quantity:</strong> 150 seedlings</p>
+                                    <p><strong>Preferred Species:</strong> Mixed native trees</p>
+                                    <p><strong>Planting Location:</strong> Camp perimeter and training grounds</p>
+                                </div>
+                                <div>
+                                    <p><strong>Purpose:</strong> Military camp reforestation and environmental compliance</p>
+                                    <p><strong>Request Date:</strong> December 12, 2024</p>
+                                    <p><strong>Preferred Collection:</strong> December 20, 2024</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex space-x-2">
+                                <button onclick="approveRequest(1)" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm">Approve</button>
+                                <button onclick="reviewRequest(1)" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">Review</button>
+                                <button onclick="rejectRequest(1)" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm">Reject</button>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-yellow-800">Sablayan Central School</h4>
+                                    <p class="text-sm text-gray-600">Contact: Mrs. Cruz | Phone: 0918-765-4321</p>
+                                </div>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Pending Review</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p><strong>Requested Quantity:</strong> 80 seedlings</p>
+                                    <p><strong>Preferred Species:</strong> Narra, Mahogany, Banaba</p>
+                                    <p><strong>Planting Location:</strong> School campus and playground area</p>
+                                </div>
+                                <div>
+                                    <p><strong>Purpose:</strong> Environmental education and campus beautification</p>
+                                    <p><strong>Request Date:</strong> December 10, 2024</p>
+                                    <p><strong>Preferred Collection:</strong> December 18, 2024</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex space-x-2">
+                                <button onclick="approveRequest(2)" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm">Approve</button>
+                                <button onclick="reviewRequest(2)" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">Review</button>
+                                <button onclick="rejectRequest(2)" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm">Reject</button>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-yellow-800">Barangay San Agustin</h4>
+                                    <p class="text-sm text-gray-600">Contact: Brgy. Captain Reyes | Phone: 0919-888-9999</p>
+                                </div>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Pending Review</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p><strong>Requested Quantity:</strong> 100 seedlings</p>
+                                    <p><strong>Preferred Species:</strong> Talisay, Molave</p>
+                                    <p><strong>Planting Location:</strong> Barangay plaza and roadside areas</p>
+                                </div>
+                                <div>
+                                    <p><strong>Purpose:</strong> Community beautification and shade tree project</p>
+                                    <p><strong>Request Date:</strong> December 8, 2024</p>
+                                    <p><strong>Preferred Collection:</strong> December 22, 2024</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex space-x-2">
+                                <button onclick="approveRequest(3)" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm">Approve</button>
+                                <button onclick="reviewRequest(3)" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">Review</button>
+                                <button onclick="rejectRequest(3)" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Approved Requests -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Recently Approved Requests</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left">Date Approved</th>
+                                    <th class="px-4 py-2 text-left">Organization</th>
+                                    <th class="px-4 py-2 text-left">Quantity</th>
+                                    <th class="px-4 py-2 text-left">Species</th>
+                                    <th class="px-4 py-2 text-left">Collection Date</th>
+                                    <th class="px-4 py-2 text-left">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-2">Dec 13, 2024</td>
+                                    <td class="px-4 py-2">Philippine Army - 203rd Brigade</td>
+                                    <td class="px-4 py-2">100</td>
+                                    <td class="px-4 py-2">Mixed Native</td>
+                                    <td class="px-4 py-2">Dec 14, 2024</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Collected</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 9, 2024</td>
+                                    <td class="px-4 py-2">Sablayan Elementary School</td>
+                                    <td class="px-4 py-2">75</td>
+                                    <td class="px-4 py-2">Narra, Mahogany</td>
+                                    <td class="px-4 py-2">Dec 10, 2024</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Collected</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 4, 2024</td>
+                                    <td class="px-4 py-2">Barangay Poblacion</td>
+                                    <td class="px-4 py-2">50</td>
+                                    <td class="px-4 py-2">Talisay, Banaba</td>
+                                    <td class="px-4 py-2">Dec 5, 2024</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Collected</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forest Restoration Section -->
+            <div id="restoration" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Forest Restoration & Monitoring</h2>
+                    <button onclick="addRestorationReport()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
+                        Add Activity Report
+                    </button>
+                </div>
+
+                <!-- Restoration Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="font-semibold text-green-800 mb-2">Trees Planted</h3>
+                        <p class="text-3xl font-bold text-green-600">1,850</p>
+                        <p class="text-sm text-green-600">Total in 2024</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2">Survival Rate</h3>
+                        <p class="text-3xl font-bold text-blue-600">78%</p>
+                        <p class="text-sm text-blue-600">Above target (75%)</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
+                        <h3 class="font-semibold text-yellow-800 mb-2">Area Covered</h3>
+                        <p class="text-3xl font-bold text-yellow-600">12.5</p>
+                        <p class="text-sm text-yellow-600">Hectares restored</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
+                        <h3 class="font-semibold text-purple-800 mb-2">Mindoro Pines</h3>
+                        <p class="text-3xl font-bold text-purple-600">85%</p>
+                        <p class="text-sm text-purple-600">Natural regeneration</p>
+                    </div>
+                </div>
+
+                <!-- Reforestation Sites -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Active Reforestation Sites</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-green-800">Site A - Upper Watershed</h4>
+                                <div class="grid grid-cols-2 gap-4 mt-2 text-sm">
+                                    <div>
+                                        <p><strong>Area:</strong> 4.2 hectares</p>
+                                        <p><strong>Trees Planted:</strong> 680</p>
+                                        <p><strong>Survival Rate:</strong> 82%</p>
+                                    </div>
+                                    <div>
+                                        <p><strong>Planting Date:</strong> March 2024</p>
+                                        <p><strong>Species:</strong> Narra, Mahogany</p>
+                                        <p><strong>Last Monitoring:</strong> Dec 12, 2024</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-blue-800">Site B - Slope Protection</h4>
+                                <div class="grid grid-cols-2 gap-4 mt-2 text-sm">
+                                    <div>
+                                        <p><strong>Area:</strong> 3.8 hectares</p>
+                                        <p><strong>Trees Planted:</strong> 520</p>
+                                        <p><strong>Survival Rate:</strong> 75%</p>
+                                    </div>
+                                    <div>
+                                        <p><strong>Planting Date:</strong> June 2024</p>
+                                        <p><strong>Species:</strong> Molave, Talisay</p>
+                                        <p><strong>Last Monitoring:</strong> Dec 10, 2024</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-yellow-800">Site C - Buffer Zone</h4>
+                                <div class="grid grid-cols-2 gap-4 mt-2 text-sm">
+                                    <div>
+                                        <p><strong>Area:</strong> 4.5 hectares</p>
+                                        <p><strong>Trees Planted:</strong> 650</p>
+                                        <p><strong>Survival Rate:</strong> 76%</p>
+                                    </div>
+                                    <div>
+                                        <p><strong>Planting Date:</strong> September 2024</p>
+                                        <p><strong>Species:</strong> Mixed Native</p>
+                                        <p><strong>Last Monitoring:</strong> Dec 8, 2024</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Mindoro Pines Monitoring</h3>
+                        <div class="space-y-4">
+                            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                                <h4 class="font-semibold text-purple-800 mb-2">Assisted Natural Regeneration</h4>
+                                <div class="text-sm space-y-2">
+                                    <p><strong>Coverage Area:</strong> 8.2 hectares</p>
+                                    <p><strong>Natural Seedlings:</strong> 1,200+ counted</p>
+                                    <p><strong>Regeneration Rate:</strong> 85% success</p>
+                                    <p><strong>Protection Status:</strong> Active monitoring</p>
+                                </div>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                                <h4 class="font-semibold text-green-800 mb-2">Recent Activities</h4>
+                                <div class="text-sm space-y-1">
+                                    <p>• Dec 15: Invasive species removal</p>
+                                    <p>• Dec 10: Seedling protection installation</p>
+                                    <p>• Dec 5: Growth measurement survey</p>
+                                    <p>• Dec 1: Soil improvement activities</p>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                <h4 class="font-semibold text-blue-800 mb-2">Critical Habitat Status</h4>
+                                <div class="text-sm space-y-1">
+                                    <p><strong>Patrol Frequency:</strong> Weekly</p>
+                                    <p><strong>Last Patrol:</strong> Dec 14, 2024</p>
+                                    <p><strong>Violations:</strong> None detected</p>
+                                    <p><strong>Ecosystem Health:</strong> Excellent</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Survival Monitoring Logbook -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Survival Monitoring Logbook</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left">Monitoring Date</th>
+                                    <th class="px-4 py-2 text-left">Site</th>
+                                    <th class="px-4 py-2 text-left">Trees Alive</th>
+                                    <th class="px-4 py-2 text-left">Mortality</th>
+                                    <th class="px-4 py-2 text-left">Survival Rate</th>
+                                    <th class="px-4 py-2 text-left">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-2">Dec 12, 2024</td>
+                                    <td class="px-4 py-2">Site A - Upper Watershed</td>
+                                    <td class="px-4 py-2">558</td>
+                                    <td class="px-4 py-2">122</td>
+                                    <td class="px-4 py-2"><span class="text-green-600 font-bold">82%</span></td>
+                                    <td class="px-4 py-2">Good growth, minimal pest damage</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 10, 2024</td>
+                                    <td class="px-4 py-2">Site B - Slope Protection</td>
+                                    <td class="px-4 py-2">390</td>
+                                    <td class="px-4 py-2">130</td>
+                                    <td class="px-4 py-2"><span class="text-yellow-600 font-bold">75%</span></td>
+                                    <td class="px-4 py-2">Some drought stress, watering needed</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 8, 2024</td>
+                                    <td class="px-4 py-2">Site C - Buffer Zone</td>
+                                    <td class="px-4 py-2">494</td>
+                                    <td class="px-4 py-2">156</td>
+                                    <td class="px-4 py-2"><span class="text-yellow-600 font-bold">76%</span></td>
+                                    <td class="px-4 py-2">Recent planting, establishing well</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 5, 2024</td>
+                                    <td class="px-4 py-2">Mindoro Pines Area</td>
+                                    <td class="px-4 py-2">1,020</td>
+                                    <td class="px-4 py-2">180</td>
+                                    <td class="px-4 py-2"><span class="text-green-600 font-bold">85%</span></td>
+                                    <td class="px-4 py-2">Natural regeneration excellent</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Reports Section -->
+            <div id="reports" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Monthly Reports (6 Total Reports)</h2>
+                    <button onclick="generateReport()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
+                        Generate New Report
+                    </button>
+                </div>
+
+                <!-- Report Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="font-semibold text-green-800 mb-2">December 2024</h3>
+                        <p class="text-3xl font-bold text-green-600">6/6</p>
+                        <p class="text-sm text-green-600">Reports completed</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2">This Year</h3>
+                        <p class="text-3xl font-bold text-blue-600">72/72</p>
+                        <p class="text-sm text-blue-600">All reports submitted</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
+                        <h3 class="font-semibold text-purple-800 mb-2">Compliance Rate</h3>
+                        <p class="text-3xl font-bold text-purple-600">100%</p>
+                        <p class="text-sm text-purple-600">On-time submission</p>
+                    </div>
+                </div>
+
+                <!-- December 2024 Reports -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">December 2024 Reports Status</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-semibold text-green-800">1. Community Watershed Patrol</h4>
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Malatongtong Falls monitoring and enforcement</p>
+                                <p class="text-xs text-gray-500">Submitted: Dec 15, 2024 | Due: Dec 31, 2024</p>
+                            </div>
+                            
+                            <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-semibold text-green-800">2. Nursery Establishment</h4>
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Native tree seedling production and distribution</p>
+                                <p class="text-xs text-gray-500">Submitted: Dec 15, 2024 | Due: Dec 31, 2024</p>
+                            </div>
+                            
+                            <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-semibold text-green-800">3. Reforestation Activity</h4>
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Forest restoration and survival monitoring</p>
+                                <p class="text-xs text-gray-500">Submitted: Dec 14, 2024 | Due: Dec 31, 2024</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-semibold text-green-800">4. Patrol Deck Report</h4>
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Critical habitat patrol and enforcement</p>
+                                <p class="text-xs text-gray-500">Submitted: Dec 13, 2024 | Due: Dec 31, 2024</p>
+                            </div>
+                            
+                            <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-semibold text-green-800">5. Mindoro Pines Monitoring</h4>
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Assisted natural regeneration monitoring</p>
+                                <p class="text-xs text-gray-500">Submitted: Dec 12, 2024 | Due: Dec 31, 2024</p>
+                            </div>
+                            
+                            <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-semibold text-green-800">6. Critical Habitat Patrol</h4>
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Special area enforcement and protection</p>
+                                <p class="text-xs text-gray-500">Submitted: Dec 11, 2024 | Due: Dec 31, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Archive -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Report Archive</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left">Month</th>
+                                    <th class="px-4 py-2 text-left">Watershed</th>
+                                    <th class="px-4 py-2 text-left">Nursery</th>
+                                    <th class="px-4 py-2 text-left">Reforestation</th>
+                                    <th class="px-4 py-2 text-left">Patrol Deck</th>
+                                    <th class="px-4 py-2 text-left">Mindoro Pines</th>
+                                    <th class="px-4 py-2 text-left">Critical Habitat</th>
+                                    <th class="px-4 py-2 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Dec 2024</td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><button onclick="viewReport('dec2024')" class="text-blue-600 hover:text-blue-800">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Nov 2024</td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><button onclick="viewReport('nov2024')" class="text-blue-600 hover:text-blue-800">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Oct 2024</td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><button onclick="viewReport('oct2024')" class="text-blue-600 hover:text-blue-800">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logbook Entries Section -->
+            <div id="logbook" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Weekly Logbook Entries</h2>
+                    <button onclick="addLogEntry()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
+                        Add New Entry
+                    </button>
+                </div>
+
+                <!-- Logbook Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="font-semibold text-green-800 mb-2">This Week</h3>
+                        <p class="text-3xl font-bold text-green-600">7</p>
+                        <p class="text-sm text-green-600">Entries recorded</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2">This Month</h3>
+                        <p class="text-3xl font-bold text-blue-600">28</p>
+                        <p class="text-sm text-blue-600">Total entries</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
+                        <h3 class="font-semibold text-yellow-800 mb-2">Activities Logged</h3>
+                        <p class="text-3xl font-bold text-yellow-600">15</p>
+                        <p class="text-sm text-yellow-600">Different types</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
+                        <h3 class="font-semibold text-purple-800 mb-2">Compliance</h3>
+                        <p class="text-3xl font-bold text-purple-600">100%</p>
+                        <p class="text-sm text-purple-600">Weekly updates</p>
+                    </div>
+                </div>
+
+                <!-- Recent Logbook Entries -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Recent Logbook Entries</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-green-800">December 15, 2024 - Nursery Maintenance</h4>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Nursery</span>
+                            </div>
+                            <div class="text-sm text-gray-700 space-y-1">
+                                <p><strong>Activity:</strong> Weekly seedling care and mortality assessment</p>
+                                <p><strong>Seedlings Checked:</strong> 2,450 total | Mortality: 22 seedlings (0.9%)</p>
+                                <p><strong>Species Affected:</strong> Mainly Kamagong (slow growth, expected)</p>
+                                <p><strong>Actions Taken:</strong> Adjusted watering schedule, applied organic fertilizer</p>
+                                <p><strong>Weather:</strong> Sunny, dry conditions | <strong>Officer:</strong> Juan Dela Cruz</p>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-blue-800">December 12, 2024 - Reforestation Monitoring</h4>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Restoration</span>
+                            </div>
+                            <div class="text-sm text-gray-700 space-y-1">
+                                <p><strong>Activity:</strong> Site A survival rate assessment and maintenance</p>
+                                <p><strong>Trees Monitored:</strong> 680 planted | Alive: 558 | Survival Rate: 82%</p>
+                                <p><strong>Growth Status:</strong> Good overall growth, minimal pest damage observed</p>
+                                <p><strong>Maintenance:</strong> Weeding around saplings, protective barrier repair</p>
+                                <p><strong>Weather:</strong> Partly cloudy | <strong>Officer:</strong> Juan Dela Cruz</p>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-purple-500 bg-purple-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-purple-800">December 10, 2024 - Seedling Distribution</h4>
+                                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Distribution</span>
+                            </div>
+                            <div class="text-sm text-gray-700 space-y-1">
+                                <p><strong>Activity:</strong> Seedling preparation and distribution to Sablayan Elementary</p>
+                                <p><strong>Quantity Distributed:</strong> 75 seedlings (Narra: 40, Mahogany: 35)</p>
+                                <p><strong>Recipient:</strong> Mrs. Cruz, School Principal | Purpose: Campus beautification</p>
+                                <p><strong>Collection Notes:</strong> Seedlings in excellent condition, care instructions provided</p>
+                                <p><strong>Follow-up:</strong> Scheduled monitoring visit in 2 weeks</p>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-yellow-800">December 8, 2024 - Watershed Patrol</h4>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Patrol</span>
+                            </div>
+                            <div class="text-sm text-gray-700 space-y-1">
+                                <p><strong>Activity:</strong> Malatongtong Falls area patrol and violation detection</p>
+                                <p><strong>Area Covered:</strong> Watershed perimeter, access trails, falls basin</p>
+                                <p><strong>Violation Found:</strong> Illegal logging attempt - 3 cut saplings discovered</p>
+                                <p><strong>Action Taken:</strong> Reported to DENR and Barangay officials immediately</p>
+                                <p><strong>Evidence:</strong> Photos taken, GPS coordinates recorded | <strong>Duration:</strong> 4 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-indigo-500 bg-indigo-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-indigo-800">December 5, 2024 - Mindoro Pines Assessment</h4>
+                                <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">Monitoring</span>
+                            </div>
+                            <div class="text-sm text-gray-700 space-y-1">
+                                <p><strong>Activity:</strong> Natural regeneration monitoring and growth measurement</p>
+                                <p><strong>Area Assessed:</strong> 8.2 hectares of Mindoro Pines habitat</p>
+                                <p><strong>Natural Seedlings:</strong> 1,200+ counted | Growth Rate: Excellent (85% success)</p>
+                                <p><strong>Maintenance:</strong> Invasive species removal, soil improvement activities</p>
+                                <p><strong>Ecosystem Health:</strong> Excellent condition, high biodiversity observed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Update navigation active state
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('bg-forest-green', 'text-white');
+                btn.classList.add('text-gray-700');
+            });
+            
+            // Set active button
+            event.target.classList.add('bg-forest-green', 'text-white');
+            event.target.classList.remove('text-gray-700');
+        }
+
+        // Dashboard Functions
+        function addPatrolReport() {
+            alert('Add Patrol Report - This would open a form to record new patrol activities at Malatongtong Falls, including environment status, violations found, and garbage monitoring.');
+        }
+
+        function updateNursery() {
+            alert('Update Nursery - This would open the nursery management interface to update seedling inventory, record mortality, log distribution, and manage weekly logbook entries.');
+        }
+
+        function processRequest() {
+            alert('Process Request - This would open the tree planting request processing system to review, approve, or reject requests from Army, schools, and other organizations.');
+        }
+
+        // Request Management Functions
+        function approveRequest(requestId) {
+            if (confirm('Approve this tree planting request? This will generate an official letter and schedule seedling collection.')) {
+                alert(`Request ${requestId} approved successfully! Official letter generated and collection scheduled. Seedlings will be prepared for distribution.`);
+            }
+        }
+
+        function reviewRequest(requestId) {
+            alert(`Review Request ${requestId} - This would open detailed review interface to assess seedling availability, planting location suitability, and organization credentials.`);
+        }
+
+        function rejectRequest(requestId) {
+            if (confirm('Reject this tree planting request? Please provide reason for rejection.')) {
+                alert(`Request ${requestId} rejected. Notification will be sent to requester with reason and alternative suggestions.`);
+            }
+        }
+
+        // Restoration Functions
+        function addRestorationReport() {
+            alert('Add Restoration Report - This would open a form to record reforestation activities, survival monitoring, and Mindoro Pines assisted natural regeneration progress.');
+        }
+
+        // Report Functions
+        function generateReport() {
+            alert('Generate New Report - This would open the monthly report generation system for the 6 required reports: Watershed Patrol, Nursery, Reforestation, Patrol Deck, Mindoro Pines, and Critical Habitat.');
+        }
+
+        function viewReport(reportId) {
+            alert(`View Report ${reportId} - This would display the complete monthly report with all activities, statistics, and compliance documentation.`);
+        }
+
+        // Logbook Functions
+        function addLogEntry() {
+            alert('Add Logbook Entry - This would open a form to record weekly activities including nursery maintenance, seedling mortality, distribution records, patrol activities, and restoration monitoring.');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Initialize dashboard on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dashboard is already active by default
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978b52f7a7c0088f',t:'MTc1Njc5ODQ1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

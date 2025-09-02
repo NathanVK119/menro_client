@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENRO Sablayan - Request Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'menro-red': '#dc2626',
+                        'menro-dark': '#991b1b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .service-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Static Prototype Webpage -->
+    <!-- Header -->
+    <header class="bg-menro-red text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                        <img src="https://cdn-ilebokm.nitrocdn.com/LDIERXKvnOnyQiQIfOmrlCQetXbgMMSd/assets/images/optimized/rev-c086d95/occidentalmindoro.gov.ph/wp-content/uploads/2022/07/Ph_seal_occidental_mindoro_sablayan-1-300x300.png" alt="logo">
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">MENRO SABLAYAN</h1>
+                        <p class="text-red-200 text-sm">Strategy Reach to Reef - Request Portal</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="showMyRequests()" class="bg-menro-dark hover:bg-red-800 px-4 py-2 rounded-lg transition-colors">
+                        My Requests
+                    </button>
+                    <button onclick="logout()" class="bg-menro-dark hover:bg-red-800 px-4 py-2 rounded-lg transition-colors">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Welcome Section -->
+        <div id="welcome" class="section fade-in">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Welcome to MENRO Sablayan Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Request environmental services, report violations, and access information about our forest, urban, and coastal programs. Choose a service below to get started.</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center border-l-4 border-green-500">
+                    <div class="text-3xl mb-2">🌲</div>
+                    <p class="text-2xl font-bold text-green-600">2,450</p>
+                    <p class="text-sm text-gray-600">Seedlings Available</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center border-l-4 border-blue-500">
+                    <div class="text-3xl mb-2">🗑️</div>
+                    <p class="text-2xl font-bold text-blue-600">3</p>
+                    <p class="text-sm text-gray-600">Collection Trucks</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center border-l-4 border-purple-500">
+                    <div class="text-3xl mb-2">🌊</div>
+                    <p class="text-2xl font-bold text-purple-600">10</p>
+                    <p class="text-sm text-gray-600">Protected Marine Areas</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center border-l-4 border-yellow-500">
+                    <div class="text-3xl mb-2">📋</div>
+                    <p class="text-2xl font-bold text-yellow-600">24/7</p>
+                    <p class="text-sm text-gray-600">Service Available</p>
+                </div>
+            </div>
+
+            <!-- Service Categories -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Forest Services -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="bg-green-500 text-white p-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">🌲</span>
+                            <h3 class="text-xl font-bold">Forest Services</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="requestTreePlanting()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🌱</span>
+                                <div>
+                                    <h4 class="font-semibold">Request Tree Seedlings</h4>
+                                    <p class="text-sm text-gray-600">Get native tree seedlings for planting (50-100 seeds)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="reportForestViolation()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">⚠️</span>
+                                <div>
+                                    <h4 class="font-semibold">Report Forest Violation</h4>
+                                    <p class="text-sm text-gray-600">Report illegal deforestation or forest damage</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="requestWatershedInfo()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">💧</span>
+                                <div>
+                                    <h4 class="font-semibold">Watershed Information</h4>
+                                    <p class="text-sm text-gray-600">Get info about Malatongtong Falls protection</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Urban Services -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="bg-blue-500 text-white p-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">🏙️</span>
+                            <h3 class="text-xl font-bold">Urban Services</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="requestWasteCollection()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🗑️</span>
+                                <div>
+                                    <h4 class="font-semibold">Special Waste Collection</h4>
+                                    <p class="text-sm text-gray-600">Request residual waste pickup to landfill</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="reportGarbageViolation()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🚫</span>
+                                <div>
+                                    <h4 class="font-semibold">Report Garbage Violation</h4>
+                                    <p class="text-sm text-gray-600">Report improper waste disposal or dumping</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="requestUrbanPlants()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🌿</span>
+                                <div>
+                                    <h4 class="font-semibold">Urban Plants Request</h4>
+                                    <p class="text-sm text-gray-600">Get ornamental plants from Eco Park nursery</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="reportFacilityIssue()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🏛️</span>
+                                <div>
+                                    <h4 class="font-semibold">Report Facility Issue</h4>
+                                    <p class="text-sm text-gray-600">Report issues at Parola Park or Mini Zoo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coastal Services -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="bg-purple-500 text-white p-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">🌊</span>
+                            <h3 class="text-xl font-bold">Coastal Services</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="reportMarineViolation()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🐠</span>
+                                <div>
+                                    <h4 class="font-semibold">Report Marine Violation</h4>
+                                    <p class="text-sm text-gray-600">Report illegal fishing or marine damage</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="reportMarineGarbage()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🗑️</span>
+                                <div>
+                                    <h4 class="font-semibold">Report Marine Garbage</h4>
+                                    <p class="text-sm text-gray-600">Report garbage in marine protected areas</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="viewMarineAreas()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">📍</span>
+                                <div>
+                                    <h4 class="font-semibold">Marine Protected Areas</h4>
+                                    <p class="text-sm text-gray-600">View info about 10 protected marine areas</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="requestReefInfo()">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🪸</span>
+                                <div>
+                                    <h4 class="font-semibold">Reef Health Information</h4>
+                                    <p class="text-sm text-gray-600">Get current reef health status reports</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Requests Section -->
+        <div id="myRequests" class="section hidden fade-in">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">My Requests</h2>
+                <button onclick="showWelcome()" class="bg-menro-red hover:bg-menro-dark text-white px-4 py-2 rounded-lg transition-colors">
+                    Back to Services
+                </button>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6 border-b">
+                    <h3 class="text-lg font-semibold">Request History</h3>
+                </div>
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Service</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">Dec 10, 2024</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Forest</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">Tree Seedlings Request</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Approved</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button onclick="viewRequest(1)" class="text-blue-600 hover:text-blue-800">View Details</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">Dec 8, 2024</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Urban</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">Special Waste Collection</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Processing</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button onclick="viewRequest(2)" class="text-blue-600 hover:text-blue-800">View Details</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">Dec 5, 2024</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Coastal</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">Marine Violation Report</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Resolved</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button onclick="viewRequest(3)" class="text-blue-600 hover:text-blue-800">View Details</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Modals -->
+    
+    <!-- Tree Planting Request Modal -->
+    <div id="treePlantingModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-screen overflow-y-auto">
+            <h3 class="text-xl font-semibold mb-4 text-green-800">🌱 Request Tree Seedlings</h3>
+            <form class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Organization/Individual Name *</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" placeholder="e.g., Sablayan Elementary School">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Contact Person *</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Number of Seedlings Requested *</label>
+                    <select required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        <option value="">Select quantity</option>
+                        <option value="50">50 seedlings</option>
+                        <option value="75">75 seedlings</option>
+                        <option value="100">100 seedlings</option>
+                    </select>
+                    <p class="text-xs text-gray-500 mt-1">Available: Native tree species (2,450 seedlings in stock)</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Planting Location *</label>
+                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" placeholder="e.g., School campus, community area">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Purpose of Tree Planting *</label>
+                    <textarea required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" rows="3" placeholder="Describe the purpose and expected impact of your tree planting project"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Collection Date</label>
+                    <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-green-800 mb-2">📋 Requirements:</h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li>• Official letter request (will be generated after submission)</li>
+                        <li>• Valid ID of contact person</li>
+                        <li>• Proof of organization (if applicable)</li>
+                        <li>• Commitment to proper care and monitoring</li>
+                    </ul>
+                </div>
+                <div class="flex space-x-3 pt-4">
+                    <button type="button" onclick="closeModal('treePlantingModal')" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        Submit Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Waste Collection Request Modal -->
+    <div id="wasteCollectionModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-screen overflow-y-auto">
+            <h3 class="text-xl font-semibold mb-4 text-blue-800">🗑️ Special Waste Collection Request</h3>
+            <form class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Requester Name *</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Collection Address *</label>
+                    <textarea required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" rows="2" placeholder="Complete address with landmarks"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Type of Waste *</label>
+                    <select required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Select waste type</option>
+                        <option value="residual">Residual Waste (Direct to Landfill)</option>
+                        <option value="bulk">Bulk Waste</option>
+                        <option value="construction">Construction Debris</option>
+                        <option value="hazardous">Hazardous Materials</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Estimated Volume</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Select volume</option>
+                            <option value="small">Small (1-5 bags)</option>
+                            <option value="medium">Medium (6-15 bags)</option>
+                            <option value="large">Large (16+ bags)</option>
+                            <option value="truck">Truck load</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Collection Date</label>
+                        <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Description of Waste</label>
+                    <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" rows="3" placeholder="Describe the waste materials to be collected"></textarea>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-blue-800 mb-2">📋 Collection Areas:</h4>
+                    <div class="text-sm text-blue-700 grid grid-cols-1 md:grid-cols-3 gap-2">
+                        <div>• Santo Niño Area</div>
+                        <div>• Buenavista Area</div>
+                        <div>• Poblacion Area</div>
+                    </div>
+                    <p class="text-xs text-blue-600 mt-2">*Collection schedule depends on truck availability and route optimization</p>
+                </div>
+                <div class="flex space-x-3 pt-4">
+                    <button type="button" onclick="closeModal('wasteCollectionModal')" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        Submit Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Marine Violation Report Modal -->
+    <div id="marineViolationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-screen overflow-y-auto">
+            <h3 class="text-xl font-semibold mb-4 text-purple-800">🐠 Report Marine Violation</h3>
+            <form class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Reporter Name *</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Contact Number *</label>
+                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Marine Protected Area *</label>
+                    <select required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
+                        <option value="">Select location</option>
+                        <option value="ligaya-reef">Ligaya Reef</option>
+                        <option value="burgos">Burgos Marine Area</option>
+                        <option value="idarag-laya">Idarag Laya</option>
+                        <option value="busaran">Busaran</option>
+                        <option value="parola">Parola</option>
+                        <option value="malaking-ilog">Malaking Ilog</option>
+                        <option value="batong-buhay">Batong Buhay</option>
+                        <option value="ambulong">Ambulong</option>
+                        <option value="pandan">Pandan</option>
+                        <option value="claudio">Claudio</option>
+                        <option value="other">Other (specify in description)</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Date of Incident *</label>
+                        <input type="date" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Time of Incident</label>
+                        <input type="time" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Type of Violation *</label>
+                    <select required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
+                        <option value="">Select violation type</option>
+                        <option value="illegal-fishing">Illegal Fishing</option>
+                        <option value="dynamite-fishing">Dynamite/Blast Fishing</option>
+                        <option value="fine-mesh-net">Fine Mesh Net Fishing</option>
+                        <option value="coral-damage">Coral Damage</option>
+                        <option value="marine-garbage">Marine Garbage Dumping</option>
+                        <option value="unauthorized-entry">Unauthorized Entry to Protected Area</option>
+                        <option value="other">Other (specify in description)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Detailed Description *</label>
+                    <textarea required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500" rows="4" placeholder="Provide detailed description of the violation, including number of people involved, equipment used, and any other relevant information"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Evidence Available</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2 text-purple-600 focus:ring-purple-500">
+                            <span class="text-sm">Photos/Videos</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2 text-purple-600 focus:ring-purple-500">
+                            <span class="text-sm">Witness Statements</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2 text-purple-600 focus:ring-purple-500">
+                            <span class="text-sm">Physical Evidence</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-purple-800 mb-2">🌊 Marine Protected Areas Under Monitoring:</h4>
+                    <div class="text-sm text-purple-700 grid grid-cols-2 gap-1">
+                        <div>• Ligaya Reef</div>
+                        <div>• Burgos</div>
+                        <div>• Idarag Laya</div>
+                        <div>• Busaran</div>
+                        <div>• Parola</div>
+                        <div>• Malaking Ilog</div>
+                        <div>• Batong Buhay</div>
+                        <div>• Ambulong</div>
+                        <div>• Pandan</div>
+                        <div>• Claudio</div>
+                    </div>
+                </div>
+                <div class="flex space-x-3 pt-4">
+                    <button type="button" onclick="closeModal('marineViolationModal')" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        Submit Report
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Marine Areas Info Modal -->
+    <div id="marineAreasModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-4xl mx-4 max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold text-purple-800">🌊 Marine Protected Areas Information</h3>
+                <button onclick="closeModal('marineAreasModal')" class="text-gray-500 hover:text-gray-700">
+                    <span class="text-2xl">&times;</span>
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-semibold text-green-800 mb-2">🐠 Ligaya Reef</h4>
+                    <p class="text-sm text-green-700 mb-2">Status: Healthy Ecosystem</p>
+                    <div class="text-xs text-green-600">
+                        <p>Fish Indicators: 7/9 (Healthy)</p>
+                        <p>Coral Indicators: 6/7 (Healthy)</p>
+                        <p>Last Patrol: Dec 15, 2024</p>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                    <h4 class="font-semibold text-yellow-800 mb-2">🐠 Burgos Marine Area</h4>
+                    <p class="text-sm text-yellow-700 mb-2">Status: Average Condition</p>
+                    <div class="text-xs text-yellow-600">
+                        <p>Fish Indicators: 5/9 (Average)</p>
+                        <p>Coral Indicators: 4/7 (Average)</p>
+                        <p>Last Patrol: Dec 14, 2024</p>
+                        <p class="text-red-600">⚠ Recent violation reported</p>
+                    </div>
+                </div>
+                
+                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-semibold text-green-800 mb-2">🐠 Idarag Laya</h4>
+                    <p class="text-sm text-green-700 mb-2">Status: Excellent Condition</p>
+                    <div class="text-xs text-green-600">
+                        <p>Fish Indicators: 8/9 (Healthy)</p>
+                        <p>Coral Indicators: 7/7 (Healthy)</p>
+                        <p>Last Patrol: Dec 13, 2024</p>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-semibold text-blue-800 mb-2">🐠 Busaran</h4>
+                    <p class="text-sm text-blue-700 mb-2">Status: Good Condition</p>
+                    <div class="text-xs text-blue-600">
+                        <p>Fish Indicators: 6/9 (Average)</p>
+                        <p>Coral Indicators: 5/7 (Average)</p>
+                        <p>Last Patrol: Dec 12, 2024</p>
+                    </div>
+                </div>
+                
+                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-semibold text-green-800 mb-2">🐠 Parola</h4>
+                    <p class="text-sm text-green-700 mb-2">Status: Good Condition</p>
+                    <div class="text-xs text-green-600">
+                        <p>Fish Indicators: 6/9 (Average)</p>
+                        <p>Coral Indicators: 6/7 (Healthy)</p>
+                        <p>Last Patrol: Dec 11, 2024</p>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-semibold text-blue-800 mb-2">🐠 Malaking Ilog</h4>
+                    <p class="text-sm text-blue-700 mb-2">Status: Average Condition</p>
+                    <div class="text-xs text-blue-600">
+                        <p>Fish Indicators: 5/9 (Average)</p>
+                        <p>Coral Indicators: 4/7 (Average)</p>
+                        <p>Last Patrol: Dec 10, 2024</p>
+                    </div>
+                </div>
+                
+                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-semibold text-green-800 mb-2">🐠 Batong Buhay</h4>
+                    <p class="text-sm text-green-700 mb-2">Status: Good Condition</p>
+                    <div class="text-xs text-green-600">
+                        <p>Fish Indicators: 7/9 (Healthy)</p>
+                        <p>Coral Indicators: 5/7 (Average)</p>
+                        <p>Last Patrol: Dec 9, 2024</p>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-semibold text-blue-800 mb-2">🐠 Ambulong</h4>
+                    <p class="text-sm text-blue-700 mb-2">Status: Average Condition</p>
+                    <div class="text-xs text-blue-600">
+                        <p>Fish Indicators: 5/9 (Average)</p>
+                        <p>Coral Indicators: 5/7 (Average)</p>
+                        <p>Last Patrol: Dec 8, 2024</p>
+                    </div>
+                </div>
+                
+                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-semibold text-green-800 mb-2">🐠 Pandan</h4>
+                    <p class="text-sm text-green-700 mb-2">Status: Good Condition</p>
+                    <div class="text-xs text-green-600">
+                        <p>Fish Indicators: 6/9 (Average)</p>
+                        <p>Coral Indicators: 6/7 (Healthy)</p>
+                        <p>Last Patrol: Dec 7, 2024</p>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-semibold text-blue-800 mb-2">🐠 Claudio</h4>
+                    <p class="text-sm text-blue-700 mb-2">Status: Average Condition</p>
+                    <div class="text-xs text-blue-600">
+                        <p>Fish Indicators: 5/9 (Average)</p>
+                        <p>Coral Indicators: 4/7 (Average)</p>
+                        <p>Last Patrol: Dec 6, 2024</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 bg-purple-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-purple-800 mb-2">📊 Reef Health Rating System:</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <p class="font-medium text-purple-700">Fish Indicators (9 Species):</p>
+                        <p class="text-red-600">• 1-4: Poor condition</p>
+                        <p class="text-yellow-600">• 5-6: Average condition</p>
+                        <p class="text-green-600">• 7-9: Healthy condition</p>
+                    </div>
+                    <div>
+                        <p class="font-medium text-purple-700">Coral Indicators (7 Species):</p>
+                        <p class="text-red-600">• 1-3: Poor condition</p>
+                        <p class="text-yellow-600">• 4-5: Average condition</p>
+                        <p class="text-green-600">• 6-7: Healthy condition</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functions
+        function showWelcome() {
+            document.getElementById('welcome').classList.remove('hidden');
+            document.getElementById('myRequests').classList.add('hidden');
+        }
+
+        function showMyRequests() {
+            document.getElementById('welcome').classList.add('hidden');
+            document.getElementById('myRequests').classList.remove('hidden');
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.getElementById(modalId).classList.add('flex');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.getElementById(modalId).classList.remove('flex');
+        }
+
+        // Forest Services
+        function requestTreePlanting() {
+            openModal('treePlantingModal');
+        }
+
+        function reportForestViolation() {
+            alert('Forest Violation Report - This would open a form to report illegal deforestation, forest damage, or violations in the Malatongtong Falls watershed area.');
+        }
+
+        function requestWatershedInfo() {
+            alert('Watershed Information - This would show current status of Malatongtong Falls protection, patrol schedules, and conservation efforts.');
+        }
+
+        // Urban Services
+        function requestWasteCollection() {
+            openModal('wasteCollectionModal');
+        }
+
+        function reportGarbageViolation() {
+            alert('Garbage Violation Report - This would open a form to report improper waste disposal, illegal dumping, or violations in Santo Niño, Buenavista, or Poblacion areas.');
+        }
+
+        function requestUrbanPlants() {
+            alert('Urban Plants Request - This would open a form to request ornamental plants from the Eco Park nursery for urban beautification projects.');
+        }
+
+        function reportFacilityIssue() {
+            alert('Facility Issue Report - This would open a form to report maintenance issues or problems at Parola Park or Mini Zoo facilities.');
+        }
+
+        // Coastal Services
+        function reportMarineViolation() {
+            openModal('marineViolationModal');
+        }
+
+        function reportMarineGarbage() {
+            alert('Marine Garbage Report - This would open a form to report garbage found in any of the 10 Marine Protected Areas.');
+        }
+
+        function viewMarineAreas() {
+            openModal('marineAreasModal');
+        }
+
+        function requestReefInfo() {
+            alert('Reef Health Information - This would show current reef health status, fish and coral indicators, and recent patrol reports for all 10 Marine Protected Areas.');
+        }
+
+        // Request management
+        function viewRequest(requestId) {
+            alert(`View Request Details - This would show complete details for request ID: ${requestId}, including status updates, assigned officer, and processing timeline.`);
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Form submission handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tree Planting Form
+            document.querySelector('#treePlantingModal form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Tree Seedling Request Submitted Successfully!\n\nYour request has been forwarded to the Forest Section. You will receive a confirmation call within 24 hours to arrange the official letter and collection schedule.\n\nReference Number: TR-' + Date.now());
+                closeModal('treePlantingModal');
+            });
+
+            // Waste Collection Form
+            document.querySelector('#wasteCollectionModal form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Special Waste Collection Request Submitted Successfully!\n\nYour request has been forwarded to the Urban Section. A collection schedule will be arranged based on truck availability and route optimization.\n\nReference Number: WC-' + Date.now());
+                closeModal('wasteCollectionModal');
+            });
+
+            // Marine Violation Form
+            document.querySelector('#marineViolationModal form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Marine Violation Report Submitted Successfully!\n\nYour report has been forwarded to the Coastal Section for immediate investigation. An officer will contact you within 24 hours for follow-up.\n\nReference Number: MV-' + Date.now());
+                closeModal('marineViolationModal');
+            });
+        });
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('fixed') && e.target.classList.contains('inset-0')) {
+                const modalId = e.target.id;
+                closeModal(modalId);
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978b472fa5f107a7',t:'MTc1Njc5Nzk3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

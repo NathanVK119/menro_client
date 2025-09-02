@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENRO Sablayan - Coastal Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'menro-red': '#dc2626',
+                        'menro-dark': '#991b1b',
+                        'coastal-blue': '#0ea5e9',
+                        'coastal-dark': '#0284c7',
+                        'reef-green': '#059669',
+                        'reef-dark': '#047857',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-hover {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .health-poor { background: linear-gradient(135deg, #fef2f2, #fee2e2); border-color: #dc2626; }
+        .health-average { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #d97706; }
+        .health-healthy { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #059669; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Static Prototype Webpage -->
+    <!-- Header -->
+    <header class="bg-coastal-blue text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                        <img src="https://cdn-ilebokm.nitrocdn.com/LDIERXKvnOnyQiQIfOmrlCQetXbgMMSd/assets/images/optimized/rev-c086d95/occidentalmindoro.gov.ph/wp-content/uploads/2022/07/Ph_seal_occidental_mindoro_sablayan-1-300x300.png" alt="logo">
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">MENRO SABLAYAN - COASTAL SECTION</h1>
+                        <p class="text-blue-200 text-sm">Strategy Reach to Reef - Marine Protected Area Management System</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-blue-200">Officer: Pedro Reyes</span>
+                    <button onclick="logout()" class="bg-coastal-dark hover:bg-blue-800 px-4 py-2 rounded-lg transition-colors">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <nav class="w-64 bg-white shadow-lg min-h-screen">
+            <div class="p-4">
+                <div class="space-y-2">
+                    <button onclick="showSection('dashboard')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3 bg-coastal-blue text-white">
+                        <span>📊</span>
+                        <span>Dashboard</span>
+                    </button>
+                    <button onclick="showSection('mpa-overview')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
+                        <span>🏝️</span>
+                        <span>Marine Protected Areas</span>
+                    </button>
+                    <button onclick="showSection('patrolling')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
+                        <span>⛵</span>
+                        <span>Patrolling Activities</span>
+                    </button>
+                    <button onclick="showSection('reef-check')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
+                        <span>🐠</span>
+                        <span>Reef Health Check</span>
+                    </button>
+                    <button onclick="showSection('violations')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
+                        <span>⚠️</span>
+                        <span>Violations & Enforcement</span>
+                    </button>
+                    <button onclick="showSection('ecosystem-monitoring')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
+                        <span>🔬</span>
+                        <span>Ecosystem Monitoring</span>
+                    </button>
+                    <button onclick="showSection('reports')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
+                        <span>📋</span>
+                        <span>Monthly Reports</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section fade-in">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Coastal Section Dashboard</h2>
+                
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-coastal-blue card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Marine Protected Areas</p>
+                                <p class="text-2xl font-bold text-coastal-blue">10</p>
+                                <p class="text-xs text-coastal-blue">Active monitoring sites</p>
+                            </div>
+                            <span class="text-3xl">🏝️</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-reef-green card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Healthy Reefs</p>
+                                <p class="text-2xl font-bold text-reef-green">7</p>
+                                <p class="text-xs text-reef-green">Rating 6-7 (Excellent)</p>
+                            </div>
+                            <span class="text-3xl">🐠</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500 card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Patrol Hours</p>
+                                <p class="text-2xl font-bold text-yellow-600">156</p>
+                                <p class="text-xs text-yellow-500">This month</p>
+                            </div>
+                            <span class="text-3xl">⛵</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500 card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Violations</p>
+                                <p class="text-2xl font-bold text-red-600">8</p>
+                                <p class="text-xs text-red-500">Illegal fishing incidents</p>
+                            </div>
+                            <span class="text-3xl">⚠️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MPA Health Overview -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">MPA Health Status Overview</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 health-healthy rounded-lg border-l-4">
+                                <div>
+                                    <p class="font-medium text-reef-green">Healthy Reefs (6-7)</p>
+                                    <p class="text-sm text-gray-600">Ligaya Reef, Burgos, Idarag Laya, Busaran, Parola, Malaking Patag, Maliit na Patag</p>
+                                </div>
+                                <span class="text-2xl font-bold text-reef-green">7</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 health-average rounded-lg border-l-4">
+                                <div>
+                                    <p class="font-medium text-yellow-600">Average Reefs (4-5)</p>
+                                    <p class="text-sm text-gray-600">Pandan Island, Ambulong</p>
+                                </div>
+                                <span class="text-2xl font-bold text-yellow-600">2</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 health-poor rounded-lg border-l-4">
+                                <div>
+                                    <p class="font-medium text-red-600">Poor Reefs (1-3)</p>
+                                    <p class="text-sm text-gray-600">Batasan (recovering from damage)</p>
+                                </div>
+                                <span class="text-2xl font-bold text-red-600">1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Recent Activities</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+                                <span class="text-green-600">✅</span>
+                                <div>
+                                    <p class="font-medium">Reef Check - Ligaya Reef</p>
+                                    <p class="text-sm text-gray-600">Health Score: 7/7 - Excellent coral coverage</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                                <span class="text-blue-600">⛵</span>
+                                <div>
+                                    <p class="font-medium">Patrol - Burgos MPA</p>
+                                    <p class="text-sm text-gray-600">4-hour patrol completed, no violations</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-red-50 rounded-lg">
+                                <span class="text-red-600">⚠️</span>
+                                <div>
+                                    <p class="font-medium">Violation - Illegal Fishing</p>
+                                    <p class="text-sm text-gray-600">Dynamite fishing reported at Batasan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <button onclick="recordPatrol()" class="bg-coastal-blue hover:bg-coastal-dark text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
+                            <span>⛵</span>
+                            <span>Record Patrol</span>
+                        </button>
+                        <button onclick="conductReefCheck()" class="bg-reef-green hover:bg-reef-dark text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
+                            <span>🐠</span>
+                            <span>Reef Health Check</span>
+                        </button>
+                        <button onclick="reportViolation()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
+                            <span>⚠️</span>
+                            <span>Report Violation</span>
+                        </button>
+                        <button onclick="generateReport()" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
+                            <span>📋</span>
+                            <span>Generate Report</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marine Protected Areas Overview -->
+            <div id="mpa-overview" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Marine Protected Areas Overview</h2>
+                    <button onclick="addMPA()" class="bg-coastal-blue hover:bg-coastal-dark text-white px-4 py-2 rounded-lg">
+                        Add New MPA
+                    </button>
+                </div>
+
+                <!-- MPA Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Ligaya Reef -->
+                    <div class="bg-white rounded-lg shadow-md p-6 health-healthy border-l-4 card-hover">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold text-reef-green">Ligaya Reef</h3>
+                                <p class="text-sm text-gray-600">Primary MPA - Flagship Site</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-bold text-reef-green">7.0</span>
+                                <p class="text-xs text-reef-green">Health Score</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Area:</span>
+                                <span class="font-medium">2.5 km²</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Coral Coverage:</span>
+                                <span class="font-medium text-reef-green">85%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Fish Diversity:</span>
+                                <span class="font-medium text-reef-green">9/9</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Last Patrol:</span>
+                                <span class="font-medium">Dec 14, 2024</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <button onclick="viewMPADetails('ligaya')" class="bg-coastal-blue hover:bg-coastal-dark text-white px-3 py-1 rounded text-sm">Details</button>
+                            <button onclick="schedulePlatrol('ligaya')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm">Schedule Patrol</button>
+                        </div>
+                    </div>
+
+                    <!-- Burgos -->
+                    <div class="bg-white rounded-lg shadow-md p-6 health-healthy border-l-4 card-hover">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold text-reef-green">Burgos MPA</h3>
+                                <p class="text-sm text-gray-600">Community-managed</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-bold text-reef-green">6.8</span>
+                                <p class="text-xs text-reef-green">Health Score</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Area:</span>
+                                <span class="font-medium">1.8 km²</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Coral Coverage:</span>
+                                <span class="font-medium text-reef-green">78%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Fish Diversity:</span>
+                                <span class="font-medium text-reef-green">8/9</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Last Patrol:</span>
+                                <span class="font-medium">Dec 13, 2024</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <button onclick="viewMPADetails('burgos')" class="bg-coastal-blue hover:bg-coastal-dark text-white px-3 py-1 rounded text-sm">Details</button>
+                            <button onclick="schedulePlatrol('burgos')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm">Schedule Patrol</button>
+                        </div>
+                    </div>
+
+                    <!-- Idarag Laya -->
+                    <div class="bg-white rounded-lg shadow-md p-6 health-healthy border-l-4 card-hover">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold text-reef-green">Idarag Laya</h3>
+                                <p class="text-sm text-gray-600">Sanctuary Zone</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-bold text-reef-green">6.5</span>
+                                <p class="text-xs text-reef-green">Health Score</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Area:</span>
+                                <span class="font-medium">3.2 km²</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Coral Coverage:</span>
+                                <span class="font-medium text-reef-green">72%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Fish Diversity:</span>
+                                <span class="font-medium text-reef-green">7/9</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Last Patrol:</span>
+                                <span class="font-medium">Dec 12, 2024</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <button onclick="viewMPADetails('idarag')" class="bg-coastal-blue hover:bg-coastal-dark text-white px-3 py-1 rounded text-sm">Details</button>
+                            <button onclick="schedulePlatrol('idarag')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm">Schedule Patrol</button>
+                        </div>
+                    </div>
+
+                    <!-- Busaran -->
+                    <div class="bg-white rounded-lg shadow-md p-6 health-healthy border-l-4 card-hover">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold text-reef-green">Busaran MPA</h3>
+                                <p class="text-sm text-gray-600">Fishing Ground Buffer</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-bold text-reef-green">6.3</span>
+                                <p class="text-xs text-reef-green">Health Score</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Area:</span>
+                                <span class="font-medium">2.1 km²</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Coral Coverage:</span>
+                                <span class="font-medium text-reef-green">68%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Fish Diversity:</span>
+                                <span class="font-medium text-reef-green">7/9</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Last Patrol:</span>
+                                <span class="font-medium">Dec 11, 2024</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <button onclick="viewMPADetails('busaran')" class="bg-coastal-blue hover:bg-coastal-dark text-white px-3 py-1 rounded text-sm">Details</button>
+                            <button onclick="schedulePlatrol('busaran')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm">Schedule Patrol</button>
+                        </div>
+                    </div>
+
+                    <!-- Parola -->
+                    <div class="bg-white rounded-lg shadow-md p-6 health-healthy border-l-4 card-hover">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold text-reef-green">Parola MPA</h3>
+                                <p class="text-sm text-gray-600">Tourism Zone</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-bold text-reef-green">6.1</span>
+                                <p class="text-xs text-reef-green">Health Score</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Area:</span>
+                                <span class="font-medium">1.5 km²</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Coral Coverage:</span>
+                                <span class="font-medium text-reef-green">65%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Fish Diversity:</span>
+                                <span class="font-medium text-reef-green">7/9</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Last Patrol:</span>
+                                <span class="font-medium">Dec 10, 2024</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <button onclick="viewMPADetails('parola')" class="bg-coastal-blue hover:bg-coastal-dark text-white px-3 py-1 rounded text-sm">Details</button>
+                            <button onclick="schedulePlatrol('parola')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm">Schedule Patrol</button>
+                        </div>
+                    </div>
+
+                    <!-- Pandan Island -->
+                    <div class="bg-white rounded-lg shadow-md p-6 health-average border-l-4 card-hover">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold text-yellow-600">Pandan Island</h3>
+                                <p class="text-sm text-gray-600">Tourist Destination</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-bold text-yellow-600">4.8</span>
+                                <p class="text-xs text-yellow-600">Health Score</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Area:</span>
+                                <span class="font-medium">1.2 km²</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Coral Coverage:</span>
+                                <span class="font-medium text-yellow-600">52%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Fish Diversity:</span>
+                                <span class="font-medium text-yellow-600">5/9</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Last Patrol:</span>
+                                <span class="font-medium">Dec 9, 2024</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <button onclick="viewMPADetails('pandan')" class="bg-coastal-blue hover:bg-coastal-dark text-white px-3 py-1 rounded text-sm">Details</button>
+                            <button onclick="schedulePlatrol('pandan')" class="bg-yellow-600 hover:bg-yellow-700 text-white px-3 py-1 rounded text-sm">Priority Patrol</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patrolling Activities -->
+            <div id="patrolling" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Patrolling Activities</h2>
+                    <button onclick="recordPatrol()" class="bg-coastal-blue hover:bg-coastal-dark text-white px-4 py-2 rounded-lg">
+                        Record Patrol
+                    </button>
+                </div>
+
+                <!-- Patrol Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2">Total Hours</h3>
+                        <p class="text-3xl font-bold text-blue-600">156</p>
+                        <p class="text-sm text-blue-600">December 2024</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="font-semibold text-green-800 mb-2">Patrols Completed</h3>
+                        <p class="text-3xl font-bold text-green-600">42</p>
+                        <p class="text-sm text-green-600">All 10 MPAs covered</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
+                        <h3 class="font-semibold text-yellow-800 mb-2">Violations Found</h3>
+                        <p class="text-3xl font-bold text-yellow-600">8</p>
+                        <p class="text-sm text-yellow-600">Illegal fishing incidents</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
+                        <h3 class="font-semibold text-purple-800 mb-2">Boats Inspected</h3>
+                        <p class="text-3xl font-bold text-purple-600">127</p>
+                        <p class="text-sm text-purple-600">Fishing vessel checks</p>
+                    </div>
+                </div>
+
+                <!-- Recent Patrol Log -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Recent Patrol Activities</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left">Date</th>
+                                    <th class="px-4 py-2 text-left">MPA</th>
+                                    <th class="px-4 py-2 text-left">Patrol Team</th>
+                                    <th class="px-4 py-2 text-left">Duration</th>
+                                    <th class="px-4 py-2 text-left">Findings</th>
+                                    <th class="px-4 py-2 text-left">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-2">Dec 15, 2024</td>
+                                    <td class="px-4 py-2">Ligaya Reef</td>
+                                    <td class="px-4 py-2">Team Alpha (4 officers)</td>
+                                    <td class="px-4 py-2">4.5 hours</td>
+                                    <td class="px-4 py-2">No violations, 8 boats inspected</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 14, 2024</td>
+                                    <td class="px-4 py-2">Burgos MPA</td>
+                                    <td class="px-4 py-2">Team Beta (3 officers)</td>
+                                    <td class="px-4 py-2">3.8 hours</td>
+                                    <td class="px-4 py-2">1 illegal net confiscated</td>
+                                    <td class="px-4 py-2"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Violation</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 13, 2024</td>
+                                    <td class="px-4 py-2">Idarag Laya</td>
+                                    <td class="px-4 py-2">Team Alpha (4 officers)</td>
+                                    <td class="px-4 py-2">5.2 hours</td>
+                                    <td class="px-4 py-2">Marine debris cleanup, 12 boats checked</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 12, 2024</td>
+                                    <td class="px-4 py-2">Batasan</td>
+                                    <td class="px-4 py-2">Team Charlie (5 officers)</td>
+                                    <td class="px-4 py-2">6.0 hours</td>
+                                    <td class="px-4 py-2">Dynamite fishing evidence found</td>
+                                    <td class="px-4 py-2"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Major Violation</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 11, 2024</td>
+                                    <td class="px-4 py-2">Busaran MPA</td>
+                                    <td class="px-4 py-2">Team Beta (3 officers)</td>
+                                    <td class="px-4 py-2">4.0 hours</td>
+                                    <td class="px-4 py-2">Tourist education, no violations</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Patrol Teams -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Patrol Teams & Equipment</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="border border-blue-200 rounded-lg p-4 bg-blue-50">
+                            <h4 class="font-semibold text-blue-800 mb-3">Team Alpha</h4>
+                            <div class="space-y-2 text-sm">
+                                <p><strong>Leader:</strong> Captain Rodriguez</p>
+                                <p><strong>Members:</strong> 4 officers</p>
+                                <p><strong>Vessel:</strong> Patrol Boat 1 (25ft)</p>
+                                <p><strong>Equipment:</strong> GPS, Radio, Camera, Diving gear</p>
+                                <p><strong>Status:</strong> <span class="text-green-600">Active</span></p>
+                            </div>
+                        </div>
+                        <div class="border border-green-200 rounded-lg p-4 bg-green-50">
+                            <h4 class="font-semibold text-green-800 mb-3">Team Beta</h4>
+                            <div class="space-y-2 text-sm">
+                                <p><strong>Leader:</strong> Officer Santos</p>
+                                <p><strong>Members:</strong> 3 officers</p>
+                                <p><strong>Vessel:</strong> Patrol Boat 2 (22ft)</p>
+                                <p><strong>Equipment:</strong> GPS, Radio, Underwater camera</p>
+                                <p><strong>Status:</strong> <span class="text-green-600">Active</span></p>
+                            </div>
+                        </div>
+                        <div class="border border-purple-200 rounded-lg p-4 bg-purple-50">
+                            <h4 class="font-semibold text-purple-800 mb-3">Team Charlie</h4>
+                            <div class="space-y-2 text-sm">
+                                <p><strong>Leader:</strong> Officer Cruz</p>
+                                <p><strong>Members:</strong> 5 officers</p>
+                                <p><strong>Vessel:</strong> Patrol Boat 3 (28ft)</p>
+                                <p><strong>Equipment:</strong> Full enforcement kit, Sonar</p>
+                                <p><strong>Status:</strong> <span class="text-blue-600">Maintenance</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reef Health Check -->
+            <div id="reef-check" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Reef Health Check System</h2>
+                    <button onclick="conductReefCheck()" class="bg-reef-green hover:bg-reef-dark text-white px-4 py-2 rounded-lg">
+                        Conduct Reef Check
+                    </button>
+                </div>
+
+                <!-- Health Rating System -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Health Rating System</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="health-poor border-l-4 p-4 rounded-r-lg">
+                            <h4 class="font-semibold text-red-800 mb-2">Poor (1-3)</h4>
+                            <p class="text-sm text-gray-600 mb-2">Coral: 1-4 indicators | Fish: 1-4 indicators</p>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>• Extensive coral bleaching</li>
+                                <li>• Low fish diversity</li>
+                                <li>• Heavy pollution/damage</li>
+                                <li>• Requires immediate intervention</li>
+                            </ul>
+                        </div>
+                        <div class="health-average border-l-4 p-4 rounded-r-lg">
+                            <h4 class="font-semibold text-yellow-800 mb-2">Average (4-5)</h4>
+                            <p class="text-sm text-gray-600 mb-2">Coral: 5-6 indicators | Fish: 5-6 indicators</p>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>• Moderate coral coverage</li>
+                                <li>• Fair fish populations</li>
+                                <li>• Some environmental stress</li>
+                                <li>• Needs monitoring & protection</li>
+                            </ul>
+                        </div>
+                        <div class="health-healthy border-l-4 p-4 rounded-r-lg">
+                            <h4 class="font-semibold text-reef-green mb-2">Healthy (6-7)</h4>
+                            <p class="text-sm text-gray-600 mb-2">Coral: 7 indicators | Fish: 7-9 indicators</p>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>• Excellent coral coverage</li>
+                                <li>• High fish diversity</li>
+                                <li>• Minimal human impact</li>
+                                <li>• Thriving ecosystem</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Latest Reef Check Results -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Latest Reef Check Results - December 2024</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left">MPA</th>
+                                    <th class="px-4 py-2 text-left">Date</th>
+                                    <th class="px-4 py-2 text-left">Coral Score</th>
+                                    <th class="px-4 py-2 text-left">Fish Score</th>
+                                    <th class="px-4 py-2 text-left">Overall</th>
+                                    <th class="px-4 py-2 text-left">Status</th>
+                                    <th class="px-4 py-2 text-left">Issues</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Ligaya Reef</td>
+                                    <td class="px-4 py-2">Dec 14, 2024</td>
+                                    <td class="px-4 py-2"><span class="text-reef-green font-bold">7/7</span></td>
+                                    <td class="px-4 py-2"><span class="text-reef-green font-bold">9/9</span></td>
+                                    <td class="px-4 py-2"><span class="text-reef-green font-bold">7.0</span></td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Healthy</span></td>
+                                    <td class="px-4 py-2">None</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Burgos MPA</td>
+                                    <td class="px-4 py-2">Dec 12, 2024</td>
+                                    <td class="px-4 py-2"><span class="text-reef-green font-bold">7/7</span></td>
+                                    <td class="px-4 py-2"><span class="text-reef-green font-bold">8/9</span></td>
+                                    <td class="px-4 py-2"><span class="text-reef-green font-bold">6.8</span></td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Healthy</span></td>
+                                    <td class="px-4 py-2">Minor plastic debris</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Pandan Island</td>
+                                    <td class="px-4 py-2">Dec 10, 2024</td>
+                                    <td class="px-4 py-2"><span class="text-yellow-600 font-bold">5/7</span></td>
+                                    <td class="px-4 py-2"><span class="text-yellow-600 font-bold">5/9</span></td>
+                                    <td class="px-4 py-2"><span class="text-yellow-600 font-bold">4.8</span></td>
+                                    <td class="px-4 py-2"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Average</span></td>
+                                    <td class="px-4 py-2">Tourism pressure, anchor damage</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Batasan</td>
+                                    <td class="px-4 py-2">Dec 8, 2024</td>
+                                    <td class="px-4 py-2"><span class="text-red-600 font-bold">3/7</span></td>
+                                    <td class="px-4 py-2"><span class="text-red-600 font-bold">2/9</span></td>
+                                    <td class="px-4 py-2"><span class="text-red-600 font-bold">2.8</span></td>
+                                    <td class="px-4 py-2"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Poor</span></td>
+                                    <td class="px-4 py-2">Blast fishing damage, low fish count</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Detailed Indicators -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Coral Health Indicators (7 Total)</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Hard Coral Coverage</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Primary</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Coral Diversity</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Primary</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Coral Recruitment</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Secondary</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Bleaching Level</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Secondary</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Disease Presence</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Secondary</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Physical Damage</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Secondary</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Algae Competition</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Secondary</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Fish Diversity Indicators (9 Total)</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Parrotfish Population</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Key Species</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Grouper Population</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Key Species</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
+                                <span class="text-sm font-medium">Butterflyfish Diversity</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Key Species</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Angelfish Presence</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Indicator</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Wrasse Diversity</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Indicator</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Juvenile Fish Count</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Indicator</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Predator Fish</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Indicator</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Schooling Fish</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Indicator</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded">
+                                <span class="text-sm font-medium">Endemic Species</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Indicator</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Violations & Enforcement -->
+            <div id="violations" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Violations & Enforcement</h2>
+                    <button onclick="reportViolation()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg">
+                        Report Violation
+                    </button>
+                </div>
+
+                <!-- Violation Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500">
+                        <h3 class="font-semibold text-red-800 mb-2">Total Violations</h3>
+                        <p class="text-3xl font-bold text-red-600">8</p>
+                        <p class="text-sm text-red-600">December 2024</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
+                        <h3 class="font-semibold text-yellow-800 mb-2">Active Cases</h3>
+                        <p class="text-3xl font-bold text-yellow-600">3</p>
+                        <p class="text-sm text-yellow-600">Under investigation</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="font-semibold text-green-800 mb-2">Resolved</h3>
+                        <p class="text-3xl font-bold text-green-600">5</p>
+                        <p class="text-sm text-green-600">Penalties imposed</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2">Equipment Seized</h3>
+                        <p class="text-3xl font-bold text-blue-600">12</p>
+                        <p class="text-sm text-blue-600">Illegal fishing gear</p>
+                    </div>
+                </div>
+
+                <!-- Active Violation Cases -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Active Violation Cases</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-red-800">Dynamite Fishing - Batasan MPA</h4>
+                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Critical</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p><strong>Date:</strong> December 12, 2024</p>
+                                    <p><strong>Location:</strong> Batasan MPA, Grid B-4</p>
+                                    <p><strong>Evidence:</strong> Blast damage, dead fish, witness reports</p>
+                                </div>
+                                <div>
+                                    <p><strong>Suspects:</strong> 2 individuals identified</p>
+                                    <p><strong>Damage:</strong> 50m² coral destruction</p>
+                                    <p><strong>Status:</strong> Investigation ongoing, DENR notified</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex space-x-2">
+                                <button onclick="updateCase(1)" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">Update Case</button>
+                                <button onclick="viewEvidence(1)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">View Evidence</button>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-yellow-800">Illegal Net Fishing - Burgos MPA</h4>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Active</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p><strong>Date:</strong> December 14, 2024</p>
+                                    <p><strong>Location:</strong> Burgos MPA, Core Zone</p>
+                                    <p><strong>Evidence:</strong> Fine mesh net confiscated</p>
+                                </div>
+                                <div>
+                                    <p><strong>Violator:</strong> Local fisherman (identified)</p>
+                                    <p><strong>Penalty:</strong> ₱15,000 fine + community service</p>
+                                    <p><strong>Status:</strong> Awaiting payment</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex space-x-2">
+                                <button onclick="updateCase(2)" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">Update Case</button>
+                                <button onclick="viewEvidence(2)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">View Evidence</button>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-orange-500 bg-orange-50 p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-semibold text-orange-800">Anchor Damage - Pandan Island</h4>
+                                <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">Monitoring</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p><strong>Date:</strong> December 10, 2024</p>
+                                    <p><strong>Location:</strong> Pandan Island, Tourist Area</p>
+                                    <p><strong>Evidence:</strong> Coral damage from boat anchor</p>
+                                </div>
+                                <div>
+                                    <p><strong>Violator:</strong> Tourist boat operator</p>
+                                    <p><strong>Action:</strong> Warning issued, education provided</p>
+                                    <p><strong>Status:</strong> Compliance monitoring</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex space-x-2">
+                                <button onclick="updateCase(3)" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">Update Case</button>
+                                <button onclick="viewEvidence(3)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">View Evidence</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation Statistics -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Violation History & Statistics</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left">Date</th>
+                                    <th class="px-4 py-2 text-left">MPA</th>
+                                    <th class="px-4 py-2 text-left">Violation Type</th>
+                                    <th class="px-4 py-2 text-left">Severity</th>
+                                    <th class="px-4 py-2 text-left">Penalty</th>
+                                    <th class="px-4 py-2 text-left">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-2">Dec 12, 2024</td>
+                                    <td class="px-4 py-2">Batasan</td>
+                                    <td class="px-4 py-2">Dynamite Fishing</td>
+                                    <td class="px-4 py-2"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Critical</span></td>
+                                    <td class="px-4 py-2">₱50,000 + Imprisonment</td>
+                                    <td class="px-4 py-2"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Investigation</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 14, 2024</td>
+                                    <td class="px-4 py-2">Burgos</td>
+                                    <td class="px-4 py-2">Illegal Net</td>
+                                    <td class="px-4 py-2"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Major</span></td>
+                                    <td class="px-4 py-2">₱15,000</td>
+                                    <td class="px-4 py-2"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Pending Payment</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 8, 2024</td>
+                                    <td class="px-4 py-2">Ligaya Reef</td>
+                                    <td class="px-4 py-2">Spearfishing</td>
+                                    <td class="px-4 py-2"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Major</span></td>
+                                    <td class="px-4 py-2">₱10,000</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Resolved</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 5, 2024</td>
+                                    <td class="px-4 py-2">Parola</td>
+                                    <td class="px-4 py-2">Littering</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Minor</span></td>
+                                    <td class="px-4 py-2">₱2,000</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Resolved</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ecosystem Monitoring -->
+            <div id="ecosystem-monitoring" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Ecosystem Monitoring</h2>
+                    <button onclick="recordMonitoring()" class="bg-coastal-blue hover:bg-coastal-dark text-white px-4 py-2 rounded-lg">
+                        Record Data
+                    </button>
+                </div>
+
+                <!-- Environmental Parameters -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2">Water Temperature</h3>
+                        <p class="text-3xl font-bold text-blue-600">28.5°C</p>
+                        <p class="text-sm text-blue-600">Average this month</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="font-semibold text-green-800 mb-2">Water Quality</h3>
+                        <p class="text-3xl font-bold text-green-600">Good</p>
+                        <p class="text-sm text-green-600">pH 8.1, Low turbidity</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
+                        <h3 class="font-semibold text-purple-800 mb-2">Visibility</h3>
+                        <p class="text-3xl font-bold text-purple-600">15m</p>
+                        <p class="text-sm text-purple-600">Average underwater</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
+                        <h3 class="font-semibold text-yellow-800 mb-2">Marine Debris</h3>
+                        <p class="text-3xl font-bold text-yellow-600">Low</p>
+                        <p class="text-sm text-yellow-600">Mostly plastic items</p>
+                    </div>
+                </div>
+
+                <!-- Species Monitoring -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Key Species Population Trends</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🐠</span>
+                                    <div>
+                                        <p class="font-medium">Parrotfish</p>
+                                        <p class="text-sm text-gray-600">Population stable</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-lg font-bold text-green-600">↗ +8%</p>
+                                    <p class="text-xs text-gray-500">vs last month</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🐟</span>
+                                    <div>
+                                        <p class="font-medium">Grouper</p>
+                                        <p class="text-sm text-gray-600">Recovering well</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-lg font-bold text-blue-600">↗ +15%</p>
+                                    <p class="text-xs text-gray-500">vs last month</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🦋</span>
+                                    <div>
+                                        <p class="font-medium">Butterflyfish</p>
+                                        <p class="text-sm text-gray-600">Slight decline</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-lg font-bold text-yellow-600">↘ -3%</p>
+                                    <p class="text-xs text-gray-500">vs last month</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Coral Health Monitoring</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🪸</span>
+                                    <div>
+                                        <p class="font-medium">Hard Coral Coverage</p>
+                                        <p class="text-sm text-gray-600">Overall healthy</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-lg font-bold text-green-600">72%</p>
+                                    <p class="text-xs text-gray-500">Average coverage</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🌿</span>
+                                    <div>
+                                        <p class="font-medium">Coral Recruitment</p>
+                                        <p class="text-sm text-gray-600">New growth observed</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-lg font-bold text-blue-600">Good</p>
+                                    <p class="text-xs text-gray-500">Young corals present</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🌡️</span>
+                                    <div>
+                                        <p class="font-medium">Bleaching Events</p>
+                                        <p class="text-sm text-gray-600">Minimal impact</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-lg font-bold text-red-600">2%</p>
+                                    <p class="text-xs text-gray-500">Affected areas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Environmental Issues -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Environmental Issues & Concerns</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left">Date</th>
+                                    <th class="px-4 py-2 text-left">MPA</th>
+                                    <th class="px-4 py-2 text-left">Issue Type</th>
+                                    <th class="px-4 py-2 text-left">Severity</th>
+                                    <th class="px-4 py-2 text-left">Description</th>
+                                    <th class="px-4 py-2 text-left">Action Taken</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-2">Dec 13, 2024</td>
+                                    <td class="px-4 py-2">Pandan Island</td>
+                                    <td class="px-4 py-2">Marine Debris</td>
+                                    <td class="px-4 py-2"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Medium</span></td>
+                                    <td class="px-4 py-2">Plastic bottles and bags near shore</td>
+                                    <td class="px-4 py-2">Cleanup organized, source investigated</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 10, 2024</td>
+                                    <td class="px-4 py-2">Batasan</td>
+                                    <td class="px-4 py-2">Coral Damage</td>
+                                    <td class="px-4 py-2"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">High</span></td>
+                                    <td class="px-4 py-2">Blast fishing damage to reef structure</td>
+                                    <td class="px-4 py-2">Investigation ongoing, area cordoned</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 8, 2024</td>
+                                    <td class="px-4 py-2">Burgos</td>
+                                    <td class="px-4 py-2">Water Quality</td>
+                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Low</span></td>
+                                    <td class="px-4 py-2">Slight turbidity increase after rain</td>
+                                    <td class="px-4 py-2">Monitoring continued, levels normalized</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Dec 5, 2024</td>
+                                    <td class="px-4 py-2">Ligaya Reef</td>
+                                    <td class="px-4 py-2">Crown of Thorns</td>
+                                    <td class="px-4 py-2"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Medium</span></td>
+                                    <td class="px-4 py-2">Small outbreak of crown-of-thorns starfish</td>
+                                    <td class="px-4 py-2">Manual removal conducted, monitoring</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Reports -->
+            <div id="reports" class="section hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Monthly Reports</h2>
+                    <button onclick="generateReport()" class="bg-coastal-blue hover:bg-coastal-dark text-white px-4 py-2 rounded-lg">
+                        Generate Report
+                    </button>
+                </div>
+
+                <!-- Report Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="font-semibold text-green-800 mb-2">December 2024</h3>
+                        <p class="text-3xl font-bold text-green-600">1/1</p>
+                        <p class="text-sm text-green-600">Report completed</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2">This Year</h3>
+                        <p class="text-3xl font-bold text-blue-600">12/12</p>
+                        <p class="text-sm text-blue-600">All reports submitted</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
+                        <h3 class="font-semibold text-purple-800 mb-2">Compliance Rate</h3>
+                        <p class="text-3xl font-bold text-purple-600">100%</p>
+                        <p class="text-sm text-purple-600">On-time submission</p>
+                    </div>
+                </div>
+
+                <!-- December 2024 Report Details -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">December 2024 Coastal Report</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-green-800 mb-2">Patrolling Activities</h4>
+                                <div class="text-sm space-y-1">
+                                    <p>• 42 patrol missions completed</p>
+                                    <p>• 156 total patrol hours</p>
+                                    <p>• All 10 MPAs covered</p>
+                                    <p>• 127 fishing vessels inspected</p>
+                                </div>
+                            </div>
+                            
+                            <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-blue-800 mb-2">Reef Health Assessments</h4>
+                                <div class="text-sm space-y-1">
+                                    <p>• 10 reef health checks conducted</p>
+                                    <p>• 7 MPAs rated as healthy (6-7)</p>
+                                    <p>• 2 MPAs rated as average (4-5)</p>
+                                    <p>• 1 MPA rated as poor (1-3)</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-red-800 mb-2">Violations & Enforcement</h4>
+                                <div class="text-sm space-y-1">
+                                    <p>• 8 violations recorded</p>
+                                    <p>• 1 critical case (dynamite fishing)</p>
+                                    <p>• 12 pieces of illegal equipment seized</p>
+                                    <p>• ₱92,000 in penalties imposed</p>
+                                </div>
+                            </div>
+                            
+                            <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-yellow-800 mb-2">Environmental Issues</h4>
+                                <div class="text-sm space-y-1">
+                                    <p>• Marine debris cleanup (3 sites)</p>
+                                    <p>• Crown-of-thorns removal (Ligaya Reef)</p>
+                                    <p>• Coral restoration monitoring</p>
+                                    <p>• Water quality assessments</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-sm text-gray-600">Report submitted: December 15, 2024</span>
+                        <button onclick="viewFullReport('dec2024')" class="bg-coastal-blue hover:bg-coastal-dark text-white px-4 py-2 rounded-lg text-sm">
+                            View Full Report
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Report Archive -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Report Archive</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left">Month</th>
+                                    <th class="px-4 py-2 text-left">Patrols</th>
+                                    <th class="px-4 py-2 text-left">Reef Checks</th>
+                                    <th class="px-4 py-2 text-left">Violations</th>
+                                    <th class="px-4 py-2 text-left">Health Score</th>
+                                    <th class="px-4 py-2 text-left">Status</th>
+                                    <th class="px-4 py-2 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Dec 2024</td>
+                                    <td class="px-4 py-2">42</td>
+                                    <td class="px-4 py-2">10</td>
+                                    <td class="px-4 py-2">8</td>
+                                    <td class="px-4 py-2"><span class="text-green-600 font-bold">6.2</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><button onclick="viewFullReport('dec2024')" class="text-blue-600 hover:text-blue-800">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Nov 2024</td>
+                                    <td class="px-4 py-2">38</td>
+                                    <td class="px-4 py-2">10</td>
+                                    <td class="px-4 py-2">5</td>
+                                    <td class="px-4 py-2"><span class="text-green-600 font-bold">6.4</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><button onclick="viewFullReport('nov2024')" class="text-blue-600 hover:text-blue-800">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 font-medium">Oct 2024</td>
+                                    <td class="px-4 py-2">41</td>
+                                    <td class="px-4 py-2">10</td>
+                                    <td class="px-4 py-2">3</td>
+                                    <td class="px-4 py-2"><span class="text-green-600 font-bold">6.6</span></td>
+                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
+                                    <td class="px-4 py-2"><button onclick="viewFullReport('oct2024')" class="text-blue-600 hover:text-blue-800">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Update navigation active state
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('bg-coastal-blue', 'text-white');
+                btn.classList.add('text-gray-700');
+            });
+            
+            // Set active button
+            event.target.classList.add('bg-coastal-blue', 'text-white');
+            event.target.classList.remove('text-gray-700');
+        }
+
+        // Dashboard Functions
+        function recordPatrol() {
+            alert('Record Patrol - This would open the patrol logging system to record patrol activities including MPA visited, duration, team members, findings, violations, and boat inspections conducted.');
+        }
+
+        function conductReefCheck() {
+            alert('Conduct Reef Check - This would open the reef health assessment system to evaluate coral coverage (7 indicators) and fish diversity (9 indicators) with rating scale 1-7 for overall ecosystem health.');
+        }
+
+        function reportViolation() {
+            alert('Report Violation - This would open the violation reporting system to document illegal fishing activities, equipment seizures, environmental damage, and enforcement actions taken.');
+        }
+
+        function generateReport() {
+            alert('Generate Monthly Report - This would create the comprehensive monthly coastal report including patrol activities, reef health assessments, violations, and environmental monitoring data.');
+        }
+
+        // MPA Functions
+        function addMPA() {
+            alert('Add New MPA - This would open the MPA registration system to add new marine protected areas with coordinates, boundaries, management rules, and monitoring schedules.');
+        }
+
+        function viewMPADetails(mpaId) {
+            alert(`View MPA Details: ${mpaId} - This would display comprehensive information about the marine protected area including health history, patrol logs, species inventory, and management activities.`);
+        }
+
+        function schedulePlatrol(mpaId) {
+            alert(`Schedule Patrol: ${mpaId} - This would open the patrol scheduling system to assign patrol teams, set dates/times, and define specific monitoring objectives for this MPA.`);
+        }
+
+        // Violation Functions
+        function updateCase(caseId) {
+            alert(`Update Case ${caseId} - This would open the case management system to update investigation progress, add evidence, record witness statements, and track legal proceedings.`);
+        }
+
+        function viewEvidence(caseId) {
+            alert(`View Evidence Case ${caseId} - This would display all collected evidence including photos, videos, witness statements, confiscated equipment, and damage assessments.`);
+        }
+
+        // Monitoring Functions
+        function recordMonitoring() {
+            alert('Record Monitoring Data - This would open the ecosystem monitoring system to log water quality parameters, species counts, coral health indicators, and environmental observations.');
+        }
+
+        // Report Functions
+        function viewFullReport(reportId) {
+            alert(`View Full Report ${reportId} - This would display the complete monthly coastal report with detailed patrol logs, reef health data, violation records, and environmental monitoring results.`);
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Initialize dashboard on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dashboard is already active by default
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978b6b80c23e5168',t:'MTc1Njc5OTQ2Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

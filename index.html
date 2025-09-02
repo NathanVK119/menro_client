@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENRO Sablayan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .ocean-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .forest-gradient {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .wave-animation {
+            animation: wave 2s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen ocean-gradient">
+    <!-- Static Prototype Webpage -->
+    <!-- Header -->
+    <header class="bg-white/10 backdrop-blur-md border-b border-white/20">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                            <img src="https://cdn-ilebokm.nitrocdn.com/LDIERXKvnOnyQiQIfOmrlCQetXbgMMSd/assets/images/optimized/rev-c086d95/occidentalmindoro.gov.ph/wp-content/uploads/2022/07/Ph_seal_occidental_mindoro_sablayan-1-300x300.png" alt="logo">
+                        </svg>
+                    </div>
+                    <div class="text-white">
+                        <h1 class="text-2xl font-bold">MENRO Sablayan</h1>
+                        <p class="text-white/80 text-sm">Municipal Environment & Natural Resources Office</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-2 text-white/90">
+                    <i class="fas fa-leaf text-green-300"></i>
+                    <span class="text-sm font-medium">Strategy Reach to Reef</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Welcome Section -->
+        <div class="text-center mb-12">
+            <div class="wave-animation inline-block mb-6">
+                <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-md">
+                    <i class="fas fa-water text-4xl text-white"></i>
+                </div>
+            </div>
+            <h2 class="text-4xl font-bold text-white mb-4">Environmental Management System</h2>
+            <p class="text-white/80 text-lg max-w-2xl mx-auto">
+                Comprehensive ecosystem monitoring and management platform for Forest, Urban, and Coastal conservation initiatives
+            </p>
+        </div>
+
+        <!-- Login Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Admin Module -->
+            <div class="card-hover bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center">
+                <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i class="fas fa-user-shield text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Administrator</h3>
+                <p class="text-white/70 text-sm mb-6">System management and oversight of all environmental modules</p>
+                <button onclick="loginAs('admin')" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Admin Login
+                </button>
+            </div>
+
+            <!-- Client Module -->
+            <div class="card-hover bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center">
+                <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i class="fas fa-users text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Client Portal</h3>
+                <p class="text-white/70 text-sm mb-6">Submit requests and access environmental services</p>
+                <button onclick="loginAs('client')" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Client Login
+                </button>
+            </div>
+
+            <!-- Forest Module -->
+            <div class="card-hover bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center">
+                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i class="fas fa-tree text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Forest Officer</h3>
+                <p class="text-white/70 text-sm mb-6">Watershed conservation, nursery management, and reforestation</p>
+                <button onclick="loginAs('forest')" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Forest Login
+                </button>
+            </div>
+
+            <!-- Urban Module -->
+            <div class="card-hover bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center">
+                <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i class="fas fa-city text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Urban Officer</h3>
+                <p class="text-white/70 text-sm mb-6">Solid waste management, street cleaning, and urban maintenance</p>
+                <button onclick="loginAs('urban')" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Urban Login
+                </button>
+            </div>
+
+            <!-- Coastal Module -->
+            <div class="card-hover bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center lg:col-start-2">
+                <div class="w-16 h-16 bg-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i class="fas fa-fish text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Coastal Officer</h3>
+                <p class="text-white/70 text-sm mb-6">Marine protected areas monitoring and reef health assessment</p>
+                <button onclick="loginAs('coastal')" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Coastal Login
+                </button>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div class="text-center text-white/80">
+                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-chart-line text-white"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Real-time Monitoring</h4>
+                <p class="text-sm">Track ecosystem health and environmental indicators</p>
+            </div>
+            <div class="text-center text-white/80">
+                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-file-alt text-white"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Comprehensive Reports</h4>
+                <p class="text-sm">Generate detailed monthly and activity reports</p>
+            </div>
+            <div class="text-center text-white/80">
+                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shield-alt text-white"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Conservation Management</h4>
+                <p class="text-sm">Protect and preserve natural resources effectively</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 bg-white/10 backdrop-blur-md border-t border-white/20">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center text-white/70">
+                <p class="mb-2">© 2025 MENRO Sablayan - Municipal Environment & Natural Resources Office</p>
+                <p class="text-sm">Protecting our environment from forest to reef</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="text-center mb-6">
+                <div id="modalIcon" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <i id="modalIconClass" class="text-2xl text-white"></i>
+                </div>
+                <h3 id="modalTitle" class="text-2xl font-bold text-gray-800 mb-2"></h3>
+                <p id="modalSubtitle" class="text-gray-600"></p>
+            </div>
+            
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                    <input type="text" id="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter username" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter password" required>
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="button" onclick="closeModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        Cancel
+                    </button>
+                    <button type="submit" id="loginButton" class="flex-1 font-semibold py-3 px-6 rounded-lg transition-colors duration-200 text-white">
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentUserType = '';
+        
+        const userConfigs = {
+            admin: {
+                title: 'Administrator Login',
+                subtitle: 'Access system management dashboard',
+                icon: 'fas fa-user-shield',
+                color: 'bg-red-500',
+                buttonColor: 'bg-red-500 hover:bg-red-600',
+                page: 'admin.html'
+            },
+            client: {
+                title: 'Client Portal Login',
+                subtitle: 'Submit requests and track services',
+                icon: 'fas fa-users',
+                color: 'bg-blue-500',
+                buttonColor: 'bg-blue-500 hover:bg-blue-600',
+                page: 'client.html'
+            },
+            forest: {
+                title: 'Forest Officer Login',
+                subtitle: 'Manage watershed and reforestation',
+                icon: 'fas fa-tree',
+                color: 'bg-green-500',
+                buttonColor: 'bg-green-500 hover:bg-green-600',
+                page: 'forest.html'
+            },
+            urban: {
+                title: 'Urban Officer Login',
+                subtitle: 'Manage waste and urban cleaning',
+                icon: 'fas fa-city',
+                color: 'bg-orange-500',
+                buttonColor: 'bg-orange-500 hover:bg-orange-600',
+                page: 'urban.html'
+            },
+            coastal: {
+                title: 'Coastal Officer Login',
+                subtitle: 'Monitor marine protected areas',
+                icon: 'fas fa-fish',
+                color: 'bg-cyan-500',
+                buttonColor: 'bg-cyan-500 hover:bg-cyan-600',
+                page: 'coastal.html'
+            }
+        };
+
+        function loginAs(userType) {
+            currentUserType = userType;
+            const config = userConfigs[userType];
+            
+            document.getElementById('modalTitle').textContent = config.title;
+            document.getElementById('modalSubtitle').textContent = config.subtitle;
+            document.getElementById('modalIconClass').className = config.icon + ' text-2xl text-white';
+            document.getElementById('modalIcon').className = 'w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg ' + config.color;
+            document.getElementById('loginButton').className = 'flex-1 font-semibold py-3 px-6 rounded-lg transition-colors duration-200 text-white ' + config.buttonColor;
+            
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.getElementById('loginModal').classList.add('flex');
+            document.getElementById('username').focus();
+        }
+
+        function closeModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('loginModal').classList.remove('flex');
+            document.getElementById('loginForm').reset();
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation (in real system, this would be server-side)
+            if (username && password) {
+                // Show loading state
+                const loginButton = document.getElementById('loginButton');
+                const originalText = loginButton.innerHTML;
+                loginButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Logging in...';
+                loginButton.disabled = true;
+                
+                // Simulate login process
+                setTimeout(() => {
+                    const config = userConfigs[currentUserType];
+                    alert(`Login successful! Redirecting to ${config.title.replace(' Login', '')} dashboard...`);
+                    
+                    //you would redirect to the actual page:
+                    window.location.href = config.page;
+
+                }, 1500);
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978ade00579cddbe',t:'MTc1Njc5MzY2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
