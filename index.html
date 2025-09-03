@@ -29,7 +29,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen ocean-gradient">
+<body class="min-h-screen bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700">
     <!-- Static Prototype Webpage -->
     <!-- Header -->
     <header class="bg-white/10 backdrop-blur-md border-b border-white/20">
@@ -37,12 +37,15 @@
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
                     <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-                        <svg class="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                            <img src="https://cdn-ilebokm.nitrocdn.com/LDIERXKvnOnyQiQIfOmrlCQetXbgMMSd/assets/images/optimized/rev-c086d95/occidentalmindoro.gov.ph/wp-content/uploads/2022/07/Ph_seal_occidental_mindoro_sablayan-1-300x300.png" alt="logo">
+                        <svg class="w-10 h-10 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                        <!-- Left leaf -->
+                            <path d="M12 12 C5 8, 2 4, 4 1 C8 -2, 12 8, 12 12Z"/>
+                        <!-- Right leaf -->
+                            <path d="M12 12 C19 8, 22 4, 20 1 C16 -2, 12 8, 13 12Z"/>
                         </svg>
                     </div>
                     <div class="text-white">
-                        <h1 class="text-2xl font-bold">MENRO Sablayan</h1>
+                        <h1 class="text-2xl font-bold">Eco Track</h1>
                         <p class="text-white/80 text-sm">Municipal Environment & Natural Resources Office</p>
                     </div>
                 </div>
@@ -97,16 +100,16 @@
                 </button>
             </div>
 
-            <!-- Forest Module -->
+            <!-- Register Module -->
             <div class="card-hover bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center">
-                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <i class="fas fa-tree text-2xl text-white"></i>
+                <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i class="fas fa-users-cog text-2xl text-white"></i>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-3">Forest Officer</h3>
-                <p class="text-white/70 text-sm mb-6">Watershed conservation, nursery management, and reforestation</p>
-                <button onclick="loginAs('forest')" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
-                    <i class="fas fa-sign-in-alt mr-2"></i>
-                    Forest Login
+                <h3 class="text-xl font-bold text-white mb-3">Register Officer</h3>
+                <p class="text-white/70 text-sm mb-6">Register new environmental officers and accounts</p>
+                <button onclick="openRegisterForm()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Register New Account
                 </button>
             </div>
 
@@ -135,30 +138,41 @@
                     Coastal Login
                 </button>
             </div>
+
+            <!-- Forest Module -->
+            <div class="card-hover bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center">
+                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i class="fas fa-tree text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Forest Officer</h3>
+                <p class="text-white/70 text-sm mb-6">Watershed conservation, nursery management, and reforestation</p>
+                <button onclick="loginAs('forest')" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Forest Login
+                </button>
+            </div>
         </div>
 
-        <!-- Features Section -->
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div class="text-center text-white/80">
-                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-chart-line text-white"></i>
+        <!-- Footer Info -->
+        <div class="mt-16 text-center">
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
+                     <div>
+                        <i class="fas fa-recycle text-3xl text-yellow-300 mb-3"></i>
+                        <h4 class="font-bold mb-2">Waste Management</h4>
+                        <p class="text-sm text-white/70">Circular economy and recycling programs</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-water text-3xl text-blue-300 mb-3"></i>
+                        <h4 class="font-bold mb-2">Water Resources</h4>
+                        <p class="text-sm text-white/70">Sustainable water management systems</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-seedling text-3xl text-green-300 mb-3"></i>
+                        <h4 class="font-bold mb-2">Forest Conservation</h4>
+                        <p class="text-sm text-white/70">Protecting biodiversity and natural habitats</p>
+                    </div>
                 </div>
-                <h4 class="font-semibold mb-2">Real-time Monitoring</h4>
-                <p class="text-sm">Track ecosystem health and environmental indicators</p>
-            </div>
-            <div class="text-center text-white/80">
-                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-file-alt text-white"></i>
-                </div>
-                <h4 class="font-semibold mb-2">Comprehensive Reports</h4>
-                <p class="text-sm">Generate detailed monthly and activity reports</p>
-            </div>
-            <div class="text-center text-white/80">
-                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-shield-alt text-white"></i>
-                </div>
-                <h4 class="font-semibold mb-2">Conservation Management</h4>
-                <p class="text-sm">Protect and preserve natural resources effectively</p>
             </div>
         </div>
     </main>
@@ -172,6 +186,70 @@
             </div>
         </div>
     </footer>
+
+        <!-- Registration Modal -->
+    <div id="registerModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50">
+        <div class="bg-white/95 backdrop-blur-md rounded-2xl p-8 m-4 max-w-md w-full border border-white/20 shadow-2xl">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-user-plus text-2xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Register New Officer</h3>
+                <p class="text-gray-600 text-sm">Create a new environmental officer account</p>
+            </div>
+
+            <form id="registerForm" onsubmit="handleRegistration(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                        <input type="text" id="fullName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Enter full name">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                        <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Enter email address">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Department</label>
+                        <select id="department" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                            <option value="">Select Department</option>
+                            <option value="forest">Forest Management</option>
+                            <option value="urban">Urban Planning</option>
+                            <option value="coastal">Coastal Management</option>
+                            <option value="reports">Client User</option>
+                            <option value="admin">Administration</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Position</label>
+                        <input type="text" id="position" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Enter position/title">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel" id="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Enter phone number">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Employee ID</label>
+                        <input type="text" id="employeeId" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Enter employee ID">
+                    </div>
+                </div>
+
+                <div class="flex space-x-4 mt-8">
+                    <button type="button" onclick="closeRegisterForm()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        <i class="fas fa-user-plus mr-2"></i>
+                        Register Officer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Login Modal -->
     <div id="loginModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50">
@@ -193,6 +271,14 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                     <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter password" required>
                 </div>
+                
+                <div class="text-center mb-4">
+                    <button type="button" onclick="openForgotPassword()" class="text-sm text-blue-600 hover:text-blue-800 underline transition-colors">
+                        <i class="fas fa-key mr-1"></i>
+                        Forgot your password?
+                    </button>
+                </div>
+                
                 <div class="flex space-x-4 pt-4">
                     <button type="button" onclick="closeModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
                         Cancel
@@ -202,6 +288,104 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <i class="fas fa-key text-2xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Reset Password</h3>
+                <p class="text-gray-600 text-sm">Enter your email to receive reset instructions</p>
+            </div>
+            
+            <!-- Step 1: Email Input -->
+            <div id="emailStep" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="resetEmail" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter your registered email" required>
+                </div>
+                
+                <div class="flex space-x-4 pt-4">
+                    <button type="button" onclick="closeForgotPassword()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        Cancel
+                    </button>
+                    <button type="button" onclick="sendResetCode()" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Send Reset Code
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Verification Code -->
+            <div id="codeStep" class="space-y-4 hidden">
+                <div class="text-center mb-4">
+                    <i class="fas fa-envelope-open text-4xl text-green-500 mb-2"></i>
+                    <p class="text-sm text-gray-600">We've sent a 6-digit code to your email</p>
+                    <p class="text-xs text-gray-500 mt-1" id="emailSentTo"></p>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Verification Code</label>
+                    <input type="text" id="verificationCode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-center text-2xl tracking-widest" placeholder="000000" maxlength="6" required>
+                </div>
+                
+                <div class="text-center">
+                    <button type="button" onclick="resendCode()" class="text-sm text-blue-600 hover:text-blue-800 underline">
+                        Didn't receive code? Resend
+                    </button>
+                </div>
+                
+                <div class="flex space-x-4 pt-4">
+                    <button type="button" onclick="backToEmail()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        Back
+                    </button>
+                    <button type="button" onclick="verifyCode()" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        <i class="fas fa-check mr-2"></i>
+                        Verify Code
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: New Password -->
+            <div id="passwordStep" class="space-y-4 hidden">
+                <div class="text-center mb-4">
+                    <i class="fas fa-shield-alt text-4xl text-green-500 mb-2"></i>
+                    <p class="text-sm text-gray-600">Create your new password</p>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                    <input type="password" id="newPassword" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter new password" required>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Confirm new password" required>
+                </div>
+                
+                <div class="bg-gray-50 p-3 rounded-lg">
+                    <p class="text-xs text-gray-600 mb-2">Password requirements:</p>
+                    <ul class="text-xs text-gray-500 space-y-1">
+                        <li>• At least 8 characters long</li>
+                        <li>• Contains uppercase and lowercase letters</li>
+                        <li>• Contains at least one number</li>
+                    </ul>
+                </div>
+                
+                <div class="flex space-x-4 pt-4">
+                    <button type="button" onclick="closeForgotPassword()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        Cancel
+                    </button>
+                    <button type="button" onclick="resetPassword()" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        <i class="fas fa-save mr-2"></i>
+                        Reset Password
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -225,13 +409,13 @@
                 buttonColor: 'bg-blue-500 hover:bg-blue-600',
                 page: 'client.html'
             },
-            forest: {
-                title: 'Forest Officer Login',
-                subtitle: 'Manage watershed and reforestation',
-                icon: 'fas fa-tree',
-                color: 'bg-green-500',
-                buttonColor: 'bg-green-500 hover:bg-green-600',
-                page: 'forest.html'
+            register: {
+                title: 'Register Officer',
+                subtitle: 'Register as an officer',
+                icon: 'fas fa-users-cog',
+                color: 'bg-yellow-500',
+                buttonColor: 'bg-yellow-500 hover:bg-yellow-600',
+                page: 'register.html'
             },
             urban: {
                 title: 'Urban Officer Login',
@@ -248,8 +432,62 @@
                 color: 'bg-cyan-500',
                 buttonColor: 'bg-cyan-500 hover:bg-cyan-600',
                 page: 'coastal.html'
+            },
+            forest: {
+                title: 'Forest Officer Login',
+                subtitle: 'Manage watershed and reforestation',
+                icon: 'fas fa-tree',
+                color: 'bg-green-500',
+                buttonColor: 'bg-green-500 hover:bg-green-600',
+                page: 'forest.html'
             }
         };
+
+         function openRegisterForm() {
+            document.getElementById('registerModal').classList.remove('hidden');
+            document.getElementById('registerModal').classList.add('flex');
+        }
+
+        function closeRegisterForm() {
+            document.getElementById('registerModal').classList.add('hidden');
+            document.getElementById('registerModal').classList.remove('flex');
+            document.getElementById('registerForm').reset();
+        }
+
+        function handleRegistration(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                department: document.getElementById('department').value,
+                position: document.getElementById('position').value,
+                phone: document.getElementById('phone').value,
+                employeeId: document.getElementById('employeeId').value
+            };
+
+            // Show loading state
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Registering...';
+            submitBtn.disabled = true;
+
+            // Simulate registration process
+            setTimeout(() => {
+                // Generate temporary credentials
+                const tempPassword = 'MENRO' + Math.random().toString(36).substr(2, 6).toUpperCase();
+                
+                alert(`✅ Registration Successful!\n\nOfficer Details:\nName: ${formData.fullName}\nEmail: ${formData.email}\nDepartment: ${formData.department}\nPosition: ${formData.position}\nEmployee ID: ${formData.employeeId}\n\nTemporary Password: ${tempPassword}\n\nNote: This is a demo. In the actual system, credentials would be sent via email and stored securely in the database.\n\nYou can now log in with the following credentials:\nUsername: ${formData.email}\nPassword: ${tempPassword}\n\nPlease change your password after logging in.`);
+                
+                // Reset form and close modal
+                closeRegisterForm();
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        }
 
         function loginAs(userType) {
             currentUserType = userType;
@@ -266,6 +504,129 @@
             document.getElementById('username').focus();
         }
 
+         // Forgot Password Functions
+        function openForgotPassword() {
+            closeModal();
+            document.getElementById('forgotPasswordModal').classList.remove('hidden');
+            document.getElementById('forgotPasswordModal').classList.add('flex');
+            resetForgotPasswordForm();
+        }
+
+        function closeForgotPassword() {
+            document.getElementById('forgotPasswordModal').classList.add('hidden');
+            document.getElementById('forgotPasswordModal').classList.remove('flex');
+            resetForgotPasswordForm();
+        }
+
+        function resetForgotPasswordForm() {
+            document.getElementById('emailStep').classList.remove('hidden');
+            document.getElementById('codeStep').classList.add('hidden');
+            document.getElementById('passwordStep').classList.add('hidden');
+            document.getElementById('resetEmail').value = '';
+            document.getElementById('verificationCode').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+        }
+
+        function sendResetCode() {
+            const email = document.getElementById('resetEmail').value;
+            if (!email) {
+                alert('Please enter your email address');
+                return;
+            }
+
+            resetEmail = email;
+            generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+            
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('emailStep').classList.add('hidden');
+                document.getElementById('codeStep').classList.remove('hidden');
+                document.getElementById('emailSentTo').textContent = `Code sent to: ${email}`;
+                
+                // Show the generated code in console for demo purposes
+                console.log('Demo Reset Code:', generatedCode);
+                alert(`Demo Mode: Your reset code is ${generatedCode}\n\nIn a real system, this would be sent to your email.`);
+                
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 2000);
+        }
+
+        function resendCode() {
+            generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+            console.log('Demo Reset Code (Resent):', generatedCode);
+            alert(`Demo Mode: New reset code is ${generatedCode}\n\nIn a real system, this would be sent to your email.`);
+        }
+
+        function backToEmail() {
+            document.getElementById('codeStep').classList.add('hidden');
+            document.getElementById('emailStep').classList.remove('hidden');
+        }
+
+        function verifyCode() {
+            const enteredCode = document.getElementById('verificationCode').value;
+            if (!enteredCode) {
+                alert('Please enter the verification code');
+                return;
+            }
+
+            if (enteredCode !== generatedCode) {
+                alert('Invalid verification code. Please try again.');
+                return;
+            }
+
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Verifying...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('codeStep').classList.add('hidden');
+                document.getElementById('passwordStep').classList.remove('hidden');
+                
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 1500);
+        }
+
+        function resetPassword() {
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (!newPassword || !confirmPassword) {
+                alert('Please fill in both password fields');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            if (newPassword.length < 8) {
+                alert('Password must be at least 8 characters long');
+                return;
+            }
+
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Resetting...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                alert(`✅ Password Reset Successful!\n\nYour password has been updated for: ${resetEmail}\n\nYou can now login with your new password.\n\nNote: This is a demo. In a real system, the password would be securely updated in the database.`);
+                
+                closeForgotPassword();
+                
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 2000);
+        }
         function closeModal() {
             document.getElementById('loginModal').classList.add('hidden');
             document.getElementById('loginModal').classList.remove('flex');
