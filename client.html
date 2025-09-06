@@ -118,24 +118,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="reportForestViolation()">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-2xl">⚠️</span>
-                                <div>
-                                    <h4 class="font-semibold">Report Forest Violation</h4>
-                                    <p class="text-sm text-gray-600">Report illegal deforestation or forest damage</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="requestWatershedInfo()">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-2xl">💧</span>
-                                <div>
-                                    <h4 class="font-semibold">Watershed Information</h4>
-                                    <p class="text-sm text-gray-600">Get info about Malatongtong Falls protection</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -157,30 +139,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="reportGarbageViolation()">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-2xl">🚫</span>
-                                <div>
-                                    <h4 class="font-semibold">Report Garbage Violation</h4>
-                                    <p class="text-sm text-gray-600">Report improper waste disposal or dumping</p>
-                                </div>
-                            </div>
-                        </div>
                         <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="requestUrbanPlants()">
                             <div class="flex items-center space-x-3">
                                 <span class="text-2xl">🌿</span>
                                 <div>
                                     <h4 class="font-semibold">Urban Plants Request</h4>
                                     <p class="text-sm text-gray-600">Get ornamental plants from Eco Park nursery</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="reportFacilityIssue()">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-2xl">🏛️</span>
-                                <div>
-                                    <h4 class="font-semibold">Report Facility Issue</h4>
-                                    <p class="text-sm text-gray-600">Report issues at Parola Park or Mini Zoo</p>
                                 </div>
                             </div>
                         </div>
@@ -196,24 +160,6 @@
                         </div>
                     </div>
                     <div class="p-6 space-y-4">
-                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="reportMarineViolation()">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-2xl">🐠</span>
-                                <div>
-                                    <h4 class="font-semibold">Report Marine Violation</h4>
-                                    <p class="text-sm text-gray-600">Report illegal fishing or marine damage</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="reportMarineGarbage()">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-2xl">🗑️</span>
-                                <div>
-                                    <h4 class="font-semibold">Report Marine Garbage</h4>
-                                    <p class="text-sm text-gray-600">Report garbage in marine protected areas</p>
-                                </div>
-                            </div>
-                        </div>
                         <div class="service-card bg-gray-50 p-4 rounded-lg cursor-pointer" onclick="viewMarineAreas()">
                             <div class="flex items-center space-x-3">
                                 <span class="text-2xl">📍</span>
@@ -440,109 +386,6 @@
                     </button>
                     <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
                         Submit Request
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Marine Violation Report Modal -->
-    <div id="marineViolationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-        <div class="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-screen overflow-y-auto">
-            <h3 class="text-xl font-semibold mb-4 text-purple-800">🐠 Report Marine Violation</h3>
-            <form class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Reporter Name *</label>
-                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Contact Number *</label>
-                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Marine Protected Area *</label>
-                    <select required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
-                        <option value="">Select location</option>
-                        <option value="ligaya-reef">Ligaya Reef</option>
-                        <option value="burgos">Burgos Marine Area</option>
-                        <option value="idarag-laya">Idarag Laya</option>
-                        <option value="busaran">Busaran</option>
-                        <option value="parola">Parola</option>
-                        <option value="malaking-ilog">Malaking Ilog</option>
-                        <option value="batong-buhay">Batong Buhay</option>
-                        <option value="ambulong">Ambulong</option>
-                        <option value="pandan">Pandan</option>
-                        <option value="claudio">Claudio</option>
-                        <option value="other">Other (specify in description)</option>
-                    </select>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Date of Incident *</label>
-                        <input type="date" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Time of Incident</label>
-                        <input type="time" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Type of Violation *</label>
-                    <select required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
-                        <option value="">Select violation type</option>
-                        <option value="illegal-fishing">Illegal Fishing</option>
-                        <option value="dynamite-fishing">Dynamite/Blast Fishing</option>
-                        <option value="fine-mesh-net">Fine Mesh Net Fishing</option>
-                        <option value="coral-damage">Coral Damage</option>
-                        <option value="marine-garbage">Marine Garbage Dumping</option>
-                        <option value="unauthorized-entry">Unauthorized Entry to Protected Area</option>
-                        <option value="other">Other (specify in description)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Detailed Description *</label>
-                    <textarea required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500" rows="4" placeholder="Provide detailed description of the violation, including number of people involved, equipment used, and any other relevant information"></textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Evidence Available</label>
-                    <div class="space-y-2">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2 text-purple-600 focus:ring-purple-500">
-                            <span class="text-sm">Photos/Videos</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2 text-purple-600 focus:ring-purple-500">
-                            <span class="text-sm">Witness Statements</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2 text-purple-600 focus:ring-purple-500">
-                            <span class="text-sm">Physical Evidence</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="bg-purple-50 p-4 rounded-lg">
-                    <h4 class="font-semibold text-purple-800 mb-2">🌊 Marine Protected Areas Under Monitoring:</h4>
-                    <div class="text-sm text-purple-700 grid grid-cols-2 gap-1">
-                        <div>• Ligaya Reef</div>
-                        <div>• Burgos</div>
-                        <div>• Idarag Laya</div>
-                        <div>• Busaran</div>
-                        <div>• Parola</div>
-                        <div>• Malaking Ilog</div>
-                        <div>• Batong Buhay</div>
-                        <div>• Ambulong</div>
-                        <div>• Pandan</div>
-                        <div>• Claudio</div>
-                    </div>
-                </div>
-                <div class="flex space-x-3 pt-4">
-                    <button type="button" onclick="closeModal('marineViolationModal')" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg transition-colors">
-                        Cancel
-                    </button>
-                    <button type="submit" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
-                        Submit Report
                     </button>
                 </div>
             </form>
