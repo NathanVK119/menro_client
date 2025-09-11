@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MENRO Sablayan - Urban Section</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -79,25 +80,13 @@
                         <span>🗑️</span>
                         <span>Solid Waste Management</span>
                     </button>
-                    <button onclick="showSection('street-sweeping')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
-                        <span>🧹</span>
-                        <span>Street Sweeping</span>
-                    </button>
                     <button onclick="showSection('special-collection')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
                         <span>♻️</span>
                         <span>Special Collection</span>
                     </button>
-                    <button onclick="showSection('urban-cleaning')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
-                        <span>🏞️</span>
-                        <span>Urban Cleaning</span>
-                    </button>
                     <button onclick="showSection('urban-nursery')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
                         <span>🌱</span>
                         <span>Urban Nursery</span>
-                    </button>
-                    <button onclick="showSection('violations')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
-                        <span>⚠️</span>
-                        <span>Violations & Monitoring</span>
                     </button>
                     <button onclick="showSection('reports')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center space-x-3">
                         <span>📋</span>
@@ -111,132 +100,271 @@
         <main class="flex-1 p-6">
             <!-- Dashboard Section -->
             <div id="dashboard" class="section fade-in">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Urban Section Dashboard</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Urban Section Overview</h2>
                 
-                <!-- Key Metrics -->
+                <!-- Urban Section Overview -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500 card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-indigo-500 card-hover">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-600 text-sm">Waste Collected</p>
-                                <p class="text-2xl font-bold text-green-600">45.8</p>
-                                <p class="text-xs text-green-500">Tons this month</p>
-                            </div>
-                            <span class="text-3xl">🗑️</span>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500 card-hover">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-600 text-sm">Collection Trips</p>
-                                <p class="text-2xl font-bold text-blue-600">186</p>
-                                <p class="text-xs text-blue-500">December 2024</p>
+                                <p class="text-gray-600 text-sm">Roaming Trucks</p>
+                                <p class="text-2xl font-bold text-indigo-600">3</p>
+                                <p class="text-xs text-indigo-600">Collection vehicles</p>
                             </div>
                             <span class="text-3xl">🚛</span>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500 card-hover">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-600 text-sm">Streets Cleaned</p>
-                                <p class="text-2xl font-bold text-yellow-600">28.5</p>
-                                <p class="text-xs text-yellow-500">Kilometers swept</p>
-                            </div>
-                            <span class="text-3xl">🧹</span>
                         </div>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500 card-hover">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-600 text-sm">Violations</p>
-                                <p class="text-2xl font-bold text-purple-600">12</p>
-                                <p class="text-xs text-purple-500">Issued this month</p>
+                                <p class="text-gray-600 text-sm">Main Barangays</p>
+                                <p class="text-2xl font-bold text-purple-600">3</p>
+                                <p class="text-xs text-purple-600">Poblacion, Santo Niño, Buenavista</p>
                             </div>
-                            <span class="text-3xl">⚠️</span>
+                            <span class="text-3xl">🏘️</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500 card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Collection Types</p>
+                                <p class="text-2xl font-bold text-green-600">2</p>
+                                <p class="text-xs text-green-600">Biodegradable & Non-bio</p>
+                            </div>
+                            <span class="text-3xl">♻️</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-pink-500 card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-600 text-sm">Total Trips</p>
+                                <p class="text-2xl font-bold text-pink-600">105</p>
+                                <p class="text-xs text-pink-600">December 2024</p>
+                            </div>
+                            <span class="text-3xl">📊</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Fleet Status -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-4">Fleet Status - 3 Roaming Trucks</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
-                                <span class="text-green-600">🚛</span>
-                                <div class="flex-1">
-                                    <p class="font-medium">Truck 1 - Santo Niño Route</p>
-                                    <p class="text-sm text-gray-600">Status: Active | Driver: Pedro Cruz</p>
+                <!-- Urban Collection Chart -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">3 Main Barangays - Waste Generation Analysis</h3>
+                    <div class="relative h-64">
+                        <canvas id="urbanChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-sm">
+                        <p class="text-gray-600 mb-2">Waste Generation Ranking (Higher trips = More waste generated):</p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <div class="flex items-center justify-between p-2 bg-red-50 rounded">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <span class="font-medium">1. Poblacion</span>
                                 </div>
-                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Active</span>
+                                <span class="font-bold text-red-600">42 trips (40%)</span>
                             </div>
-                            <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
-                                <span class="text-green-600">🚛</span>
-                                <div class="flex-1">
-                                    <p class="font-medium">Truck 2 - Buenavista Route</p>
-                                    <p class="text-sm text-gray-600">Status: Active | Driver: Jose Reyes</p>
+                            <div class="flex items-center justify-between p-2 bg-orange-50 rounded">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                                    <span class="font-medium">2. Santo Niño</span>
                                 </div>
-                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Active</span>
+                                <span class="font-bold text-orange-600">35 trips (33%)</span>
                             </div>
-                            <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-                                <span class="text-blue-600">🚛</span>
-                                <div class="flex-1">
-                                    <p class="font-medium">Truck 3 - Poblacion Route</p>
-                                    <p class="text-sm text-gray-600">Status: Maintenance | Driver: Carlos Santos</p>
+                            <div class="flex items-center justify-between p-2 bg-yellow-50 rounded">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                    <span class="font-medium">3. Buenavista</span>
                                 </div>
-                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Maintenance</span>
+                                <span class="font-bold text-yellow-600">28 trips (27%)</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 p-2 bg-blue-50 rounded">
+                            <p class="text-xs text-blue-700"><strong>Analysis:</strong> Poblacion generates the most waste due to commercial activities and higher population density. Santo Niño follows as a mixed residential area, while Buenavista has the lowest waste generation being more rural.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Urban Biodegradable vs Non-biodegradable Breakdown -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Biodegradable vs Non-biodegradable by Barangay</h3>
+                    <div class="relative h-64">
+                        <canvas id="urbanBreakdownChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p>Breakdown based on collection trips per waste type in each barangay.</p>
+                    </div>
+                </div>
+
+                <!-- Detailed Barangay Collection Data - 3 Main Barangays -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">3 Roaming Trucks - Main Barangay Collection Data</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- RT-001 Poblacion -->
+                        <div class="border border-red-200 rounded-lg p-4 bg-red-50">
+                            <h4 class="font-semibold text-red-800 mb-3">RT-001: Poblacion</h4>
+                            <div class="text-center mb-4">
+                                <div class="text-4xl font-bold text-red-600">42</div>
+                                <div class="text-sm text-red-600">Total Collection Trips</div>
+                                <div class="text-xs text-gray-600 mt-1">December 2024</div>
+                            </div>
+                            <div class="space-y-2 text-sm">
+                                <div class="bg-red-100 p-2 rounded">
+                                    <div class="flex justify-between">
+                                        <span>Biodegradable Waste</span>
+                                        <span class="font-bold">22 trips</span>
+                                    </div>
+                                </div>
+                                <div class="bg-red-100 p-2 rounded">
+                                    <div class="flex justify-between">
+                                        <span>Non-biodegradable Waste</span>
+                                        <span class="font-bold">20 trips</span>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-100 p-2 rounded">
+                                    <div class="flex justify-between">
+                                        <span>Estimated Waste Volume</span>
+                                        <span class="font-bold">12.5 tons</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-2 border-t border-red-200">
+                                <div class="text-xs text-red-700">
+                                    <strong>Status:</strong> Highest waste generator - Commercial & residential area
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RT-002 Santo Niño -->
+                        <div class="border border-orange-200 rounded-lg p-4 bg-orange-50">
+                            <h4 class="font-semibold text-orange-800 mb-3">RT-002: Santo Niño</h4>
+                            <div class="text-center mb-4">
+                                <div class="text-4xl font-bold text-orange-600">35</div>
+                                <div class="text-sm text-orange-600">Total Collection Trips</div>
+                                <div class="text-xs text-gray-600 mt-1">December 2024</div>
+                            </div>
+                            <div class="space-y-2 text-sm">
+                                <div class="bg-orange-100 p-2 rounded">
+                                    <div class="flex justify-between">
+                                        <span>Biodegradable Waste</span>
+                                        <span class="font-bold">18 trips</span>
+                                    </div>
+                                </div>
+                                <div class="bg-orange-100 p-2 rounded">
+                                    <div class="flex justify-between">
+                                        <span>Non-biodegradable Waste</span>
+                                        <span class="font-bold">17 trips</span>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-100 p-2 rounded">
+                                    <div class="flex justify-between">
+                                        <span>Estimated Waste Volume</span>
+                                        <span class="font-bold">8.2 tons</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-2 border-t border-orange-200">
+                                <div class="text-xs text-orange-700">
+                                    <strong>Status:</strong> Medium waste generator - Mixed residential area
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RT-003 Buenavista -->
+                        <div class="border border-yellow-200 rounded-lg p-4 bg-yellow-50">
+                            <h4 class="font-semibold text-yellow-800 mb-3">RT-003: Buenavista</h4>
+                            <div class="text-center mb-4">
+                                <div class="text-4xl font-bold text-yellow-600">28</div>
+                                <div class="text-sm text-yellow-600">Total Collection Trips</div>
+                                <div class="text-xs text-gray-600 mt-1">December 2024</div>
+                            </div>
+                            <div class="space-y-2 text-sm">
+                                <div class="bg-yellow-100 p-2 rounded">
+                                    <div class="flex justify-between">
+                                        <span>Biodegradable Waste</span>
+                                        <span class="font-bold">15 trips</span>
+                                    </div>
+                                </div>
+                                <div class="bg-yellow-100 p-2 rounded">
+                                    <div class="flex justify-between">
+                                        <span>Non-biodegradable Waste</span>
+                                        <span class="font-bold">13 trips</span>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-100 p-2 rounded">
+                                    <div class="flex justify-between">
+                                        <span>Estimated Waste Volume</span>
+                                        <span class="font-bold">6.8 tons</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-2 border-t border-yellow-200">
+                                <div class="text-xs text-yellow-700">
+                                    <strong>Status:</strong> Lower waste generator - Rural residential area
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-4">Today's Activities</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
-                                <span class="text-green-600">✅</span>
-                                <div>
-                                    <p class="font-medium">Morning Collection - Santo Niño</p>
-                                    <p class="text-sm text-gray-600">Completed - 2.8 tons collected</p>
+                    
+                    <!-- Summary Analysis -->
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                            <h5 class="font-semibold text-blue-800 mb-2">Waste Generation Ranking</h5>
+                            <div class="space-y-1 text-sm">
+                                <div class="flex justify-between">
+                                    <span>1. Poblacion</span>
+                                    <span class="font-bold text-red-600">42 trips (40%)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>2. Santo Niño</span>
+                                    <span class="font-bold text-orange-600">35 trips (33%)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>3. Buenavista</span>
+                                    <span class="font-bold text-yellow-600">28 trips (27%)</span>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg">
-                                <span class="text-yellow-600">🔄</span>
-                                <div>
-                                    <p class="font-medium">Street Sweeping - Main Roads</p>
-                                    <p class="text-sm text-gray-600">In Progress - 60% complete</p>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                            <h5 class="font-semibold text-green-800 mb-2">Total System Performance</h5>
+                            <div class="space-y-1 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Total Trips:</span>
+                                    <span class="font-bold">105 trips</span>
                                 </div>
-                            </div>
-                            <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-                                <span class="text-blue-600">📋</span>
-                                <div>
-                                    <p class="font-medium">Parola Park Maintenance</p>
-                                    <p class="text-sm text-gray-600">Scheduled - 2:00 PM</p>
+                                <div class="flex justify-between">
+                                    <span>Total Waste Collected:</span>
+                                    <span class="font-bold">27.5 tons</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Collection Efficiency:</span>
+                                    <span class="font-bold text-green-600">98%</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Quick Actions -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <button onclick="recordCollection()" class="bg-urban-blue hover:bg-urban-dark text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
-                            <span>🗑️</span>
-                            <span>Record Collection</span>
-                        </button>
-                        <button onclick="scheduleSpecial()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
-                            <span>♻️</span>
-                            <span>Schedule Special</span>
-                        </button>
-                        <button onclick="reportViolation()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
-                            <span>⚠️</span>
-                            <span>Report Violation</span>
-                        </button>
-                        <button onclick="updateFacility()" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
-                            <span>🏞️</span>
-                            <span>Update Facility</span>
-                        </button>
+                <!-- Urban Monthly Performance Chart -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Monthly Urban Collection Performance (2024)</h3>
+                    <div class="relative h-80">
+                        <canvas id="urban_monthlyChart"></canvas>
+                    </div>
+                    <div class="mt-4 grid grid-cols-3 gap-4 text-sm">
+                        <div class="text-center p-3 bg-blue-50 rounded-lg">
+                            <p class="font-semibold text-blue-800">Waste Collected</p>
+                            <p class="text-2xl font-bold text-blue-600">27.5T</p>
+                            <p class="text-xs text-blue-600">This month</p>
+                        </div>
+                        <div class="text-center p-3 bg-green-50 rounded-lg">
+                            <p class="font-semibold text-green-800">Barangays Served</p>
+                            <p class="text-2xl font-bold text-green-600">3/3</p>
+                            <p class="text-xs text-green-600">100% coverage</p>
+                        </div>
+                        <div class="text-center p-3 bg-purple-50 rounded-lg">
+                            <p class="font-semibold text-purple-800">Collection Efficiency</p>
+                            <p class="text-2xl font-bold text-purple-600">98%</p>
+                            <p class="text-xs text-purple-600">System performance</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -407,153 +535,7 @@
                 </div>
             </div>
 
-            <!-- Street Sweeping Section -->
-            <div id="street-sweeping" class="section hidden fade-in">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800">Street Sweeping Operations</h2>
-                    <button onclick="recordSweeping()" class="bg-urban-blue hover:bg-urban-dark text-white px-4 py-2 rounded-lg">
-                        Record Sweeping
-                    </button>
-                </div>
-
-                <!-- Sweeping Overview -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
-                        <h3 class="font-semibold text-yellow-800 mb-2">Distance Swept</h3>
-                        <p class="text-3xl font-bold text-yellow-600">28.5</p>
-                        <p class="text-sm text-yellow-600">Kilometers this month</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
-                        <h3 class="font-semibold text-green-800 mb-2">Debris Collected</h3>
-                        <p class="text-3xl font-bold text-green-600">3.2</p>
-                        <p class="text-sm text-green-600">Tons collected</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <h3 class="font-semibold text-blue-800 mb-2">Routes Covered</h3>
-                        <p class="text-3xl font-bold text-blue-600">8</p>
-                        <p class="text-sm text-blue-600">Set routes completed</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
-                        <h3 class="font-semibold text-purple-800 mb-2">Sweeping Days</h3>
-                        <p class="text-3xl font-bold text-purple-600">15</p>
-                        <p class="text-sm text-purple-600">Active days this month</p>
-                    </div>
-                </div>
-
-                <!-- Set Routes -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <h3 class="text-lg font-semibold mb-4">Set Routes Schedule</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-3">Primary Routes (Daily)</h4>
-                            <div class="space-y-3">
-                                <div class="border-l-4 border-green-500 bg-green-50 p-3 rounded-r-lg">
-                                    <h5 class="font-medium text-green-800">Route A - Main Commercial</h5>
-                                    <p class="text-sm text-gray-600">Poblacion Center, Market Area, Government Complex</p>
-                                    <p class="text-xs text-green-600">Distance: 4.2 km | Time: 2 hours</p>
-                                </div>
-                                <div class="border-l-4 border-blue-500 bg-blue-50 p-3 rounded-r-lg">
-                                    <h5 class="font-medium text-blue-800">Route B - Residential Main</h5>
-                                    <p class="text-sm text-gray-600">Santo Niño Main Road, Buenavista Highway</p>
-                                    <p class="text-xs text-blue-600">Distance: 3.8 km | Time: 1.5 hours</p>
-                                </div>
-                                <div class="border-l-4 border-yellow-500 bg-yellow-50 p-3 rounded-r-lg">
-                                    <h5 class="font-medium text-yellow-800">Route C - School Zone</h5>
-                                    <p class="text-sm text-gray-600">Elementary & High School Areas, Daycare Centers</p>
-                                    <p class="text-xs text-yellow-600">Distance: 2.5 km | Time: 1 hour</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-3">Secondary Routes (3x/week)</h4>
-                            <div class="space-y-3">
-                                <div class="border-l-4 border-purple-500 bg-purple-50 p-3 rounded-r-lg">
-                                    <h5 class="font-medium text-purple-800">Route D - Coastal Road</h5>
-                                    <p class="text-sm text-gray-600">Waterfront, Port Area, Fishing Community</p>
-                                    <p class="text-xs text-purple-600">Distance: 5.1 km | Time: 2.5 hours</p>
-                                </div>
-                                <div class="border-l-4 border-red-500 bg-red-50 p-3 rounded-r-lg">
-                                    <h5 class="font-medium text-red-800">Route E - Industrial Zone</h5>
-                                    <p class="text-sm text-gray-600">Processing Plants, Warehouses, Transport Hub</p>
-                                    <p class="text-xs text-red-600">Distance: 3.9 km | Time: 2 hours</p>
-                                </div>
-                                <div class="border-l-4 border-indigo-500 bg-indigo-50 p-3 rounded-r-lg">
-                                    <h5 class="font-medium text-indigo-800">Route F - Tourism Areas</h5>
-                                    <p class="text-sm text-gray-600">Hotels, Restaurants, Tourist Spots</p>
-                                    <p class="text-xs text-indigo-600">Distance: 2.8 km | Time: 1.5 hours</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Daily Sweeping Log -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-lg font-semibold mb-4">Daily Sweeping Log</h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-4 py-2 text-left">Date</th>
-                                    <th class="px-4 py-2 text-left">Route</th>
-                                    <th class="px-4 py-2 text-left">Team Leader</th>
-                                    <th class="px-4 py-2 text-left">Distance (km)</th>
-                                    <th class="px-4 py-2 text-left">Debris (kg)</th>
-                                    <th class="px-4 py-2 text-left">Duration</th>
-                                    <th class="px-4 py-2 text-left">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-4 py-2">Dec 15, 2024</td>
-                                    <td class="px-4 py-2">Route A - Main Commercial</td>
-                                    <td class="px-4 py-2">Ana Garcia</td>
-                                    <td class="px-4 py-2">4.2</td>
-                                    <td class="px-4 py-2">85</td>
-                                    <td class="px-4 py-2">2h 15m</td>
-                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Dec 15, 2024</td>
-                                    <td class="px-4 py-2">Route B - Residential Main</td>
-                                    <td class="px-4 py-2">Roberto Luna</td>
-                                    <td class="px-4 py-2">3.8</td>
-                                    <td class="px-4 py-2">62</td>
-                                    <td class="px-4 py-2">1h 45m</td>
-                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Dec 14, 2024</td>
-                                    <td class="px-4 py-2">Route C - School Zone</td>
-                                    <td class="px-4 py-2">Linda Torres</td>
-                                    <td class="px-4 py-2">2.5</td>
-                                    <td class="px-4 py-2">45</td>
-                                    <td class="px-4 py-2">1h 10m</td>
-                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Dec 14, 2024</td>
-                                    <td class="px-4 py-2">Route D - Coastal Road</td>
-                                    <td class="px-4 py-2">Miguel Santos</td>
-                                    <td class="px-4 py-2">5.1</td>
-                                    <td class="px-4 py-2">120</td>
-                                    <td class="px-4 py-2">2h 30m</td>
-                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Dec 13, 2024</td>
-                                    <td class="px-4 py-2">Route E - Industrial Zone</td>
-                                    <td class="px-4 py-2">Carmen Dela Cruz</td>
-                                    <td class="px-4 py-2">3.9</td>
-                                    <td class="px-4 py-2">95</td>
-                                    <td class="px-4 py-2">2h 5m</td>
-                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Completed</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <!-- Street Sweeping Section (removed) -->
 
             <!-- Special Collection Section -->
             <div id="special-collection" class="section hidden fade-in">
@@ -692,131 +674,7 @@
                 </div>
             </div>
 
-            <!-- Urban Cleaning Section -->
-            <div id="urban-cleaning" class="section hidden fade-in">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800">Urban Cleaning - Parola Park Maintenance</h2>
-                    <button onclick="updateFacility()" class="bg-urban-blue hover:bg-urban-dark text-white px-4 py-2 rounded-lg">
-                        Update Facility
-                    </button>
-                </div>
-
-                <!-- Facility Overview -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
-                        <h3 class="font-semibold text-green-800 mb-2">Parola Park</h3>
-                        <p class="text-3xl font-bold text-green-600">95%</p>
-                        <p class="text-sm text-green-600">Maintenance completion</p>
-                        <p class="text-xs text-gray-500 mt-2">Last updated: Dec 15, 2024</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <h3 class="font-semibold text-blue-800 mb-2">Mini Zoo</h3>
-                        <p class="text-3xl font-bold text-blue-600">88%</p>
-                        <p class="text-sm text-blue-600">Maintenance completion</p>
-                        <p class="text-xs text-gray-500 mt-2">Last updated: Dec 14, 2024</p>
-                    </div>
-                </div>
-
-                <!-- Parola Park Maintenance -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <h3 class="text-lg font-semibold mb-4">Parola Park Maintenance Report</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-3">Facility Cleaning Status</h4>
-                            <div class="space-y-3">
-                                <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                    <span class="text-sm font-medium">Restrooms & Comfort Rooms</span>
-                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Clean</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                    <span class="text-sm font-medium">Walkways & Pathways</span>
-                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Clean</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                    <span class="text-sm font-medium">Picnic Areas & Tables</span>
-                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Clean</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 bg-yellow-50 rounded">
-                                    <span class="text-sm font-medium">Playground Equipment</span>
-                                    <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">⚠ Needs Attention</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                    <span class="text-sm font-medium">Trash Bins & Waste Areas</span>
-                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Clean</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-3">Maintenance Activities</h4>
-                            <div class="space-y-3">
-                                <div class="border-l-4 border-green-500 bg-green-50 p-3 rounded-r-lg">
-                                    <p class="font-medium text-green-800">Landscaping & Gardening</p>
-                                    <p class="text-sm text-gray-600">Grass cutting, tree pruning, flower bed maintenance</p>
-                                    <p class="text-xs text-green-600">Completed: Dec 15, 2024</p>
-                                </div>
-                                <div class="border-l-4 border-blue-500 bg-blue-50 p-3 rounded-r-lg">
-                                    <p class="font-medium text-blue-800">Infrastructure Repair</p>
-                                    <p class="text-sm text-gray-600">Bench repair, pathway maintenance, lighting check</p>
-                                    <p class="text-xs text-blue-600">Completed: Dec 13, 2024</p>
-                                </div>
-                                <div class="border-l-4 border-yellow-500 bg-yellow-50 p-3 rounded-r-lg">
-                                    <p class="font-medium text-yellow-800">Equipment Maintenance</p>
-                                    <p class="text-sm text-gray-600">Playground safety check, swing repair needed</p>
-                                    <p class="text-xs text-yellow-600">In Progress: Dec 16, 2024</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mini Zoo Maintenance -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-lg font-semibold mb-4">Mini Zoo Maintenance Report</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-3">Animal Care Facilities</h4>
-                            <div class="space-y-3">
-                                <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                    <span class="text-sm font-medium">Animal Enclosures</span>
-                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Clean</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                    <span class="text-sm font-medium">Feeding Areas</span>
-                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Clean</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 bg-yellow-50 rounded">
-                                    <span class="text-sm font-medium">Water Systems</span>
-                                    <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">⚠ Maintenance</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                    <span class="text-sm font-medium">Visitor Walkways</span>
-                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Clean</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-3">Recent Activities</h4>
-                            <div class="space-y-3">
-                                <div class="border-l-4 border-green-500 bg-green-50 p-3 rounded-r-lg">
-                                    <p class="font-medium text-green-800">Daily Cleaning</p>
-                                    <p class="text-sm text-gray-600">Enclosure cleaning, waste removal, disinfection</p>
-                                    <p class="text-xs text-green-600">Completed: Dec 15, 2024</p>
-                                </div>
-                                <div class="border-l-4 border-blue-500 bg-blue-50 p-3 rounded-r-lg">
-                                    <p class="font-medium text-blue-800">Animal Health Check</p>
-                                    <p class="text-sm text-gray-600">Veterinary visit, health assessment, vaccinations</p>
-                                    <p class="text-xs text-blue-600">Completed: Dec 12, 2024</p>
-                                </div>
-                                <div class="border-l-4 border-yellow-500 bg-yellow-50 p-3 rounded-r-lg">
-                                    <p class="font-medium text-yellow-800">Water System Repair</p>
-                                    <p class="text-sm text-gray-600">Pump maintenance, pipe inspection, filtration check</p>
-                                    <p class="text-xs text-yellow-600">Scheduled: Dec 17, 2024</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Urban Cleaning Section (removed) -->
 
             <!-- Urban Nursery Section -->
             <div id="urban-nursery" class="section hidden fade-in">
@@ -846,7 +704,7 @@
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
                         <h3 class="font-semibold text-purple-800 mb-2">Survival Rate</h3>
-                        <p class="text-3xl font-bold text-purple-600">92%</p>
+                        <p class="text-3xl font-bold text-purple-600">85%</p>
                         <p class="text-sm text-purple-600">Excellent condition</p>
                     </div>
                 </div>
@@ -856,40 +714,34 @@
                     <h3 class="text-lg font-semibold mb-4">Urban Tree Species Inventory</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div class="bg-green-50 p-4 rounded-lg border border-green-200">
-                            <h4 class="font-semibold text-green-800">Fire Tree (Delonix regia)</h4>
+                            <h4 class="font-semibold text-green-800">Narra (Pterocarpus indicus)</h4>
                             <p class="text-2xl font-bold text-green-600">280</p>
-                            <p class="text-sm text-gray-600">Height: 30-45cm | Age: 8 months</p>
-                            <p class="text-xs text-green-600">Ornamental shade tree</p>
+                            <p class="text-xs text-green-600">High demand species</p>
                         </div>
                         <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                            <h4 class="font-semibold text-blue-800">Acacia (Samanea saman)</h4>
+                            <h4 class="font-semibold text-blue-800">Mahogany (Swietenia macrophylla)</h4>
                             <p class="text-2xl font-bold text-blue-600">320</p>
-                            <p class="text-sm text-gray-600">Height: 25-35cm | Age: 6 months</p>
-                            <p class="text-xs text-blue-600">Fast-growing shade tree</p>
+                            <p class="text-xs text-blue-600">Fast growing</p>
                         </div>
                         <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                            <h4 class="font-semibold text-yellow-800">Bougainvillea</h4>
+                            <h4 class="font-semibold text-yellow-800">Molave (Vitex parviflora)</h4>
                             <p class="text-2xl font-bold text-yellow-600">180</p>
-                            <p class="text-sm text-gray-600">Height: 15-25cm | Age: 4 months</p>
-                            <p class="text-xs text-yellow-600">Ornamental flowering</p>
+                            <p class="text-xs text-yellow-600">Hardwood species</p>
                         </div>
                         <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                            <h4 class="font-semibold text-purple-800">Santan (Ixora coccinea)</h4>
+                            <h4 class="font-semibold text-purple-800">Kamagong (Diospyros blancoi)</h4>
                             <p class="text-2xl font-bold text-purple-600">220</p>
-                            <p class="text-sm text-gray-600">Height: 20-30cm | Age: 5 months</p>
-                            <p class="text-xs text-purple-600">Hedge and border plant</p>
+                            <p class="text-xs text-purple-600">Slow growing, valuable</p>
                         </div>
                         <div class="bg-red-50 p-4 rounded-lg border border-red-200">
-                            <h4 class="font-semibold text-red-800">Gumamela (Hibiscus)</h4>
+                            <h4 class="font-semibold text-red-800">Talisay (Terminalia catappa)</h4>
                             <p class="text-2xl font-bold text-red-600">150</p>
-                            <p class="text-sm text-gray-600">Height: 18-28cm | Age: 4 months</p>
-                            <p class="text-xs text-red-600">Ornamental flowering</p>
+                            <p class="text-xs text-red-600">Coastal adaptation</p>
                         </div>
                         <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
-                            <h4 class="font-semibold text-indigo-800">Bamboo (Bambusa vulgaris)</h4>
+                            <h4 class="font-semibold text-indigo-800">Banaba (Lagerstroemia speciosa)</h4>
                             <p class="text-2xl font-bold text-indigo-600">200</p>
-                            <p class="text-sm text-gray-600">Height: 40-60cm | Age: 7 months</p>
-                            <p class="text-xs text-indigo-600">Privacy screen, erosion control</p>
+                            <p class="text-xs text-indigo-600">Medicinal properties</p>
                         </div>
                     </div>
                 </div>
@@ -913,7 +765,7 @@
                                 <tr>
                                     <td class="px-4 py-2">Dec 14, 2024</td>
                                     <td class="px-4 py-2">Barangay Santo Niño</td>
-                                    <td class="px-4 py-2">Fire Tree, Acacia</td>
+                                    <td class="px-4 py-2">Narra, Mahogany</td>
                                     <td class="px-4 py-2">80</td>
                                     <td class="px-4 py-2">Street Beautification</td>
                                     <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Distributed</span></td>
@@ -921,7 +773,7 @@
                                 <tr>
                                     <td class="px-4 py-2">Dec 11, 2024</td>
                                     <td class="px-4 py-2">Municipal Plaza</td>
-                                    <td class="px-4 py-2">Bougainvillea, Santan</td>
+                                    <td class="px-4 py-2">Talisay, Banaba</td>
                                     <td class="px-4 py-2">120</td>
                                     <td class="px-4 py-2">Landscaping Project</td>
                                     <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Distributed</span></td>
@@ -929,7 +781,7 @@
                                 <tr>
                                     <td class="px-4 py-2">Dec 8, 2024</td>
                                     <td class="px-4 py-2">Sablayan National High School</td>
-                                    <td class="px-4 py-2">Mixed Ornamental</td>
+                                    <td class="px-4 py-2">Molave, Kamagong</td>
                                     <td class="px-4 py-2">60</td>
                                     <td class="px-4 py-2">Campus Beautification</td>
                                     <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Distributed</span></td>
@@ -937,7 +789,7 @@
                                 <tr>
                                     <td class="px-4 py-2">Dec 5, 2024</td>
                                     <td class="px-4 py-2">Private Subdivision</td>
-                                    <td class="px-4 py-2">Bamboo, Gumamela</td>
+                                    <td class="px-4 py-2">Banaba, Talisay</td>
                                     <td class="px-4 py-2">40</td>
                                     <td class="px-4 py-2">Residential Landscaping</td>
                                     <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Distributed</span></td>
@@ -948,155 +800,7 @@
                 </div>
             </div>
 
-            <!-- Violations & Monitoring Section -->
-            <div id="violations" class="section hidden fade-in">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800">Violations & Monitoring</h2>
-                    <button onclick="reportViolation()" class="bg-urban-blue hover:bg-urban-dark text-white px-4 py-2 rounded-lg">
-                        Report Violation
-                    </button>
-                </div>
-
-                <!-- Violation Overview -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500">
-                        <h3 class="font-semibold text-red-800 mb-2">Total Violations</h3>
-                        <p class="text-3xl font-bold text-red-600">12</p>
-                        <p class="text-sm text-red-600">This month</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
-                        <h3 class="font-semibold text-yellow-800 mb-2">Pending Cases</h3>
-                        <p class="text-3xl font-bold text-yellow-600">4</p>
-                        <p class="text-sm text-yellow-600">Under investigation</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
-                        <h3 class="font-semibold text-green-800 mb-2">Resolved</h3>
-                        <p class="text-3xl font-bold text-green-600">8</p>
-                        <p class="text-sm text-green-600">Fines collected</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <h3 class="font-semibold text-blue-800 mb-2">Inspections</h3>
-                        <p class="text-3xl font-bold text-blue-600">28</p>
-                        <p class="text-sm text-blue-600">Conducted this month</p>
-                    </div>
-                </div>
-
-                <!-- Recent Violations -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <h3 class="text-lg font-semibold mb-4">Recent Violations</h3>
-                    <div class="space-y-4">
-                        <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-semibold text-red-800">Illegal Dumping - Barangay Buenavista</h4>
-                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Active</span>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div>
-                                    <p><strong>Violation:</strong> Dumping construction debris on public road</p>
-                                    <p><strong>Location:</strong> Buenavista Main Road, near bridge</p>
-                                    <p><strong>Date Reported:</strong> December 13, 2024</p>
-                                </div>
-                                <div>
-                                    <p><strong>Violator:</strong> ABC Construction Company</p>
-                                    <p><strong>Fine Amount:</strong> ₱5,000</p>
-                                    <p><strong>Status:</strong> Notice served, cleanup ordered</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-semibold text-yellow-800">Improper Waste Segregation - Poblacion</h4>
-                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Warning</span>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div>
-                                    <p><strong>Violation:</strong> Mixed biodegradable and non-biodegradable waste</p>
-                                    <p><strong>Location:</strong> Poblacion Market Area</p>
-                                    <p><strong>Date Reported:</strong> December 11, 2024</p>
-                                </div>
-                                <div>
-                                    <p><strong>Violator:</strong> Multiple vendors</p>
-                                    <p><strong>Action:</strong> Education and warning issued</p>
-                                    <p><strong>Follow-up:</strong> Scheduled for December 18, 2024</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-semibold text-green-800">Littering - Santo Niño Plaza</h4>
-                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Resolved</span>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div>
-                                    <p><strong>Violation:</strong> Throwing cigarette butts and food wrappers</p>
-                                    <p><strong>Location:</strong> Santo Niño Plaza, near fountain</p>
-                                    <p><strong>Date Reported:</strong> December 9, 2024</p>
-                                </div>
-                                <div>
-                                    <p><strong>Violator:</strong> Individual (Tourist)</p>
-                                    <p><strong>Fine Amount:</strong> ₱500</p>
-                                    <p><strong>Status:</strong> Fine paid, case closed</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Monitoring & Inspection Schedule -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-lg font-semibold mb-4">Monitoring & Inspection Schedule</h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-4 py-2 text-left">Date</th>
-                                    <th class="px-4 py-2 text-left">Area</th>
-                                    <th class="px-4 py-2 text-left">Type</th>
-                                    <th class="px-4 py-2 text-left">Inspector</th>
-                                    <th class="px-4 py-2 text-left">Findings</th>
-                                    <th class="px-4 py-2 text-left">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-4 py-2">Dec 15, 2024</td>
-                                    <td class="px-4 py-2">Public Market</td>
-                                    <td class="px-4 py-2">Waste Segregation</td>
-                                    <td class="px-4 py-2">Maria Santos</td>
-                                    <td class="px-4 py-2">Good compliance</td>
-                                    <td class="px-4 py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">No Action</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Dec 13, 2024</td>
-                                    <td class="px-4 py-2">Buenavista Road</td>
-                                    <td class="px-4 py-2">Illegal Dumping</td>
-                                    <td class="px-4 py-2">Roberto Cruz</td>
-                                    <td class="px-4 py-2">Construction debris found</td>
-                                    <td class="px-4 py-2"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Violation Issued</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Dec 11, 2024</td>
-                                    <td class="px-4 py-2">Residential Areas</td>
-                                    <td class="px-4 py-2">Collection Compliance</td>
-                                    <td class="px-4 py-2">Ana Garcia</td>
-                                    <td class="px-4 py-2">Mixed waste issues</td>
-                                    <td class="px-4 py-2"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Warning Issued</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Dec 9, 2024</td>
-                                    <td class="px-4 py-2">Santo Niño Plaza</td>
-                                    <td class="px-4 py-2">Littering Check</td>
-                                    <td class="px-4 py-2">Linda Torres</td>
-                                    <td class="px-4 py-2">Tourist littering observed</td>
-                                    <td class="px-4 py-2"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Fine Collected</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <!-- Violations & Monitoring Section (removed) -->
 
             <!-- Monthly Reports Section -->
             <div id="reports" class="section hidden fade-in">
@@ -1142,19 +846,19 @@
                             
                             <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
                                 <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold text-green-800">2. Street Sweeping Report</h4>
+                                    <h4 class="font-semibold text-green-800">2. Biodegradable Waste Collection Report</h4>
                                     <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
                                 </div>
-                                <p class="text-sm text-gray-600">Route coverage and debris collection data</p>
+                                <p class="text-sm text-gray-600">Biodegradable waste collection and disposal data</p>
                                 <p class="text-xs text-gray-500">Submitted: Dec 14, 2024 | Due: Dec 31, 2024</p>
                             </div>
                             
                             <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
                                 <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold text-green-800">3. Parola Park Maintenance</h4>
+                                    <h4 class="font-semibold text-green-800">3. Non-Biodegradable Waste Collection Report</h4>
                                     <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
                                 </div>
-                                <p class="text-sm text-gray-600">Facility cleaning and maintenance activities</p>
+                                <p class="text-sm text-gray-600">Non-biodegradable waste collection and disposal data</p>
                                 <p class="text-xs text-gray-500">Submitted: Dec 13, 2024 | Due: Dec 31, 2024</p>
                             </div>
                         </div>
@@ -1162,10 +866,10 @@
                         <div class="space-y-4">
                             <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
                                 <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold text-green-800">4. Mini Zoo Maintenance</h4>
+                                    <h4 class="font-semibold text-green-800">4. Trip Report</h4>
                                     <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
                                 </div>
-                                <p class="text-sm text-gray-600">Animal care and facility maintenance</p>
+                                <p class="text-sm text-gray-600">Trip details and notes</p>
                                 <p class="text-xs text-gray-500">Submitted: Dec 12, 2024 | Due: Dec 31, 2024</p>
                             </div>
                             
@@ -1190,9 +894,9 @@
                                 <tr>
                                     <th class="px-4 py-2 text-left">Month</th>
                                     <th class="px-4 py-2 text-left">Solid Waste</th>
-                                    <th class="px-4 py-2 text-left">Street Sweeping</th>
-                                    <th class="px-4 py-2 text-left">Parola Park</th>
-                                    <th class="px-4 py-2 text-left">Mini Zoo</th>
+                                    <th class="px-4 py-2 text-left">Biodegradable</th>
+                                    <th class="px-4 py-2 text-left">Non-Biodegradable</th>
+                                    <th class="px-4 py-2 text-left">Trip Report</th>
                                     <th class="px-4 py-2 text-left">Special Collection</th>
                                     <th class="px-4 py-2 text-left">Actions</th>
                                 </tr>
@@ -1233,6 +937,25 @@
         </main>
     </div>
 
+    <!-- Input Forms Modal -->
+    <div id="formModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 id="formTitle" class="text-xl font-bold text-gray-800"></h3>
+                        <button onclick="closeForm()" class="text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="formContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Navigation functionality
         function showSection(sectionId) {
@@ -1257,51 +980,427 @@
             event.target.classList.remove('text-gray-700');
         }
 
+        // Form Modal Functions
+        function showForm(title, content) {
+            document.getElementById('formTitle').textContent = title;
+            document.getElementById('formContent').innerHTML = content;
+            document.getElementById('formModal').classList.remove('hidden');
+        }
+
+        function closeForm() {
+            document.getElementById('formModal').classList.add('hidden');
+        }
+
         // Dashboard Functions
         function recordCollection() {
-            alert('Record Collection - This would open a form to log daily garbage collection data including route, driver, biodegradable/non-biodegradable amounts, and trip details.');
+            const formContent = `
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Collection Date</label>
+                            <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Route</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                                <option value="">Select Route</option>
+                                <option value="poblacion">Poblacion Route</option>
+                                <option value="santo-nino">Santo Niño Route</option>
+                                <option value="buenavista">Buenavista Route</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Driver Name</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="Enter driver name" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Truck Number</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="e.g., RT-001" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Biodegradable Waste (tons)</label>
+                            <input type="number" step="0.1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="0.0" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Non-Biodegradable Waste (tons)</label>
+                            <input type="number" step="0.1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="0.0" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Trips</label>
+                            <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="0" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Collection Time</label>
+                            <input type="time" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                        <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" rows="3" placeholder="Additional notes or observations"></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" onclick="closeForm()" class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-urban-blue text-white rounded-lg hover:bg-urban-dark transition-colors">Record Collection</button>
+                    </div>
+                </form>
+            `;
+            showForm('Record Collection', formContent);
         }
 
         function scheduleSpecial() {
-            alert('Schedule Special Collection - This would open the special collection request system to process residual waste requests and schedule direct landfill disposal.');
+            const formContent = `
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Client Name</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="Enter client name" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
+                            <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="09XX-XXX-XXXX" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Collection Address</label>
+                        <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" rows="2" placeholder="Enter complete address" required></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Waste Type</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                                <option value="">Select Waste Type</option>
+                                <option value="medical">Medical Waste (Non-hazardous)</option>
+                                <option value="construction">Construction Debris</option>
+                                <option value="mixed">Mixed Residual Waste</option>
+                                <option value="office">Office Waste</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Estimated Volume (cubic meters)</label>
+                            <input type="number" step="0.1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="0.0" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Collection Date</label>
+                            <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Time</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                                <option value="">Select Time</option>
+                                <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
+                                <option value="afternoon">Afternoon (1:00 PM - 5:00 PM)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Special Requirements</label>
+                        <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" rows="2" placeholder="Any special handling requirements or notes"></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" onclick="closeForm()" class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-urban-blue text-white rounded-lg hover:bg-urban-dark transition-colors">Schedule Collection</button>
+                    </div>
+                </form>
+            `;
+            showForm('Schedule Special Collection', formContent);
         }
 
         function reportViolation() {
-            alert('Report Violation - This would open the violation reporting system to document garbage violations, illegal dumping, and improper waste segregation incidents.');
+            const formContent = `
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Violation Date</label>
+                            <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Violation Time</label>
+                            <input type="time" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Violation Location</label>
+                        <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" rows="2" placeholder="Enter specific location details" required></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Violation Type</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                            <option value="">Select Violation Type</option>
+                            <option value="illegal-dumping">Illegal Dumping</option>
+                            <option value="improper-segregation">Improper Waste Segregation</option>
+                            <option value="littering">Littering</option>
+                            <option value="no-segregation">No Waste Segregation</option>
+                            <option value="burning">Open Burning</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Violator Name/Company</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="Enter violator details" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Contact Number (if available)</label>
+                            <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="09XX-XXX-XXXX">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Violation Description</label>
+                        <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" rows="3" placeholder="Detailed description of the violation" required></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Evidence/Photos</label>
+                        <input type="file" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" accept="image/*" multiple>
+                        <p class="text-xs text-gray-500 mt-1">Upload photos as evidence (optional)</p>
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" onclick="closeForm()" class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-urban-blue text-white rounded-lg hover:bg-urban-dark transition-colors">Report Violation</button>
+                    </div>
+                </form>
+            `;
+            showForm('Report Violation', formContent);
         }
 
         function updateFacility() {
-            alert('Update Facility - This would open the facility maintenance interface to record cleaning activities, maintenance tasks, and status updates for Parola Park and Mini Zoo.');
-        }
-
-        // Solid Waste Functions
-        function recordSweeping() {
-            alert('Record Sweeping - This would open a form to log street sweeping activities including route covered, debris collected, team leader, and duration.');
-        }
-
-        // Special Collection Functions
-        function approveSpecial(requestId) {
-            if (confirm('Approve this special collection request? This will schedule the pickup and assign a truck.')) {
-                alert(`Special collection request ${requestId} approved! Pickup scheduled and truck assigned. Client will be notified of collection date and time.`);
-            }
-        }
-
-        function rescheduleSpecial(requestId) {
-            alert(`Reschedule Request ${requestId} - This would open the scheduling interface to select a new date and time for the special collection pickup.`);
+            const formContent = `
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Facility</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                            <option value="">Select Facility</option>
+                            <option value="parola-park">Parola Park</option>
+                            <option value="mini-zoo">Mini Zoo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Maintenance Type</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                            <option value="">Select Maintenance Type</option>
+                            <option value="cleaning">General Cleaning</option>
+                            <option value="landscaping">Landscaping & Gardening</option>
+                            <option value="repair">Infrastructure Repair</option>
+                            <option value="equipment">Equipment Maintenance</option>
+                            <option value="inspection">Safety Inspection</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Maintenance Date</label>
+                            <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Maintenance Time</label>
+                            <input type="time" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Staff Assigned</label>
+                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="Enter staff member name" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Activities Performed</label>
+                        <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" rows="3" placeholder="List all activities performed" required></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                            <option value="">Select Status</option>
+                            <option value="completed">Completed</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="scheduled">Scheduled</option>
+                            <option value="needs-attention">Needs Attention</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                        <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" rows="2" placeholder="Additional notes or observations"></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" onclick="closeForm()" class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-urban-blue text-white rounded-lg hover:bg-urban-dark transition-colors">Update Facility</button>
+                    </div>
+                </form>
+            `;
+            showForm('Update Facility', formContent);
         }
 
         // Urban Nursery Functions
         function updateNurseryStock() {
-            alert('Update Nursery Stock - This would open the urban nursery management system to update seedling inventory, record distributions, and manage ornamental plant stock.');
+            const formContent = `
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Action Type</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                            <option value="">Select Action</option>
+                            <option value="add-stock">Add New Stock</option>
+                            <option value="update-stock">Update Existing Stock</option>
+                            <option value="record-distribution">Record Distribution</option>
+                            <option value="record-loss">Record Loss/Damage</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Species</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                            <option value="">Select Species</option>
+                            <option value="narra">Narra (Pterocarpus indicus)</option>
+                            <option value="mahogany">Mahogany (Swietenia macrophylla)</option>
+                            <option value="molave">Molave (Vitex parviflora)</option>
+                            <option value="kamagong">Kamagong (Diospyros blancoi)</option>
+                            <option value="talisay">Talisay (Terminalia catappa)</option>
+                            <option value="banaba">Banaba (Lagerstroemia speciosa)</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                            <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" placeholder="0" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Condition</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                                <option value="">Select Condition</option>
+                                <option value="excellent">Excellent</option>
+                                <option value="good">Good</option>
+                                <option value="fair">Fair</option>
+                                <option value="poor">Poor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                        <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" rows="2" placeholder="Additional notes about the stock update"></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" onclick="closeForm()" class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-urban-blue text-white rounded-lg hover:bg-urban-dark transition-colors">Update Stock</button>
+                    </div>
+                </form>
+            `;
+            showForm('Update Nursery Stock', formContent);
         }
 
         // Report Functions
         function generateUrbanReport() {
-            alert('Generate Urban Report - This would open the monthly report generation system for the 5 required urban reports: Solid Waste, Street Sweeping, Parola Park, Mini Zoo, and Special Collection.');
+            const formContent = `
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Report Type</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                            <option value="">Select Report Type</option>
+                            <option value="solid-waste">Solid Waste Collection Report</option>
+                            <option value="street-sweeping">Biodegradable Waste Collection Report</option>
+                            <option value="parola-park">Non-Biodegradable Waste Collection Report</option>
+                            <option value="mini-zoo">Trip Notes</option>
+                            <option value="special-collection">Special Collection Report</option>
+                            <option value="comprehensive">Comprehensive Urban Report</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Report Period - From</label>
+                            <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Report Period - To</label>
+                            <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Report Format</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="format" value="pdf" class="mr-2" checked>
+                                <span>PDF Document</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="format" value="excel" class="mr-2">
+                                <span>Excel Spreadsheet</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="format" value="word" class="mr-2">
+                                <span>Word Document</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Include Charts/Graphs</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="charts" value="performance" class="mr-2" checked>
+                                <span>Performance Charts</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="charts" value="trends" class="mr-2" checked>
+                                <span>Trend Analysis</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="charts" value="comparison" class="mr-2">
+                                <span>Comparative Data</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Additional Comments</label>
+                        <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-urban-blue focus:border-urban-blue" rows="2" placeholder="Any specific requirements or notes for the report"></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" onclick="closeForm()" class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-urban-blue text-white rounded-lg hover:bg-urban-dark transition-colors">Generate Report</button>
+                    </div>
+                </form>
+            `;
+            showForm('Generate Urban Report', formContent);
         }
 
         function viewUrbanReport(reportId) {
-            alert(`View Urban Report ${reportId} - This would display the complete monthly urban section report with all waste management activities, facility maintenance, and compliance data.`);
+            const formContent = `
+                <div class="space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-800 mb-2">Report Information</h4>
+                        <p class="text-sm text-blue-700">Report ID: ${reportId}</p>
+                        <p class="text-sm text-blue-700">Generated: December 15, 2024</p>
+                        <p class="text-sm text-blue-700">Status: Complete</p>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-semibold text-gray-800">Report Sections</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between p-2 bg-green-50 rounded">
+                                <span class="text-sm">Solid Waste Collection Data</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Complete</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-green-50 rounded">
+                                <span class="text-sm">Street Sweeping Activities</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Complete</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-green-50 rounded">
+                                <span class="text-sm">Facility Maintenance Records</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Complete</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-green-50 rounded">
+                                <span class="text-sm">Special Collection Requests</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button onclick="closeForm()" class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">Close</button>
+                        <button class="px-4 py-2 bg-urban-blue text-white rounded-lg hover:bg-urban-dark transition-colors">Download Report</button>
+                    </div>
+                </div>
+            `;
+            showForm(`View Urban Report - ${reportId}`, formContent);
         }
 
         function logout() {
@@ -1312,7 +1411,115 @@
 
         // Initialize dashboard on load
         document.addEventListener('DOMContentLoaded', function() {
-            // Dashboard is already active by default
+            // Urban Barangay Collection Frequency Chart - 3 Main Barangays
+            const urbanCanvas = document.getElementById('urbanChart');
+            if (urbanCanvas) {
+                const urbanCtx = urbanCanvas.getContext('2d');
+                new Chart(urbanCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Poblacion', 'Santo Niño', 'Buenavista'],
+                        datasets: [{
+                            label: 'Collection Trips',
+                            data: [42, 35, 28],
+                            backgroundColor: ['#dc2626', '#ea580c', '#eab308'],
+                            borderWidth: 2,
+                            borderColor: '#ffffff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: 'Waste Generation by Barangay (Higher trips = More waste)',
+                                font: { size: 14, weight: 'bold' }
+                            }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, title: { display: true, text: 'Number of Collection Trips' } },
+                            x: { title: { display: true, text: 'Barangay' } }
+                        }
+                    }
+                });
+            }
+
+            // Urban Biodegradable vs Non-biodegradable Breakdown (Stacked Bar)
+            const breakdownCanvas = document.getElementById('urbanBreakdownChart');
+            if (breakdownCanvas) {
+                const breakdownCtx = breakdownCanvas.getContext('2d');
+                new Chart(breakdownCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Poblacion', 'Santo Niño', 'Buenavista'],
+                        datasets: [
+                            { label: 'Biodegradable', data: [22, 18, 15], backgroundColor: '#10b981' },
+                            { label: 'Non-biodegradable', data: [20, 17, 13], backgroundColor: '#ef4444' }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'top' },
+                            title: { display: true, text: 'Waste Type Breakdown by Barangay' }
+                        },
+                        scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true, title: { display: true, text: 'Collection Trips' } } }
+                    }
+                });
+            }
+
+            // Monthly Performance Line Chart
+            const monthlyCanvas = document.getElementById('urban_monthlyChart');
+            if (monthlyCanvas) {
+                const monthlyCtx = monthlyCanvas.getContext('2d');
+                new Chart(monthlyCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets: [
+                            {
+                                label: 'Waste Collected (tons)',
+                                data: [22.5, 24.8, 26.2, 23.1, 21.9, 25.4, 27.6, 26.3, 24.0, 25.2, 23.8, 27.5],
+                                borderColor: '#3b82f6',
+                                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                                tension: 0.4,
+                                fill: true
+                            },
+                            {
+                                label: 'Collection Trips',
+                                data: [95, 98, 102, 89, 87, 99, 108, 103, 96, 101, 92, 105],
+                                borderColor: '#10b981',
+                                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                tension: 0.4,
+                                fill: true
+                            },
+                            {
+                                label: 'Collection Efficiency (%)',
+                                data: [94, 96, 97, 92, 89, 95, 99, 98, 93, 97, 91, 98],
+                                borderColor: '#7c3aed',
+                                backgroundColor: 'rgba(124, 58, 237, 0.1)',
+                                tension: 0.4,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'top' },
+                            title: { display: true, text: 'Monthly Urban Collection Performance (2024)' }
+                        },
+                        scales: {
+                            y: { beginAtZero: false, title: { display: true, text: 'Value' } },
+                            x: { title: { display: true, text: 'Month' } }
+                        }
+                    }
+                });
+            }
         });
     </script>
 <script>

@@ -13,6 +13,8 @@
                     colors: {
                         'menro-red': '#059669',
                         'menro-dark': '#047857',
+                        'admin-purple': '#7c3aed',
+                        'coastal-blue': '#0ea5e9'
                     }
                 }
             }
@@ -25,6 +27,13 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        .card-hover {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
     </style>
 </head>
@@ -61,7 +70,7 @@
                         <span>📊</span>
                         <span>Dashboard</span>
                     </button>
-                    <button onclick="showSection('users')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-gree-50 transition-colors flex items-center space-x-3">
+                    <button onclick="showSection('users')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3">
                         <span>👥</span>
                         <span>User Management</span>
                     </button>
@@ -560,7 +569,7 @@
                             <span class="text-3xl">🐠</span>
                         </div>
                     </div>
-                                        <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500 card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500 card-hover">
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-600 text-sm">Coral Health Score</p>
@@ -570,7 +579,7 @@
                             <span class="text-3xl">🪸</span>
                         </div>
                     </div>
-                                       <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-teal-500 card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-teal-500 card-hover">
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-600 text-sm">Overall Ecosystem</p>
@@ -785,10 +794,15 @@
                         <p class="text-2xl font-bold">2,450</p>
                         <p class="text-xs text-yellow-600">Native Trees</p>
                     </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-yellow-500">
+                        <p class="text-sm text-gray-600">Seedlings Distributed</p>
+                        <p class="text-2xl font-bold">15,680</p>
+                        <p class="text-xs text-yellow-600">Native Trees</p>
+                    </div>
                     <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-purple-500">
                         <p class="text-sm text-gray-600">Tree Survival Rate</p>
-                        <p class="text-2xl font-bold">78%</p>
-                        <p class="text-xs text-purple-600">Mindoro Pines</p>
+                        <p class="text-2xl font-bold">85%</p>
+                        <p class="text-xs text-purple-600">Native Trees</p>
                     </div>
                 </div>
 
@@ -861,20 +875,20 @@
                     <div class="bg-white rounded-lg shadow-md p-6 lg:col-span-2">
                         <h3 class="text-lg font-semibold mb-4">📊 Forest Section Report Summary (6 Total Reports/Month)</h3>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="p-4 bg-green-50 rounded-lg">
-                                <h4 class="font-semibold text-green-800">Community Watershed</h4>
-                                <p class="text-sm text-green-600">• 1 Patrol Report (Monthly)</p>
-                                <p class="text-sm text-green-600">• 1 Nursery Report (Monthly)</p>
-                            </div>
                             <div class="p-4 bg-blue-50 rounded-lg">
                                 <h4 class="font-semibold text-blue-800">Reforestation</h4>
-                                <p class="text-sm text-blue-600">• 1 Activity Report (Monthly)</p>
                                 <p class="text-sm text-blue-600">• Survival Monitoring</p>
                                 <p class="text-sm text-blue-600">• Progress Tracking</p>
+                            </div>
+                           <div class="p-4 bg-green-50 rounded-lg">
+                                <h4 class="font-semibold text-green-800">Reforestation Report</h4>
+                                <p class="text-sm text-green-600">• 1 Activity Report (Monthly)</p>
+                                <p class="text-sm text-green-600">• Progress Tracking</p>
                             </div>
                             <div class="p-4 bg-purple-50 rounded-lg">
                                 <h4 class="font-semibold text-purple-800">Special Areas</h4>
                                 <p class="text-sm text-purple-600">• 1 Patrol Deck Report</p>
+                                <p class="text-sm text-purple-600">• Progress Tracking</p>
                             </div>
                         </div>
                     </div>
@@ -897,9 +911,14 @@
                         <p class="text-xs text-green-600">Daily Average</p>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-purple-500">
-                        <p class="text-sm text-gray-600">Facilities Maintained</p>
-                        <p class="text-2xl font-bold">2</p>
-                        <p class="text-xs text-purple-600">Parola & Mini Zoo</p>
+                        <p class="text-sm text-gray-600">Biodegradable Collection</p>
+                        <p class="text-2xl font-bold">45%</p>
+                        <p class="text-xs text-purple-600">Per Barangays</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-purple-500">
+                        <p class="text-sm text-gray-600">Non-Biodegradable Collection</p>
+                        <p class="text-2xl font-bold">55%</p>
+                        <p class="text-xs text-purple-600">Per Barangays</p>
                     </div>
                 </div>
                 
@@ -954,13 +973,25 @@
                                 <p class="text-sm text-blue-600">🚛 Direct to Landfill</p>
                                 <p class="text-xs text-gray-500">Request Letter: Required for scheduling</p>
                             </div>
+                            <div class="p-3 bg-yellow-50 rounded-lg border-l-4 border-yellow-500">
+                                <p class="font-medium">Hospital Waste Collection</p>
+                                <p class="text-sm text-gray-600">Next Schedule: Dec 27, 2024</p>
+                                <p class="text-sm text-blue-600">🚛 Municipal Health Office</p>
+                                <p class="text-xs text-gray-500">Request Letter: Required for scheduling</p>
+                            </div>
+                            <div class="p-3 bg-yellow-50 rounded-lg border-l-4 border-yellow-500">
+                                <p class="font-medium">School Waste Collection</p>
+                                <p class="text-sm text-gray-600">Next Schedule: Dec 31, 2024</p>
+                                <p class="text-sm text-blue-600">🚛 Elementary School</p>
+                                <p class="text-xs text-gray-500">Request Letter: Required for scheduling</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Urban Nursery (Eco Park) -->
+                    <!-- Urban Nursery-->
                     <div class="bg-white rounded-lg shadow-md p-6">
                         <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-lg font-semibold">🌿 Urban Nursery (Eco Park)</h3>
+                            <h3 class="text-lg font-semibold">🌿 Urban Nursery (Area 1)</h3>
                             <button onclick="manageUrbanNursery()" class="text-menro-red hover:text-menro-dark text-sm">Manage</button>
                         </div>
                         <div class="space-y-3">
@@ -977,13 +1008,44 @@
                                     </div>
                                 </div>
                                 <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-                                    <div class="bg-green-600 h-2 rounded-full" style="width: 75%"></div>
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 95%"></div>
                                 </div>
                             </div>
                             <div class="p-3 bg-blue-50 rounded-lg">
                                 <p class="font-medium text-blue-800">Tree Planting Supply</p>
                                 <p class="text-sm text-blue-600">Ready for distribution: 200 seedlings</p>
                                 <p class="text-sm text-blue-600">Purpose: Urban tree planting projects</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Urban Nursery (Eco Park) -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold">🌿 Urban Nursery (Area 2)</h3>
+                            <button onclick="manageUrbanNursery()" class="text-menro-red hover:text-menro-dark text-sm">Manage</button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="font-medium">Native Trees</p>
+                                <div class="grid grid-cols-2 gap-4 mt-2 text-sm">
+                                    <div>
+                                        <p class="text-gray-600">Available: <span class="font-bold">140</span></p>
+                                        <p class="text-gray-600">Healthy: <span class="text-green-600 font-bold">85%</span></p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-600">Distributed: <span class="font-bold">620</span></p>
+                                        <p class="text-gray-600">This Month: <span class="font-bold">Dec 2024</span></p>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-blue-50 rounded-lg">
+                                <p class="font-medium text-blue-800">Tree Planting Supply</p>
+                                <p class="text-sm text-blue-600">Ready for distribution: 100 seedlings</p>
+                                <p class="text-sm text-blue-600">Purpose: Tree planting projects</p>
                             </div>
                         </div>
                     </div>
@@ -1001,6 +1063,8 @@
                             <div class="p-4 bg-green-50 rounded-lg">
                                 <h4 class="font-semibold text-green-800">Urban Cleaning & Maintenance</h4>
                                 <p class="text-sm text-green-600">• Urban Nursery Management</p>
+                                <p class="text-sm text-green-600">• Urban Nursery Area 1</p>
+                                <p class="text-sm text-green-600">• Urban Nursery Area 2</p>
                             </div>
                         </div>
                     </div>
@@ -1020,6 +1084,11 @@
                     <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-green-500">
                         <p class="text-sm text-gray-600">Healthy Reefs</p>
                         <p class="text-2xl font-bold">5/10</p>
+                        <p class="text-xs text-green-600">Fish & Coral</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-green-500">
+                        <p class="text-sm text-gray-600">Healthy Ecosystem</p>
+                        <p class="text-2xl font-bold">7/10</p>
                         <p class="text-xs text-green-600">Fish & Coral</p>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-yellow-500">
@@ -1145,13 +1214,42 @@
                             <div class="p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
                                 <p class="font-medium">Today's Patrols</p>
                                 <p class="text-sm text-gray-600">✓ Busaran Area - Completed</p>
-                                <p class="text-sm text-gray-600">🔄 Parola Area - In Progress</p>
+                                <p class="text-sm text-gray-600">🔄 Area 1 - In Progress</p>
                                 <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Active</span>
                             </div>
                             <div class="p-3 bg-gray-50 rounded-lg">
                                 <p class="font-medium">Upcoming Schedule</p>
                                 <p class="text-sm text-gray-600">Dec 17: Ligaya Reef, Burgos</p>
                                 <p class="text-sm text-gray-600">Dec 18: Idarag Laya, Ambulong</p>
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded-full">Scheduled</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Monthly Patrol Schedule -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold">📅 Monthly Patrol Schedule</h3>
+                            <button onclick="schedulePatrol()" class="text-menro-red hover:text-menro-dark text-sm">Schedule</button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-blue-50 rounded-lg">
+                                <p class="font-medium text-blue-800">December 2024 Progress</p>
+                                <p class="text-sm text-blue-600">Completed: 10/10 areas</p>
+                                <div class="w-full bg-blue-200 rounded-full h-2 mt-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
+                                <p class="font-medium">Today's Patrols</p>
+                                <p class="text-sm text-gray-600">✓ Ligaya Reef - Completed</p>
+                                <p class="text-sm text-gray-600">🔄 Area 2 - In Progress</p>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Active</span>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="font-medium">Upcoming Schedule</p>
+                                <p class="text-sm text-gray-600">Dec 29: Parola, Malaking Ilog</p>
+                                <p class="text-sm text-gray-600">Dec 30: Burgos, Batong Buhay</p>
                                 <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded-full">Scheduled</span>
                             </div>
                         </div>
@@ -1172,7 +1270,7 @@
                                 <h4 class="font-semibold text-green-800">Monitoring Activities</h4>
                                 <p class="text-sm text-green-600">• Reef Health Checking (Fish & Coral)</p>
                                 <p class="text-sm text-green-600">• Ecosystem Status Recording</p>
-                                <p class="text-sm text-green-600">• Marine Garbage Monitoring</p>
+                                <p class="text-sm text-green-600">• Mangrove Request Monitoring</p>
                             </div>
                         </div>
                     </div>

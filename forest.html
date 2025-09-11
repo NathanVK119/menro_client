@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MENRO Sablayan - Forest Section</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -75,10 +76,6 @@
                         <span>📊</span>
                         <span>Dashboard</span>
                     </button>
-                    <button onclick="showSection('watershed')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3">
-                        <span>💧</span>
-                        <span>Community Watershed</span>
-                    </button>
                     <button onclick="showSection('nursery')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3">
                         <span>🌱</span>
                         <span>Nursery Management</span>
@@ -95,10 +92,6 @@
                         <span>📋</span>
                         <span>Monthly Reports</span>
                     </button>
-                    <button onclick="showSection('logbook')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-green-50 transition-colors flex items-center space-x-3">
-                        <span>📖</span>
-                        <span>Logbook Entries</span>
-                    </button>
                 </div>
             </div>
         </nav>
@@ -107,128 +100,104 @@
         <main class="flex-1 p-6">
             <!-- Dashboard Section -->
             <div id="dashboard" class="section fade-in">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Forest Section Dashboard</h2>
-                
-                <!-- Key Metrics -->
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Forest Section Overview</h2>
+
+                <!-- Seedling Statistics -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500 card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-emerald-500 card-hover">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-600 text-sm">Native Seedlings</p>
-                                <p class="text-2xl font-bold text-green-600">2,450</p>
-                                <p class="text-xs text-green-500">Available in nursery</p>
+                                <p class="text-gray-600 text-sm">Seedlings Survived</p>
+                                <p class="text-2xl font-bold text-emerald-600">8,450</p>
+                                <p class="text-xs text-emerald-600">85% survival rate</p>
                             </div>
                             <span class="text-3xl">🌱</span>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500 card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-teal-500 card-hover">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-600 text-sm">Trees Planted</p>
-                                <p class="text-2xl font-bold text-blue-600">1,850</p>
-                                <p class="text-xs text-blue-500">This year (2024)</p>
+                                <p class="text-gray-600 text-sm">Available Seedlings</p>
+                                <p class="text-2xl font-bold text-teal-600">12,350</p>
+                                <p class="text-xs text-teal-600">Ready for planting</p>
                             </div>
-                            <span class="text-3xl">🌳</span>
+                            <span class="text-3xl">🌿</span>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500 card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-500 card-hover">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-600 text-sm">Survival Rate</p>
-                                <p class="text-2xl font-bold text-yellow-600">78%</p>
-                                <p class="text-xs text-yellow-500">Reforestation areas</p>
+                                <p class="text-gray-600 text-sm">Distributed/Donated</p>
+                                <p class="text-2xl font-bold text-orange-600">15,680</p>
+                                <p class="text-xs text-orange-600">To communities & schools</p>
                             </div>
-                            <span class="text-3xl">📈</span>
+                            <span class="text-3xl">🎁</span>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500 card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500 card-hover">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-600 text-sm">Monthly Reports</p>
-                                <p class="text-2xl font-bold text-purple-600">6/6</p>
-                                <p class="text-xs text-purple-500">December 2024</p>
+                                <p class="text-gray-600 text-sm">Seedling Mortality</p>
+                                <p class="text-2xl font-bold text-red-600">1,520</p>
+                                <p class="text-xs text-red-600">15% mortality rate</p>
                             </div>
-                            <span class="text-3xl">📊</span>
+                            <span class="text-3xl">💀</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Recent Activities -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-4">Recent Activities</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
-                                <span class="text-green-600">🚶‍♂️</span>
-                                <div>
-                                    <p class="font-medium">Malatongtong Falls Patrol</p>
-                                    <p class="text-sm text-gray-600">Completed - Dec 15, 2024</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-                                <span class="text-blue-600">🌱</span>
-                                <div>
-                                    <p class="font-medium">Seedling Distribution</p>
-                                    <p class="text-sm text-gray-600">100 seedlings to Army - Dec 14, 2024</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg">
-                                <span class="text-yellow-600">📝</span>
-                                <div>
-                                    <p class="font-medium">Weekly Logbook Update</p>
-                                    <p class="text-sm text-gray-600">Nursery mortality: 8% - Dec 13, 2024</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-4">Monthly Report Status (6 Reports)</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                <span class="text-sm font-medium">Community Watershed Patrol</span>
-                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                <span class="text-sm font-medium">Nursery Establishment</span>
-                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                <span class="text-sm font-medium">Reforestation Activity</span>
-                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                <span class="text-sm font-medium">Patrol Deck Report</span>
-                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                <span class="text-sm font-medium">Mindoro Pines Monitoring</span>
-                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-green-50 rounded">
-                                <span class="text-sm font-medium">Critical Habitat Patrol</span>
-                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Charts and Graphs -->
+            <div class="grid grid-cols-1 gap-6 mb-8">
+            <!-- Seedling Status Chart -->
+            <div class="bg-white rounded-lg shadow-md p-6 w-full">
+                    <h3 class="text-lg font-semibold mb-4">Seedling Status Overview</h3>
+                <div class="relative h-64">
+                <canvas id="seedlingChart"></canvas>
                 </div>
+            <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 bg-emerald-500 rounded-full"></div>
+                <span>Survived: 22.5% (8,450)</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 bg-teal-500 rounded-full"></div>
+                <span>Available: 32.9% (12,350)</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                <span>Distributed: 41.8% (15,680)</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <span>Mortality: 4.0% (1,520)</span>
+            </div>
+            </div>
+            </div>
+            </div>
 
-                <!-- Quick Actions -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <button onclick="addPatrolReport()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
-                            <span>🚶‍♂️</span>
-                            <span>Add Patrol Report</span>
-                        </button>
-                        <button onclick="updateNursery()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
-                            <span>🌱</span>
-                            <span>Update Nursery</span>
-                        </button>
-                        <button onclick="processRequest()" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-lg transition-colors flex items-center space-x-2">
-                            <span>📝</span>
-                            <span>Process Request</span>
-                        </button>
+                <!-- Monthly Performance Chart -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Monthly Seedling Performance (2024)</h3>
+                    <div class="relative h-80">
+                        <canvas id="forest_monthlyChart"></canvas>
+                    </div>
+                    <div class="mt-4 grid grid-cols-4 gap-4 text-sm">
+                        <div class="text-center p-3 bg-green-50 rounded-lg">
+                            <p class="font-semibold text-green-800">Total Produced</p>
+                            <p class="text-2xl font-bold text-green-600">38,000</p>
+                        </div>
+                        <div class="text-center p-3 bg-blue-50 rounded-lg">
+                            <p class="font-semibold text-blue-800">Survival Rate</p>
+                            <p class="text-2xl font-bold text-blue-600">85%</p>
+                        </div>
+                        <div class="text-center p-3 bg-orange-50 rounded-lg">
+                            <p class="font-semibold text-orange-800">Distribution Rate</p>
+                            <p class="text-2xl font-bold text-orange-600">41.3%</p>
+                        </div>
+                        <div class="text-center p-3 bg-purple-50 rounded-lg">
+                            <p class="font-semibold text-purple-800">Growth Target</p>
+                            <p class="text-2xl font-bold text-purple-600">95%</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -248,11 +217,6 @@
                         <h3 class="font-semibold text-green-800 mb-2">This Month</h3>
                         <p class="text-2xl font-bold text-green-600">4</p>
                         <p class="text-sm text-green-600">Patrol visits completed</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
-                        <h3 class="font-semibold text-yellow-800 mb-2">Violations Found</h3>
-                        <p class="text-2xl font-bold text-yellow-600">1</p>
-                        <p class="text-sm text-yellow-600">Reported to DENR</p>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
                         <h3 class="font-semibold text-blue-800 mb-2">Environment Status</h3>
@@ -277,7 +241,6 @@
                                     <p class="text-gray-700"><strong>Vegetation:</strong> Healthy growth</p>
                                 </div>
                                 <div>
-                                    <p class="text-gray-700"><strong>Violations:</strong> None detected</p>
                                     <p class="text-gray-700"><strong>Garbage:</strong> Minimal tourist waste collected</p>
                                     <p class="text-gray-700"><strong>Wildlife:</strong> Normal activity observed</p>
                                 </div>
@@ -297,7 +260,6 @@
                                     <p class="text-gray-700"><strong>Vegetation:</strong> Some damaged saplings</p>
                                 </div>
                                 <div>
-                                    <p class="text-red-600"><strong>Violations:</strong> Illegal logging attempt detected</p>
                                     <p class="text-gray-700"><strong>Garbage:</strong> Plastic bottles near trail</p>
                                     <p class="text-gray-700"><strong>Action Taken:</strong> Reported to DENR & Barangay</p>
                                 </div>
@@ -317,7 +279,6 @@
                                     <p class="text-gray-700"><strong>Vegetation:</strong> Dense canopy coverage</p>
                                 </div>
                                 <div>
-                                    <p class="text-gray-700"><strong>Violations:</strong> None detected</p>
                                     <p class="text-gray-700"><strong>Garbage:</strong> Area clean</p>
                                     <p class="text-gray-700"><strong>Wildlife:</strong> Bird species diversity high</p>
                                 </div>
@@ -335,7 +296,6 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th class="px-4 py-2 text-left">Date</th>
-                                    <th class="px-4 py-2 text-left">Violation Type</th>
                                     <th class="px-4 py-2 text-left">Location</th>
                                     <th class="px-4 py-2 text-left">Reported To</th>
                                     <th class="px-4 py-2 text-left">Status</th>
@@ -373,7 +333,7 @@
             <div id="nursery" class="section hidden fade-in">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-gray-800">Nursery Establishment - Native Trees</h2>
-                    <button onclick="updateNursery()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
+                    <button onclick="openNurseryForm()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
                         Update Inventory
                     </button>
                 </div>
@@ -409,37 +369,31 @@
                         <div class="bg-green-50 p-4 rounded-lg border border-green-200">
                             <h4 class="font-semibold text-green-800">Narra (Pterocarpus indicus)</h4>
                             <p class="text-2xl font-bold text-green-600">450</p>
-                            <p class="text-sm text-gray-600">Height: 15-25cm | Age: 6 months</p>
                             <p class="text-xs text-green-600">High demand species</p>
                         </div>
                         <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
                             <h4 class="font-semibold text-blue-800">Mahogany (Swietenia macrophylla)</h4>
                             <p class="text-2xl font-bold text-blue-600">380</p>
-                            <p class="text-sm text-gray-600">Height: 20-30cm | Age: 8 months</p>
                             <p class="text-xs text-blue-600">Fast growing</p>
                         </div>
                         <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
                             <h4 class="font-semibold text-yellow-800">Molave (Vitex parviflora)</h4>
                             <p class="text-2xl font-bold text-yellow-600">320</p>
-                            <p class="text-sm text-gray-600">Height: 12-20cm | Age: 5 months</p>
                             <p class="text-xs text-yellow-600">Hardwood species</p>
                         </div>
                         <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
                             <h4 class="font-semibold text-purple-800">Kamagong (Diospyros blancoi)</h4>
                             <p class="text-2xl font-bold text-purple-600">280</p>
-                            <p class="text-sm text-gray-600">Height: 10-18cm | Age: 4 months</p>
                             <p class="text-xs text-purple-600">Slow growing, valuable</p>
                         </div>
                         <div class="bg-red-50 p-4 rounded-lg border border-red-200">
                             <h4 class="font-semibold text-red-800">Talisay (Terminalia catappa)</h4>
                             <p class="text-2xl font-bold text-red-600">520</p>
-                            <p class="text-sm text-gray-600">Height: 25-35cm | Age: 7 months</p>
                             <p class="text-xs text-red-600">Coastal adaptation</p>
                         </div>
                         <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
                             <h4 class="font-semibold text-indigo-800">Banaba (Lagerstroemia speciosa)</h4>
                             <p class="text-2xl font-bold text-indigo-600">500</p>
-                            <p class="text-sm text-gray-600">Height: 18-28cm | Age: 6 months</p>
                             <p class="text-xs text-indigo-600">Medicinal properties</p>
                         </div>
                     </div>
@@ -522,10 +476,6 @@
                         <div>
                             <h4 class="font-semibold text-gray-800 mb-3">Care & Maintenance Notes</h4>
                             <div class="space-y-2 text-sm">
-                                <div class="p-2 bg-blue-50 rounded">
-                                    <p class="font-medium">Watering Schedule: Twice daily (6AM, 4PM)</p>
-                                    <p class="text-gray-600">Adjusted for dry season</p>
-                                </div>
                                 <div class="p-2 bg-green-50 rounded">
                                     <p class="font-medium">Fertilizer Application: Weekly organic compost</p>
                                     <p class="text-gray-600">Last applied: Dec 13, 2024</p>
@@ -544,7 +494,7 @@
             <div id="requests" class="section hidden fade-in">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-gray-800">Tree Planting Requests Management</h2>
-                    <button onclick="processRequest()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
+                    <button onclick="openRequestForm()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
                         Process New Request
                     </button>
                 </div>
@@ -710,7 +660,7 @@
             <div id="restoration" class="section hidden fade-in">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-gray-800">Forest Restoration & Monitoring</h2>
-                    <button onclick="addRestorationReport()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
+                    <button onclick="openRestorationForm()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
                         Add Activity Report
                     </button>
                 </div>
@@ -733,7 +683,7 @@
                         <p class="text-sm text-yellow-600">Hectares restored</p>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
-                        <h3 class="font-semibold text-purple-800 mb-2">Mindoro Pines</h3>
+                        <h3 class="font-semibold text-purple-800 mb-2">Natural Regeneration</h3>
                         <p class="text-3xl font-bold text-purple-600">85%</p>
                         <p class="text-sm text-purple-600">Natural regeneration</p>
                     </div>
@@ -793,7 +743,7 @@
                     </div>
 
                     <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-4">Mindoro Pines Monitoring</h3>
+                        <h3 class="text-lg font-semibold mb-4">Reforestation Monitoring</h3>
                         <div class="space-y-4">
                             <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
                                 <h4 class="font-semibold text-purple-800 mb-2">Assisted Natural Regeneration</h4>
@@ -818,7 +768,6 @@
                                 <div class="text-sm space-y-1">
                                     <p><strong>Patrol Frequency:</strong> Weekly</p>
                                     <p><strong>Last Patrol:</strong> Dec 14, 2024</p>
-                                    <p><strong>Violations:</strong> None detected</p>
                                     <p><strong>Ecosystem Health:</strong> Excellent</p>
                                 </div>
                             </div>
@@ -868,7 +817,7 @@
                                 </tr>
                                 <tr>
                                     <td class="px-4 py-2">Dec 5, 2024</td>
-                                    <td class="px-4 py-2">Mindoro Pines Area</td>
+                                    <td class="px-4 py-2">Site D - Lower Area</td>
                                     <td class="px-4 py-2">1,020</td>
                                     <td class="px-4 py-2">180</td>
                                     <td class="px-4 py-2"><span class="text-green-600 font-bold">85%</span></td>
@@ -884,7 +833,7 @@
             <div id="reports" class="section hidden fade-in">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-gray-800">Monthly Reports (6 Total Reports)</h2>
-                    <button onclick="generateReport()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
+                    <button onclick="openReportForm()" class="bg-forest-green hover:bg-forest-dark text-white px-4 py-2 rounded-lg">
                         Generate New Report
                     </button>
                 </div>
@@ -913,13 +862,14 @@
                     <h3 class="text-lg font-semibold mb-4">December 2024 Reports Status</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-4">
+
                             <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
                                 <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold text-green-800">1. Community Watershed Patrol</h4>
+                                    <h4 class="font-semibold text-green-800">1. Critical Habitat Patrol</h4>
                                     <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
                                 </div>
-                                <p class="text-sm text-gray-600">Malatongtong Falls monitoring and enforcement</p>
-                                <p class="text-xs text-gray-500">Submitted: Dec 15, 2024 | Due: Dec 31, 2024</p>
+                                <p class="text-sm text-gray-600">Special area enforcement and protection</p>
+                                <p class="text-xs text-gray-500">Submitted: Dec 11, 2024 | Due: Dec 31, 2024</p>
                             </div>
                             
                             <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
@@ -953,21 +903,13 @@
                             
                             <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
                                 <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold text-green-800">5. Mindoro Pines Monitoring</h4>
+                                    <h4 class="font-semibold text-green-800">5. Tree Monitoring</h4>
                                     <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
                                 </div>
                                 <p class="text-sm text-gray-600">Assisted natural regeneration monitoring</p>
                                 <p class="text-xs text-gray-500">Submitted: Dec 12, 2024 | Due: Dec 31, 2024</p>
                             </div>
-                            
-                            <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
-                                <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold text-green-800">6. Critical Habitat Patrol</h4>
-                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Submitted</span>
-                                </div>
-                                <p class="text-sm text-gray-600">Special area enforcement and protection</p>
-                                <p class="text-xs text-gray-500">Submitted: Dec 11, 2024 | Due: Dec 31, 2024</p>
-                            </div>
+                        
                         </div>
                     </div>
                 </div>
@@ -980,11 +922,10 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th class="px-4 py-2 text-left">Month</th>
-                                    <th class="px-4 py-2 text-left">Watershed</th>
                                     <th class="px-4 py-2 text-left">Nursery</th>
                                     <th class="px-4 py-2 text-left">Reforestation</th>
                                     <th class="px-4 py-2 text-left">Patrol Deck</th>
-                                    <th class="px-4 py-2 text-left">Mindoro Pines</th>
+                                    <th class="px-4 py-2 text-left">Tree Monitoring</th>
                                     <th class="px-4 py-2 text-left">Critical Habitat</th>
                                     <th class="px-4 py-2 text-left">Actions</th>
                                 </tr>
@@ -992,7 +933,6 @@
                             <tbody class="divide-y divide-gray-200">
                                 <tr>
                                     <td class="px-4 py-2 font-medium">Dec 2024</td>
-                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
                                     <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
                                     <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
                                     <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
@@ -1007,12 +947,10 @@
                                     <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
                                     <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
                                     <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
-                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
                                     <td class="px-4 py-2"><button onclick="viewReport('nov2024')" class="text-blue-600 hover:text-blue-800">View</button></td>
                                 </tr>
                                 <tr>
                                     <td class="px-4 py-2 font-medium">Oct 2024</td>
-                                    <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
                                     <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
                                     <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
                                     <td class="px-4 py-2"><span class="text-green-600">✓</span></td>
@@ -1111,9 +1049,7 @@
                                 <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Patrol</span>
                             </div>
                             <div class="text-sm text-gray-700 space-y-1">
-                                <p><strong>Activity:</strong> Malatongtong Falls area patrol and violation detection</p>
                                 <p><strong>Area Covered:</strong> Watershed perimeter, access trails, falls basin</p>
-                                <p><strong>Violation Found:</strong> Illegal logging attempt - 3 cut saplings discovered</p>
                                 <p><strong>Action Taken:</strong> Reported to DENR and Barangay officials immediately</p>
                                 <p><strong>Evidence:</strong> Photos taken, GPS coordinates recorded | <strong>Duration:</strong> 4 hours</p>
                             </div>
@@ -1121,12 +1057,12 @@
 
                         <div class="border-l-4 border-indigo-500 bg-indigo-50 p-4 rounded-r-lg">
                             <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-semibold text-indigo-800">December 5, 2024 - Mindoro Pines Assessment</h4>
+                                <h4 class="font-semibold text-indigo-800">December 5, 2024 - Natural Regeneration Assessment</h4>
                                 <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">Monitoring</span>
                             </div>
                             <div class="text-sm text-gray-700 space-y-1">
                                 <p><strong>Activity:</strong> Natural regeneration monitoring and growth measurement</p>
-                                <p><strong>Area Assessed:</strong> 8.2 hectares of Mindoro Pines habitat</p>
+                                <p><strong>Area Assessed:</strong> 8.2 hectares of natural habitat</p>
                                 <p><strong>Natural Seedlings:</strong> 1,200+ counted | Growth Rate: Excellent (85% success)</p>
                                 <p><strong>Maintenance:</strong> Invasive species removal, soil improvement activities</p>
                                 <p><strong>Ecosystem Health:</strong> Excellent condition, high biodiversity observed</p>
@@ -1136,6 +1072,228 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Form Modals -->
+    <!-- Nursery Management Form -->
+    <div id="nurseryForm" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800">Nursery Management Form</h3>
+                        <button onclick="closeNurseryForm()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    <form onsubmit="submitNurseryForm(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Total Seedlings</label>
+                                <input type="number" name="totalSeedlings" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Distributed This Month</label>
+                                <input type="number" name="distributed" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Mortality Rate (%)</label>
+                                <input type="number" step="0.1" name="mortalityRate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">New Seedlings Ready</label>
+                                <input type="number" name="newSeedlings" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Species Inventory</label>
+                            <input type="number" name="narraCount" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Care Notes</label>
+                            <textarea name="careNotes" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" placeholder="Enter care and maintenance notes..."></textarea>
+                        </div>
+                        <div class="flex justify-end space-x-3 pt-4">
+                            <button type="button" onclick="closeNurseryForm()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
+                            <button type="submit" class="px-4 py-2 bg-forest-green text-white rounded-lg hover:bg-forest-dark">Submit Data</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tree Planting Requests Form -->
+    <div id="requestForm" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800">Tree Planting Request Form</h3>
+                        <button onclick="closeRequestForm()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    <form onsubmit="submitRequestForm(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Organization Name</label>
+                                <input type="text" name="organization" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Contact Person</label>
+                                <input type="text" name="contactPerson" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" name="phone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Requested Quantity</label>
+                                <input type="number" name="quantity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Species</label>
+                            <select name="species" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                                <option value="">Select Species</option>
+                                <option value="Mixed Native">Mixed Native</option>
+                                <option value="Narra, Mahogany">Narra, Mahogany</option>
+                                <option value="Talisay, Molave">Talisay, Molave</option>
+                                <option value="Banaba, Kamagong">Banaba, Kamagong</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Planting Location</label>
+                            <input type="text" name="location" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Purpose</label>
+                            <textarea name="purpose" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" placeholder="Describe the purpose of the tree planting..."></textarea>
+                        </div>
+                        <div class="flex justify-end space-x-3 pt-4">
+                            <button type="button" onclick="closeRequestForm()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
+                            <button type="submit" class="px-4 py-2 bg-forest-green text-white rounded-lg hover:bg-forest-dark">Submit Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forest Restoration Form -->
+    <div id="restorationForm" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800">Forest Restoration Activity Form</h3>
+                        <button onclick="closeRestorationForm()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    <form onsubmit="submitRestorationForm(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Trees Planted</label>
+                                <input type="number" name="treesPlanted" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Survival Rate (%)</label>
+                                <input type="number" step="0.1" name="survivalRate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Area Covered (hectares)</label>
+                                <input type="number" step="0.1" name="areaCovered" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Site Location</label>
+                                <select name="siteLocation" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                                    <option value="">Select Site</option>
+                                    <option value="Site A - Upper Watershed">Site A - Upper Watershed</option>
+                                    <option value="Site B - Slope Protection">Site B - Slope Protection</option>
+                                    <option value="Site C - Buffer Zone">Site C - Buffer Zone</option>
+                                    <option value="Site D - Area">Site D - Area</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Species Planted</label>
+                            <input type="text" name="species" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" placeholder="e.g., Narra, Mahogany, Molave" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Activity Date</label>
+                            <input type="date" name="activityDate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Monitoring Notes</label>
+                            <textarea name="monitoringNotes" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" placeholder="Enter monitoring observations and notes..."></textarea>
+                        </div>
+                        <div class="flex justify-end space-x-3 pt-4">
+                            <button type="button" onclick="closeRestorationForm()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
+                            <button type="submit" class="px-4 py-2 bg-forest-green text-white rounded-lg hover:bg-forest-dark">Submit Report</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Reports Form -->
+    <div id="reportForm" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800">Monthly Report Form</h3>
+                        <button onclick="closeReportForm()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    <form onsubmit="submitReportForm(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Report Type</label>
+                                <select name="reportType" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                                    <option value="">Select Report Type</option>
+                                    <option value="Community Watershed Patrol">Community Watershed Patrol</option>
+                                    <option value="Nursery Establishment">Nursery Establishment</option>
+                                    <option value="Reforestation Activity">Reforestation Activity</option>
+                                    <option value="Patrol Deck Report">Patrol Deck Report</option>
+                                    <option value="Mindoro Pines Monitoring">Forest Monitoring</option>
+                                    <option value="Critical Habitat Patrol">Critical Habitat Patrol</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Report Month</label>
+                                <input type="month" name="reportMonth" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Activities Completed</label>
+                                <input type="number" name="activitiesCompleted" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Compliance Status</label>
+                                <select name="complianceStatus" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" required>
+                                    <option value="">Select Status</option>
+                                    <option value="On Time">On Time</option>
+                                    <option value="Late">Late</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Key Achievements</label>
+                            <textarea name="achievements" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" placeholder="Describe key achievements for this month..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Challenges Encountered</label>
+                            <textarea name="challenges" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" placeholder="Describe any challenges faced..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Recommendations</label>
+                            <textarea name="recommendations" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest-green" placeholder="Enter recommendations for next month..."></textarea>
+                        </div>
+                        <div class="flex justify-end space-x-3 pt-4">
+                            <button type="button" onclick="closeReportForm()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
+                            <button type="submit" class="px-4 py-2 bg-forest-green text-white rounded-lg hover:bg-forest-dark">Generate Report</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1217,10 +1375,176 @@
             }
         }
 
+        // Form modal functions
+        function openNurseryForm() {
+            document.getElementById('nurseryForm').classList.remove('hidden');
+        }
+
+        function closeNurseryForm() {
+            document.getElementById('nurseryForm').classList.add('hidden');
+        }
+
+        function openRequestForm() {
+            document.getElementById('requestForm').classList.remove('hidden');
+        }
+
+        function closeRequestForm() {
+            document.getElementById('requestForm').classList.add('hidden');
+        }
+
+        function openRestorationForm() {
+            document.getElementById('restorationForm').classList.remove('hidden');
+        }
+
+        function closeRestorationForm() {
+            document.getElementById('restorationForm').classList.add('hidden');
+        }
+
+        function openReportForm() {
+            document.getElementById('reportForm').classList.remove('hidden');
+        }
+
+        function closeReportForm() {
+            document.getElementById('reportForm').classList.add('hidden');
+        }
+
+        // Form submission functions
+        function submitNurseryForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            alert(`Nursery Data Submitted:\n- Total Seedlings: ${data.totalSeedlings}\n- Distributed: ${data.distributed}\n- Mortality Rate: ${data.mortalityRate}%\n- New Seedlings: ${data.newSeedlings}\n- Narra Count: ${data.narraCount}\n- Mahogany Count: ${data.mahoganyCount}\n- Care Notes: ${data.careNotes}\n\nThis would update the nursery inventory and tracking system.`);
+            
+            event.target.reset();
+            closeNurseryForm();
+        }
+
+        function submitRequestForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            alert(`Tree Planting Request Submitted:\n- Organization: ${data.organization}\n- Contact: ${data.contactPerson}\n- Phone: ${data.phone}\n- Quantity: ${data.quantity}\n- Species: ${data.species}\n- Location: ${data.location}\n- Purpose: ${data.purpose}\n\nThis would process the request and generate official documentation.`);
+            
+            event.target.reset();
+            closeRequestForm();
+        }
+
+        function submitRestorationForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            alert(`Forest Restoration Report Submitted:\n- Trees Planted: ${data.treesPlanted}\n- Survival Rate: ${data.survivalRate}%\n- Area Covered: ${data.areaCovered} hectares\n- Site: ${data.siteLocation}\n- Species: ${data.species}\n- Date: ${data.activityDate}\n- Notes: ${data.monitoringNotes}\n\nThis would update reforestation statistics and monitoring data.`);
+            
+            event.target.reset();
+            closeRestorationForm();
+        }
+
+        function submitReportForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            alert(`Monthly Report Generated:\n- Report Type: ${data.reportType}\n- Month: ${data.reportMonth}\n- Activities Completed: ${data.activitiesCompleted}\n- Compliance: ${data.complianceStatus}\n- Achievements: ${data.achievements}\n- Challenges: ${data.challenges}\n- Recommendations: ${data.recommendations}\n\nThis would generate the official monthly report for submission.`);
+            
+            event.target.reset();
+            closeReportForm();
+        }
+
         // Initialize dashboard on load
         document.addEventListener('DOMContentLoaded', function() {
             // Dashboard is already active by default
+            initializeCharts();
         });
+
+        // Chart initialization functions
+        function initializeCharts() {
+
+            // Seedling Status Chart
+            const seedlingCtx = document.getElementById('seedlingChart');
+            if (seedlingCtx) {
+                new Chart(seedlingCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Survived', 'Available', 'Distributed', 'Mortality'],
+                        datasets: [{
+                            data: [8450, 12350, 15680, 1520],
+                            backgroundColor: ['#10b981', '#14b8a6', '#f97316', '#ef4444'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Monthly Performance Chart
+            const monthlyCtx = document.getElementById('forest_monthlyChart');
+            if (monthlyCtx) {
+                new Chart(monthlyCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets: [{
+                            label: 'Seedlings Produced',
+                            data: [2500, 2800, 3200, 2900, 3100, 3500, 3300, 3600, 3400, 3800, 3700, 4000],
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }, {
+                            label: 'Survival Rate %',
+                            data: [82, 85, 88, 84, 86, 89, 87, 90, 88, 92, 90, 95],
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                title: {
+                                    display: true,
+                                    text: 'Seedlings Produced'
+                                }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                title: {
+                                    display: true,
+                                    text: 'Survival Rate (%)'
+                                },
+                                grid: {
+                                    drawOnChartArea: false,
+                                },
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            }
+                        }
+                    }
+                });
+            }
+        }
     </script>
 <script>
     (function() {
